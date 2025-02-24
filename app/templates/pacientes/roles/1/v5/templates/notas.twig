@@ -1,0 +1,82 @@
+<div class="d-flex align-items-center justify-content-between">
+    <div>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-style1 mg-b-10">
+                <li class="breadcrumb-item">
+                    <a href="#" id="close-notasHM">DATOS CLÍNICOS</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">NOTAS</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<div class="d-flex align-items-start justify-content-between">
+    <div class="d-flex justify-content-start">
+        <h6 class="tx-15 mg-b-0">
+            Notas
+            <p class="tx-10 tx-semibold">
+                Hospital Metropolitano
+            </p>
+        </h6>
+    </div>
+    <div id="initOpcNotas">
+        <div class="d-flex justify-content-end">
+            <button class="nuevaNota tx-semibold btn btn-sm btn-primary d-flex align-items-center">
+                <i class="fas fa-copy mg-r-5 tx-16 lh--9"></i>
+                Nueva Nota
+            </button>
+            <button class="btn btn-sm btn-outline-primary d-flex align-items-center" id="reset-notasHM">
+                <i class="fas fa-sync-alt mg-r-5 tx-16 lh--9"></i>
+            </button>
+        </div>
+    </div>
+    <div id="resetOpcNotas">
+        <div class="d-flex justify-content-end">
+            <button class="sendNuevaNota btn btn-sm btn-primary d-flex align-items-center">
+                <i class="fas fa-save mg-r-5 tx-16 lh--9"></i>
+                Guardar Nota
+            </button>
+            <button class="resetNuevaNota btn btn-sm btn-outline-primary d-flex align-items-center" title="Cancelar Nota">
+                <i class="fas fa-times-circle mg-r-5 tx-16 lh--9"></i>
+            </button>
+        </div>
+    </div>
+
+</div>
+<div class="card pd-b-20 d-none" id="blockNota">
+
+    <div class="colNota card-header bd-b-0 pd-t-30 pd-l-20 pd-lg-l-25">
+
+        <div class="card mg-b-5">
+            <div class="card-header control">
+                <h6 class="d-flex mg-b-0">
+                    Nueva Nota
+                </h6>
+            </div>
+            <!-- card-header -->
+            <div class="card-body pd-y-15 pd-x-10">
+                <div class="ht-250 wd-auto pd-0 bd-0 scrolling-container-contentNota" id="contentNota"></div>
+            </div>
+            <!-- card-body -->
+        </div>
+        <!-- card -->
+
+
+    </div>
+</div>
+<div class="divider-text mg-b-20">Historial de Notas</div>
+<div class="d-flex wd-100p align-items-center justify-content-between">
+    <div class="table-loader col-12 bg-white pd-5">
+        <div class="placeholder-paragraph pd-y-25 pd-x-20">
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+    </div>
+    <div class="media-body">
+        <div class="timeline-group tx-13">
+            <div class="table-content col-12 bg-white pd-t-20 pd-r-15 pd-l-15 pd-b-20 d-none">
+                <table class="table table-sm table-hover" id="table-notas" width="100%" style="border: transparent;"></table>
+            </div>
+        </div>
+    </div>
+</div>

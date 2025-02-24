@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		{{ base_assets()|raw }}
+		{% set time = date().timestamp %}
+		<meta charset="utf-8"/>
+		<meta
+		content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
+		<!-- Meta -->
+		<meta content="{{ config.build.description }}" name="description"/>
+		<meta content="{{ config.build.developer }}" name="author"/>
+		<meta content="{{ nonce|raw }}" http-equiv="Content-Security-Policy"/> {% block appFavicon %}{% endblock %}{% block appPageTittle %}{% endblock %}{% block appMetaHead %}{% endblock %}
+		{# App Css #}
+		<!-- vendor css -->
+		<link href="assets/dashforge/lib/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet"/>
+		<link href="assets/dashforge/lib/ionicons/css/ionicons.min.css" rel="stylesheet"/> {% block appCustomCssApp %}{% endblock %}
+		<!-- Theme CSS -->
+		<link href="assets/dashforge/assets/css/dashforge.css" rel="stylesheet"/> {% block appCustomCssPage %}{% endblock %}
+		{# App Css #}
+		<style type="text/css">
+			.control {
+				pointer-events: none;
+			}
+		</style>
+	</head>
+	{% block appBody %}
+		<body class="{{ appBodyClass }}" {{ appbodyset }}>
+			{% block appHeader %}{% endblock %}
+			{% block appContent %}{% endblock %}
+			{% block appFooter %}{% endblock %}
+			{% block appCustomScriptsPage %}{% endblock %}
+		</body>
+	{% endblock %}
+</html>

@@ -1,0 +1,762 @@
+<div class="df-example demo-forms mg-l-10 mg-r-10">
+	<div class="d-flex align-items-start justify-content-between">
+		<div class="d-flex justify-content-start">
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb breadcrumb-style1 mg-b-10">
+					<li class="breadcrumb-item">
+						<a href="#" class="closeNuevaHC">Datos Clínicos</a>
+					</li>
+					<li class="breadcrumb-item active" aria-current="page">Nueva Historia Clínica
+					</li>
+				</ol>
+			</nav>
+		</div>
+	</div>
+	<div class="d-flex align-items-start justify-content-between">
+		<div class="d-flex justify-content-start">
+			<h4 class="mg-b-0 tx-spacing--1">
+				Nueva Historia Clinica
+				<tx class="tx-10 tx-semibold mg-l-0 mg-b-10">
+					Hospital Metropolitano
+				</tx>
+
+				<p class="tx-semibold tx-14 mg-b-5">Fecha y Hora: %timestampString%</p>
+				<p class="cdiagnostico tx-semibold tx-14 mg-b-10"></p>
+
+			</h4>
+		</div>
+		<div class="d-flex justify-content-end">
+			<button class="resetNuevaHC btn btn-sm btn-white d-flex align-items-center" title="Cancelar">
+				<i class="fas fa-times-circle mg-r-5 tx-16 lh--9"></i>
+				Cancelar
+			</button>
+		</div>
+	</div>
+	<div class="row row-xs" id="pageHC-1">
+		<div class="col-12">
+			<div class="card" id="blockMotivoConsulta">
+				<div class="card-header bd-b-0  pd-t-20 pd-b-20 pd-lg-t-25 pd-l-20 pd-lg-l-25 d-flex flex-column flex-sm-row align-items-sm-start justify-content-sm-between">
+					<div class="col-11">
+						<h4 class="mg-b-5">Motivo de Consulta</h4>
+						<div class="ht-150 wd-auto scrolling-container-contentMotivoConsulta" id="contentMotivoConsulta"></div>
+					</div>
+					<div class="btn-group mg-t-20 mg-sm-t-0">
+						<div class="dropdown dropleft">
+							<button class="btn btn-sm btn-outline-light btn-uppercaset" type="button" id="opcionesHC" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<i class="fas fa-bars"></i>
+							</button>
+							<div class="dropdown-menu" aria-labelledby="opcionesHC" style="top:35px;">
+								<a class="loadAnte dropdown-item" href="#">Antecedentes Personales</a>
+								<a class="loadEnfe dropdown-item" href="#">Enfermedad Actual</a>
+								<a class="loadAler dropdown-item" href="#">Alergias</a>
+							</div>
+						</div>
+					</div>
+					<!-- btn-group -->
+
+				</div>
+				<!-- card-header -->
+
+			</div>
+			<!-- card -->
+			<div class="card d-none" id="blockAntecedentesPersonales">
+				<div class="card-header bd-b-0 pd-t-20 pd-lg-t-25 pd-l-20 pd-lg-l-25 d-flex flex-column flex-sm-row align-items-sm-start justify-content-sm-between">
+					<div class="col-11">
+						<h4 class="mg-b-5">Antecedentes Personales</h4>
+						<div class="ht-150 wd-auto scrollbar-lg pos-relative  pd-0 bd-0 scrolling-container-contentAntecedentesPersonales" id="contentAntecedentesPersonales"></div>
+					</div>
+					<div class="btn-group mg-t-20 mg-sm-t-0">
+						<div class="dropdown dropleft">
+							<button class="btn btn-sm btn-outline-light btn-uppercaset" type="button" id="opcionesHC" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<i class="fas fa-bars"></i>
+							</button>
+							<div class="dropdown-menu" aria-labelledby="opcionesHC" style="top:35px;">
+								<a class="loadMoti dropdown-item" href="#">Motivo de Consulta</a>
+								<a class="loadEnfe dropdown-item" href="#">Enfermedad Actual</a>
+								<a class="loadAler dropdown-item" href="#">Alergias</a>
+							</div>
+						</div>
+					</div>
+					<!-- btn-group -->
+
+				</div>
+				<!-- card-header -->
+
+			</div>
+			<!-- card -->
+			<div class="card d-none" id="blockEnfermedadActual">
+				<div class="card-header bd-b-0 pd-t-20 pd-lg-t-25 pd-l-20 pd-lg-l-25 d-flex flex-column flex-sm-row align-items-sm-start justify-content-sm-between">
+					<div class="col-11">
+						<h4 class="mg-b-5">Enfermedad Actual</h4>
+						<div class="ht-150 wd-auto scrollbar-lg pos-relative pd-0 bd-0 scrolling-container-contentEnfermedadActual" id="contentEnfermedadActual"></div>
+					</div>
+					<div class="btn-group mg-t-20 mg-sm-t-0">
+						<div class="dropdown dropleft">
+							<button class="btn btn-sm btn-outline-light btn-uppercaset" type="button" id="opcionesHC" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<i class="fas fa-bars"></i>
+							</button>
+							<div class="dropdown-menu" aria-labelledby="opcionesHC" style="top:35px;">
+
+
+								<a class="loadMoti dropdown-item" href="#">Motivo de Consulta</a>
+								<a class="loadAnte dropdown-item" href="#">Antecedentes Personales</a>
+								<a class="loadAler dropdown-item" href="#">Alergias</a>
+							</div>
+						</div>
+					</div>
+					<!-- btn-group -->
+
+				</div>
+				<!-- card-header -->
+
+			</div>
+			<!-- card -->
+			<div class="card d-none" id="blockAlergias">
+				<div class="card-header bd-b-0 pd-t-20 pd-lg-t-25 pd-l-20 pd-lg-l-25 d-flex flex-column flex-sm-row align-items-sm-start justify-content-sm-between">
+					<div class="col-11">
+						<h4 class="mg-b-5">Alergias</h4>
+						<div class="ht-150 wd-auto scrollbar-lg pos-relative pd-0 bd-0 scrolling-container-contentAlergias" id="contentAlergias"></div>
+					</div>
+					<div class="btn-group mg-t-20 mg-sm-t-0">
+						<div class="dropdown dropleft">
+							<button class="btn btn-sm btn-outline-light btn-uppercaset" type="button" id="opcionesHC" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<i class="fas fa-bars"></i>
+							</button>
+							<div class="dropdown-menu" aria-labelledby="opcionesHC" style="top:35px;">
+
+
+								<a class="loadMoti dropdown-item" href="#">Motivo de Consulta</a>
+								<a class="loadAnte dropdown-item" href="#">Antecedentes Personales</a>
+								<a class="loadEnfe dropdown-item" href="#">Enfermedad Actual</a>
+							</div>
+						</div>
+					</div>
+					<!-- btn-group -->
+
+				</div>
+				<!-- card-header -->
+
+			</div>
+			<!-- card -->
+		</div>
+		<div class="col-12 mg-t-10">
+			<div class="card">
+				<div class="card-header">
+					<div class="custom-control custom-checkbox">
+						<input type="checkbox" class="custom-control-input" id="checkSignosVitales"/>
+						<label class="checkSignosVitales custom-control-label" for="checkSignosVitales">¿Incluir Sección?</label>
+					</div>
+				</div>
+				<div class="card-header" id="tSignosVitales" style="cursor:pointer;">
+					<h6 class="mg-b-0">Signos Vitales y Antrpometría</h6>
+				</div>
+				<!-- card-header -->
+
+				<div class="card-body pd-y-15 pd-x-10" id="bSignosVitales" style="display:none;">
+					<div class="row mg-b-5">
+						<div class="col-6">
+							<p class="tx-10 tx-uppercase tx-medium tx-color-03 tx-spacing-1 tx-nowrap mg-b-5">T. Bucal</p>
+							<div class="d-flex align-items-center">
+								<div class="wd-10 ht-10 rounded-circle bg-pink mg-r-5"></div>
+								<input id="temperaturaBucal" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+
+							</div>
+						</div>
+						<!-- col -->
+						<div class="col-6">
+							<p class="tx-10 tx-uppercase tx-medium tx-color-03 tx-spacing-1 mg-b-5">T. Axiliar</p>
+							<div class="d-flex align-items-center">
+								<div class="wd-10 ht-10 rounded-circle bg-primary mg-r-5"></div>
+								<input id="temperaturaAxiliar" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+
+							</div>
+						</div>
+						<!-- col -->
+						<div class="col-6 mg-t-20">
+							<p class="tx-10 tx-uppercase tx-medium tx-color-03 tx-spacing-1 mg-b-5">T. Rectal</p>
+							<div class="d-flex align-items-center">
+								<div class="wd-10 ht-10 rounded-circle bg-teal mg-r-5"></div>
+								<input id="temperaturaRectal" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+
+							</div>
+						</div>
+						<!-- col -->
+						<div class="col-6 mg-t-20">
+							<p class="tx-10 tx-uppercase tx-medium tx-color-03 tx-spacing-1 mg-b-5">T. S.</p>
+							<div class="d-flex align-items-center">
+								<div class="wd-10 ht-10 rounded-circle bg-orange mg-r-5"></div>
+								<input id="taSistolica" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+
+							</div>
+						</div>
+						<!-- col -->
+					</div>
+					<!-- row -->
+					<div class="row mg-b-5">
+						<div class="col-6">
+							<p class="tx-10 tx-uppercase tx-medium tx-color-03 tx-spacing-1 tx-nowrap mg-b-5">T. D.</p>
+							<div class="d-flex align-items-center">
+								<div class="wd-10 ht-10 rounded-circle bg-pink mg-r-5"></div>
+								<input id="taDiastolica" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+
+
+							</div>
+						</div>
+						<!-- col -->
+						<div class="col-6">
+							<p class="tx-10 tx-uppercase tx-medium tx-color-03 tx-spacing-1 mg-b-5">Pulso</p>
+							<div class="d-flex align-items-center">
+								<div class="wd-10 ht-10 rounded-circle bg-primary mg-r-5"></div>
+								<input id="pulso" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+
+							</div>
+						</div>
+						<!-- col -->
+						<div class="col-6 mg-t-20">
+							<p class="tx-10 tx-uppercase tx-medium tx-color-03 tx-spacing-1 mg-b-5">F. Resp.</p>
+							<div class="d-flex align-items-center">
+								<div class="wd-10 ht-10 rounded-circle bg-teal mg-r-5"></div>
+								<input id="frecuenciaRespiratoria" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+
+							</div>
+						</div>
+						<!-- col -->
+						<div class="col-6 mg-t-20">
+							<p class="tx-10 tx-uppercase tx-medium tx-color-03 tx-spacing-1 mg-b-5">P. Cef.</p>
+							<div class="d-flex align-items-center">
+								<div class="wd-10 ht-10 rounded-circle bg-orange mg-r-5"></div>
+								<input id="perimetroCef" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+
+							</div>
+						</div>
+						<!-- col -->
+					</div>
+					<!-- row -->
+					<div class="row mg-b-5">
+						<div class="col-6">
+							<p class="tx-10 tx-uppercase tx-medium tx-color-03 tx-spacing-1 tx-nowrap mg-b-5">Peso</p>
+							<div class="d-flex align-items-center">
+								<div class="wd-10 ht-10 rounded-circle bg-pink mg-r-5"></div>
+								<input id="peso" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+
+							</div>
+						</div>
+						<!-- col -->
+						<div class="col-6">
+							<p class="tx-10 tx-uppercase tx-medium tx-color-03 tx-spacing-1 mg-b-5">Talla</p>
+							<div class="d-flex align-items-center">
+								<div class="wd-10 ht-10 rounded-circle bg-primary mg-r-5"></div>
+								<input id="talla" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+							</div>
+						</div>
+						<!-- col -->
+						<div class="col-6 mg-t-20">
+							<p class="tx-10 tx-uppercase tx-medium tx-color-03 tx-spacing-1 mg-b-5">IMC</p>
+							<div class="d-flex align-items-center">
+								<div class="wd-10 ht-10 rounded-circle bg-teal mg-r-5"></div>
+								<input id="imc" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+							</div>
+						</div>
+						<!-- col -->
+
+					</div>
+					<!-- row -->
+				</div>
+				<!-- card-body -->
+			</div>
+			<!-- card -->
+		</div>
+
+
+		<div class="col-lg-12 mg-t-10">
+			<div class="card">
+				<div class="card-header">
+					<div class="custom-control custom-checkbox">
+						<input type="checkbox" class="custom-control-input" id="checkExamenFisico"/>
+						<label class="checkExamenFisico custom-control-label" for="checkExamenFisico">¿Incluir Sección?</label>
+					</div>
+				</div>
+				<div class="card-header d-sm-flex align-items-start justify-content-between" id="tExamenFisico" style="cursor:pointer;">
+					<h6 class="lh-5 mg-b-0">Examen Físico</h6>
+				</div>
+				<!-- card-header -->
+				<div class="card-body pd-y-15 pd-x-10" id="bExamenFisico" style="display:none;">
+					<div class="row mg-b-5">
+						<div class="col-6">
+							<p class="tx-10 tx-uppercase tx-medium tx-color-03 tx-spacing-1 tx-nowrap mg-b-5">Cabeza1R</p>
+							<div class="d-flex align-items-center">
+								<div class="wd-10 ht-10 rounded-circle bg-pink mg-r-5"></div>
+								<input id="cabeza1R" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+							</div>
+						</div>
+						<!-- col -->
+						<div class="col-6">
+							<p class="tx-10 tx-uppercase tx-medium tx-color-03 tx-spacing-1 mg-b-5">cuello2R</p>
+							<div class="d-flex align-items-center">
+								<div class="wd-10 ht-10 rounded-circle bg-primary mg-r-5"></div>
+								<input id="cuello2R" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+
+							</div>
+						</div>
+						<!-- col -->
+						<div class="col-6 mg-t-20">
+							<p class="tx-10 tx-uppercase tx-medium tx-color-03 tx-spacing-1 mg-b-5">torax3R</p>
+							<div class="d-flex align-items-center">
+								<div class="wd-10 ht-10 rounded-circle bg-teal mg-r-5"></div>
+								<input id="torax3R" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+
+							</div>
+						</div>
+						<!-- col -->
+						<div class="col-6 mg-t-20">
+							<p class="tx-10 tx-uppercase tx-medium tx-color-03 tx-spacing-1 mg-b-5">abdomen4R</p>
+							<div class="d-flex align-items-center">
+								<div class="wd-10 ht-10 rounded-circle bg-orange mg-r-5"></div>
+								<input id="abdomen4R" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+
+							</div>
+						</div>
+						<!-- col -->
+					</div>
+					<!-- row -->
+					<div class="row mg-b-5">
+						<div class="col-6">
+							<p class="tx-10 tx-uppercase tx-medium tx-color-03 tx-spacing-1 tx-nowrap mg-b-5">pelvis5R</p>
+							<div class="d-flex align-items-center">
+								<div class="wd-10 ht-10 rounded-circle bg-pink mg-r-5"></div>
+								<input id="pelvis5R" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+
+
+							</div>
+						</div>
+						<!-- col -->
+						<div class="col-6">
+							<p class="tx-10 tx-uppercase tx-medium tx-color-03 tx-spacing-1 mg-b-5">extremidades6R</p>
+							<div class="d-flex align-items-center">
+								<div class="wd-10 ht-10 rounded-circle bg-primary mg-r-5"></div>
+								<input id="extremidades6R" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+
+							</div>
+						</div>
+						<!-- col -->
+						<div class="col-6 mg-t-20">
+							<p class="tx-10 tx-uppercase tx-medium tx-color-03 tx-spacing-1 mg-b-5">planTratamiento.</p>
+							<div class="d-flex align-items-center">
+								<div class="wd-10 ht-10 rounded-circle bg-teal mg-r-5"></div>
+								<input id="planTratamiento" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+
+							</div>
+						</div>
+						<!-- col -->
+					</div>
+					<!-- row -->
+
+				</div>
+				<!-- card-body -->
+			</div>
+			<!-- card -->
+		</div>
+		<!-- col -->
+
+
+		<div class="col-lg-12 mg-t-10">
+			<div class="card">
+				<div class="card-header d-sm-flex align-items-start justify-content-between" id="tRevisionOrganos" style="cursor:pointer;">
+					<h6 class="lh-5 mg-b-0">Revisión de Organos</h6>
+
+				</div>
+				<!-- card-header -->
+				<div class="card-body pd-y-15 pd-x-10" id="bRevisionOrganos" style="display:none;">
+					<div class="table-responsive">
+						<table class="table table-borderless table-sm tx-13 tx-nowrap mg-b-0">
+							<thead>
+								<tr class="tx-10 tx-spacing-1 tx-color-03 tx-uppercase">
+									<th class="wd-5p">&nbsp;</th>
+									<th>Item</th>
+									<th class="text-right">Valor</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<i class="fab fa-chrome tx-primary op-6"></i>
+									</td>
+									<td class="tx-medium">Sentidos</td>
+									<td class="text-right">
+										<input id="sentidos" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<i class="fab fa-chrome tx-primary op-6"></i>
+									</td>
+									<td class="tx-medium">Cardio Vascular</td>
+									<td class="text-right">
+										<input id="cardioVascular" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<i class="fab fa-chrome tx-primary op-6"></i>
+									</td>
+									<td class="tx-medium">Genital</td>
+									<td class="text-right">
+										<input id="genital" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<i class="fab fa-chrome tx-primary op-6"></i>
+									</td>
+									<td class="tx-medium">Msc. Esqueletico</td>
+									<td class="text-right">
+										<input id="muscEsqueletico" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<i class="fab fa-chrome tx-primary op-6"></i>
+									</td>
+									<td class="tx-medium">Hemo. Linfatico</td>
+									<td class="text-right">
+										<input id="hemoLinfatico" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<i class="fab fa-chrome tx-primary op-6"></i>
+									</td>
+									<td class="tx-medium">Respiratorio</td>
+									<td class="text-right">
+										<input id="respiratorio" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<i class="fab fa-chrome tx-primary op-6"></i>
+									</td>
+									<td class="tx-medium">Digestivo</td>
+									<td class="text-right">
+										<input id="digestivo" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<i class="fab fa-chrome tx-primary op-6"></i>
+									</td>
+									<td class="tx-medium">Urinario</td>
+									<td class="text-right">
+										<input id="urinario" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<i class="fab fa-chrome tx-primary op-6"></i>
+									</td>
+									<td class="tx-medium">Endocrino</td>
+									<td class="text-right">
+										<input id="endocrino" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<i class="fab fa-chrome tx-primary op-6"></i>
+									</td>
+									<td class="tx-medium">Nervioso</td>
+									<td class="text-right">
+										<input id="nervioso" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+									</td>
+								</tr>
+
+
+							</tbody>
+						</table>
+					</div>
+					<!-- table-responsive -->
+				</div>
+				<!-- card-body -->
+			</div>
+			<!-- card -->
+		</div>
+		<!-- col -->
+
+
+		<div class="col-lg-12 mg-t-10">
+			<div class="card">
+				<div class="card-header d-sm-flex align-items-start justify-content-between" id="tAntecedentesFamiliares" style="cursor:pointer;">
+					<h6 class="lh-5 mg-b-0">Antecedentes Familliares</h6>
+
+				</div>
+				<!-- card-header -->
+				<div class="card-body pd-y-15 pd-x-10" style="display:none;" id="bAntecedentesFamiliares">
+					<div class="table-responsive">
+						<table class="table table-borderless table-sm tx-13 tx-nowrap mg-b-0">
+							<thead>
+								<tr class="tx-10 tx-spacing-1 tx-color-03 tx-uppercase">
+									<th class="wd-5p">&nbsp;</th>
+									<th>Item</th>
+									<th class="text-right">Valor</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<i class="fab fa-chrome tx-primary op-6"></i>
+									</td>
+									<td class="tx-medium">Cardiopatía</td>
+									<td class="text-right">
+										<input id="cardiopatia" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<i class="fab fa-chrome tx-primary op-6"></i>
+									</td>
+									<td class="tx-medium">Diabetes</td>
+									<td class="text-right">
+										<input id="diabetes" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<i class="fab fa-chrome tx-primary op-6"></i>
+									</td>
+									<td class="tx-medium">Enfermedad Vascular</td>
+									<td class="text-right">
+										<input id="enfermedadVascular" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<i class="fab fa-chrome tx-primary op-6"></i>
+									</td>
+									<td class="tx-medium">Hipertension</td>
+									<td class="text-right">
+										<input id="hipertension" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<i class="fab fa-chrome tx-primary op-6"></i>
+									</td>
+									<td class="tx-medium">Cancer</td>
+									<td class="text-right">
+										<input id="cancer" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<i class="fab fa-chrome tx-primary op-6"></i>
+									</td>
+									<td class="tx-medium">Tuberculosis</td>
+									<td class="text-right">
+										<input id="tuberculosis" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<i class="fab fa-chrome tx-primary op-6"></i>
+									</td>
+									<td class="tx-medium">Enfermendad Mental</td>
+									<td class="text-right">
+										<input id="enfermendadMental" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<i class="fab fa-chrome tx-primary op-6"></i>
+									</td>
+									<td class="tx-medium">Enfermedad Infecciosa</td>
+									<td class="text-right">
+										<input id="enfermedadInfecciosa" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<i class="fab fa-chrome tx-primary op-6"></i>
+									</td>
+									<td class="tx-medium">Malformacion</td>
+									<td class="text-right">
+										<input id="malformacion" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<i class="fab fa-chrome tx-primary op-6"></i>
+									</td>
+									<td class="tx-medium">Otro</td>
+									<td class="text-right">
+										<input id="otro" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<!-- table-responsive -->
+				</div>
+				<!-- card-body -->
+			</div>
+			<!-- card -->
+		</div>
+		<!-- col -->
+
+		<div class="col-lg-12 mg-t-10">
+			<div class="card">
+				<div class="card-header d-sm-flex align-items-start justify-content-between" id="tEvoluciones" style="cursor:pointer;">
+					<h6 class="lh-5 mg-b-0">Evoluciones</h6>
+
+				</div>
+				<!-- card-header -->
+				<div class="card-body pd-y-15 pd-x-10" id="bEvoluciones" style="display:none;">
+					<div class="table-responsive">
+						<table class="table table-borderless table-sm tx-13 tx-nowrap mg-b-15">
+							<thead>
+								<tr class="tx-10 tx-spacing-1 tx-color-03 tx-uppercase">
+									<th class="wd-5p">&nbsp;</th>
+									<th>Opciones</th>
+									<th class="text-right">Fecha de Evolución:</th>
+									<th class="text-right">Detalle de Evolución:</th>
+								</tr>
+							</thead>
+							<tbody>
+
+								<tr>
+									<td>
+										<i class="fab fa-safari tx-primary"></i>
+									</td>
+									<td class="pd-0">
+										<a href="#" class="nuevaEvolucion nav-link active pd-0">
+											Nueva Evolución
+										</a>
+									</td>
+									<td class="text-right">
+										<div id="fechaEvolucion" class="mg-t-10" style="display:none;"></div>
+									</td>
+									<td class="text-right">
+										<input id="evolucion" class="form-control bd-0 pd-0" placeholder="Escribir..." style="font-size: initial;display:none;"/>
+									</td>
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+					<!-- table-responsive -->
+					<!-- table-responsive -->
+					<div class="table-responsive ht-150 scrolling-container-historialEvoluciones mg-b-30">
+						<table class="table table-borderless table-sm tx-13 tx-nowrap mg-b-0">
+							<thead>
+
+								<tr class="tx-10 tx-spacing-1 tx-color-03 tx-uppercase">
+									<th class="wd-5p">&nbsp;</th>
+									<th>Historial de Evoluciones</th>
+								</tr>
+								<tr class="tx-10 tx-spacing-1 tx-color-03 tx-uppercase">
+									<th class="wd-5p">&nbsp;</th>
+									<th>Opciones</th>
+									<th class="text-right">Fecha de Evolución</th>
+									<th class="text-right">Detalle de Evolución</th>
+								</tr>
+							</thead>
+							<tbody id="historialEvoluciones"></tbody>
+						</table>
+					</div>
+					<!-- table-responsive -->
+				</div>
+				<!-- card-body -->
+			</div>
+			<!-- card -->
+		</div>
+		<!-- col -->
+
+		<div class="col-lg-12 mg-t-10">
+			<div class="card ">
+				<div class="card-header d-sm-flex align-items-start justify-content-between" id="tDiagnosticoPrincipal" style="cursor:pointer;">
+					<h6 class="lh-5 mg-b-0">Diagnóstico Principal *Es Obligatorio</h6>
+				</div>
+				<!-- card-header -->
+				<div class="card-body pd-y-15 pd-x-10 ht-auto" id="bDiagnosticoPrincipal" style="display:none;">
+					<div class="table-responsive">
+						<table class="table table-borderless table-sm tx-13 tx-nowrap mg-b-0">
+							<thead>
+								<tr class="tx-10 tx-spacing-1 tx-color-03 tx-uppercase">
+									<th class="wd-5p">&nbsp;</th>
+									<th>Opciones</th>
+									<th class="text-right">Código de Diagnóstico:</th>
+									<th class="text-right">Descripción de Diagnóstico:</th>
+								</tr>
+							</thead>
+							<tbody>
+
+								<tr>
+									<td>
+										<i class="fab fa-safari tx-primary"></i>
+									</td>
+									<td class="pd-0">
+										<a href="#" class="agregarDiagnostico nav-link active pd-0">
+											Diagnostico Principal
+										</a>
+									</td>
+									<td class="text-right" colspan="2" id="cdiagnostico"></td>
+
+								</tr>
+
+
+							</tbody>
+						</table>
+
+					</div>
+					<div class="df-example demo-forms bd bd-0" id="tdiagnostico" style="display:none;">
+						<div class="input-group">
+							<div class="search-form search-suggestion-fixed wd-100p">
+								<input type="search" class="form-control" id="diagPrincipalHC" placeholder="Buscar por código o diagnóstico."/>
+							</div>
+						</div>
+					</div>
+					<!-- table-responsive -->
+					<!-- table-responsive -->
+				</div>
+				<!-- card -->
+			</div>
+			<!-- col -->
+
+		</div>
+
+		<div class="col-lg-12 mg-t-10">
+			<div class="card ">
+				<div class="card-header d-sm-flex align-items-start justify-content-between" id="tDiagnosticoSecundarios" style="cursor:pointer;">
+					<h6 class="lh-5 mg-b-0">Diagnóstico Secundarios</h6>
+
+				</div>
+				<!-- card-header -->
+				<div class="card-body pd-y-15 pd-x-10 ht-auto" id="bDiagnosticoSecundarios" style="display:none;">
+
+
+					<div class="table-responsive">
+						<table class="grid-diagnosticos table table-borderless table-sm tx-13 tx-nowrap mg-b-0">
+							<thead>
+								<tr class="tx-10 tx-spacing-1 tx-color-03 tx-uppercase">
+									<th class="text-left">Diagnóstico:</th>
+									<th class="text-right">Opciones:</th>
+								</tr>
+							</thead>
+							<tbody></tbody>
+						</table>
+					</div>
+					<!-- table-responsive -->
+
+					<div class="df-example demo-forms bd bd-0 mg-t-10">
+						<div class="input-group">
+							<label>Diagnósticos Secundarios:</label>
+							<div class="search-form search-suggestion-fixed wd-100p">
+								<input type="search" class="form-control" id="diagSegundarios" placeholder="Buscar por código o diagnóstico."/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- card -->
+			</div>
+			<!-- col -->
+		</div>
+		<!-- col -->
+	</div>
+</div>

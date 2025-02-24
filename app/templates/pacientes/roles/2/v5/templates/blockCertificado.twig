@@ -1,0 +1,62 @@
+<div class="col-lg-12 col-xl-12 pd-0">
+	<div class="card pd-30">
+		<div class="d-flex align-items-center justify-content-between">
+			<div>
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb breadcrumb-style1 mg-b-10">
+						<li class="breadcrumb-item">
+							<a href="#" class="closeNuevoCertificado">Datos Clínicos</a>
+						</li>
+						<li class="breadcrumb-item">
+							<a href="#" class="returnCertificados">Certificados Médicos</a>
+						</li>
+						<li class="breadcrumb-item active" aria-current="page">Nuevo Certificado</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+		<div class="d-flex align-items-start justify-content-between">
+			<div class="d-flex justify-content-start">
+				<h4 class="tx-20 mg-b-0">
+					Nuevo Certificado
+					<p class="tx-10 tx-semibold">
+						Hospital Metropolitano
+					</p>
+				</h4>
+			</div>
+			<div class="d-flex justify-content-end">
+				<button class="sendNuevoCertificado btn btn-sm btn-primary d-flex align-items-center">
+					<i class="fas fa-paper-plane mg-r-5 tx-16 lh--9"></i>
+					Enviar Certificado
+				</button>
+				<button class="resetNuevoCertificado btn btn-sm btn-outline-primary d-flex align-items-center" title="Cancelar Certificado">
+					<i class="fas fa-times-circle mg-r-5 tx-16 lh--9"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+	<div class="card" id="blockCertificado">
+		<div class="card-header bd-b-0 pd-t-20 pd-lg-t-25 pd-l-20 pd-lg-l-25 d-flex flex-column flex-sm-row align-items-sm-start justify-content-sm-between">
+			<div class="contentDiagnostico col-12">
+				<h6 class="mg-b-5">Diagnóstico:
+					<a href="" class="copyDiagnosticoCert mg-l-5 d-none">
+						<i class="fas fa-copy mg-r-2"></i>
+						Copiar diagnóstico de Historia Clínica
+					</a>
+				</h6>
+				<div class="df-example demo-forms bd bd-0 pd-0 pd-t-10">
+					<div class="input-group">
+						<div class="search-form search-suggestion-fixed wd-100p">
+							<input type="search" class="form-control" id="diagPrincipal" placeholder="Buscar por código o diagnóstico."/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="card-header bd-b-0 pd-t-20 pd-lg-t-25 pd-l-20 pd-lg-l-25 d-flex flex-column flex-sm-row align-items-sm-start justify-content-sm-between">
+			<div class="colCertificado col-12 d-none">
+				<div class="ht-550 wd-auto pd-0 bd-0 scrolling-container-contentCertificado" id="contentCertificado"></div>
+			</div>
+		</div>
+	</div>
+</div>

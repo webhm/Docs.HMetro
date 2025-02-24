@@ -1,0 +1,1385 @@
+$(function() { 'use strict' $('[data-toggle="tooltip"]').tooltip(); // set active contact from list to show in desktop view by default if (window.matchMedia('(min-width: 992px)').matches) { $('.contact-list .media:first-of-type').addClass('active'); }
+const contactSidebar = new PerfectScrollbar('.contact-sidebar-body', { suppressScrollX: true }); new PerfectScrollbar('.contact-content-body', { suppressScrollX: true }); new PerfectScrollbar('.contact-content-sidebar', { suppressScrollX: true }); new
+PerfectScrollbar('.content', { suppressScrollX: true }); $('.contact-navleft .nav-link').on('shown.bs.tab', function(e) { contactSidebar.update() }) // UI INTERACTION $('.contact-list .media').on('click', function(e) { e.preventDefault(); $('.contact-list
+.media').removeClass('active'); $(this).addClass('active'); var cName = $(this).find('h6').text(); $('#contactName').text(cName); var cAvatar = $(this).find('.avatar').clone(); cAvatar.removeClass(function(index, className) { return (className.match(/(^|\s)avatar-\S+/g)
+|| []).join(' '); }); cAvatar.addClass('avatar-xl'); $('#contactAvatar .avatar').replaceWith(cAvatar); // showing contact information when clicking one of the list // for mobile interaction only if (window.matchMedia('(max-width: 991px)').matches) { $('body').addClass('contact-content-show');
+$('body').removeClass('contact-content-visible'); $('#mainMenuOpen').addClass('d-none'); $('#contactContentHide').removeClass('d-none'); } }) // going back to contact list // for mobile interaction only $('#contactContentHide').on('click touch', function(e)
+{ e.preventDefault(); $('body').removeClass('contact-content-show contact-options-show'); $('body').addClass('contact-content-visible'); $('#mainMenuOpen').removeClass('d-none'); $(this).addClass('d-none'); }); $('#contactOptions').on('click', function(e)
+{ e.preventDefault(); $('body').toggleClass('contact-options-show'); }) $(window).resize(function() { $('body').removeClass('contact-options-show'); }) }) </div>
+<div class="mg-l-5 d-inline" id="titlecontentNetwork">Estamos preprarando todo</div>
+</h1>
+<h5 class="tx-16 tx-sm-18 tx-lg-20 tx-normal mg-b-5" id="textNetwork"></h5>
+<span class="tx-12 tx-color-03  mg-b-5" id="dataNetwork"></span>
+<div class="d-flex mg-b-40">
+    <a href="{{config.build.url}}pacientes/teleconsulta" class="btn btn-brand-02 bd-0 mg-l-5 pd-sm-x-25 d-none" id="reloadTeleconsulta">Reintentar</a>
+</div>
+</div>
+</div>
+<!-- container -->
+</div>
+<!-- content -->
+
+<div class="contact-navleft d-none">
+    <nav class="nav flex-column">
+        <a class="nav-link active tabPacientesHoy" data-toggle="tab" href="#tabPacientesHoy">
+            <span data-placement="right" data-toggle="tooltip" title="Pacientes de Hoy">
+                    <i data-feather="calendar"></i>
+                </span>
+        </a>
+        <a class="nav-link tabPacientesAnteriores" data-toggle="tab" href="#tabPacientesAnteriores">
+            <span data-placement="right" data-toggle="tooltip" title="Todos mis Pacientes">
+                    <i data-feather="users"></i>
+                </span>
+        </a>
+        <a class="nav-link tabNews" data-toggle="tab" href="#tabNews">
+            <span data-placement="right" data-toggle="tooltip" title="Noticias">
+                    <i data-feather="globe"></i>
+                </span>
+        </a>
+        <a class="nav-link d-none" data-toggle="tab" href="#!">
+            <span data-placement="right" data-toggle="tooltip" title="Pacientes Ateriores">
+                    <i data-feather="phone-call"></i>
+                </span>
+        </a>
+        <a class="nav-link tabPacientesCategorias d-none" data-toggle="tab" href="#tabPacientesCategorias">
+            <span data-placement="right" data-toggle="tooltip" title="Categorias Pacientes">
+                    <i data-feather="tag"></i>
+                </span>
+        </a>
+        <a class="nav-link tabBuscarPacientes d-none" data-toggle="tab" href="#tabBuscarPacientes">
+            <span data-placement="right" data-toggle="tooltip" title="Categorias Pacientes">
+                    <i data-feather="tag"></i>
+                </span>
+        </a>
+    </nav>
+</div>
+<!-- contact-navleft -->
+<div class="contact-sidebar d-none ">
+    <div class="contact-sidebar-header d-none">
+        <i data-feather="search"></i>
+        <div class="search-form">
+            <input class="form-control" placeholder="Buscar pacientes" id="searchPaciente" type="search"></input>
+        </div>
+        <a href="#!" class="searchPaciente btn btn-xs btn-icon btn-primary">
+            <span data-toggle="tooltip" title="Buscar Paciente"><i class="fas fa-search pd-2"></i></span>
+        </a>
+    </div>
+    <!-- contact-sidebar-header -->
+    <div class="contact-sidebar-body t-0">
+        <div class="tab-content">
+            <div class="tab-pane fade active show" id="tabPacientesHoy">
+                <div class="list-pacientesHoy pd-y-20 pd-x-10 contact-list">
+                    <div class="loader d-none placeholder-paragraph pd-y-25 pd-x-20">
+                        <div class="line"></div>
+                        <div class="line"></div>
+                    </div>
+                    <div class="content pd-0 d-none"></div>
+                </div>
+                <!-- contact-list -->
+            </div>
+            <!-- tab-pane -->
+            <div class="tab-pane fade" id="tabPacientesAnteriores">
+                <div class="list-pacientesAnteriores pd-y-20 pd-x-10 contact-list">
+                    <div class="loader d-none placeholder-paragraph pd-y-25 pd-x-20">
+                        <div class="line"></div>
+                        <div class="line"></div>
+                    </div>
+                    <div class="content pd-0 d-none"></div>
+
+                </div>
+                <!-- contact-list -->
+            </div>
+            <!-- tab-pane -->
+            <div class="tab-pane fade" id="tabPacientesAnteriores">
+                <div class="pd-y-20 pd-x-10 contact-list">
+                    <label class="contact-list-divider">
+                            My Favorites
+                        </label>
+                    <div class="media">
+                        <div class="avatar avatar-sm avatar-online">
+                            <img alt="" class="rounded-circle" src="https://via.placeholder.com/500" />
+                        </div>
+                        <div class="media-body mg-l-10">
+                            <h6 class="tx-13 mg-b-3">
+                                Archie Cantones
+                            </h6>
+                            <span class="tx-12">
+                                    archie@cantones.com
+                                </span>
+                        </div>
+                        <!-- media-body -->
+                        <nav>
+                            <a href="">
+                                <i data-feather="star"></i>
+                            </a>
+                            <a href="">
+                                <i data-feather="edit-2"></i>
+                            </a>
+                        </nav>
+                    </div>
+                    <!-- media -->
+                    <div class="media">
+                        <div class="avatar avatar-sm avatar-online">
+                            <img alt="" class="rounded-circle" src="https://via.placeholder.com/500" />
+                        </div>
+                        <div class="media-body mg-l-10">
+                            <h6 class="tx-13 mg-b-3">
+                                Brenda Aceron
+                            </h6>
+                            <span class="tx-12">
+                                    brenda@aceron.com
+                                </span>
+                        </div>
+                        <!-- media-body -->
+                        <nav>
+                            <a href="">
+                                <i data-feather="star"></i>
+                            </a>
+                            <a href="">
+                                <i data-feather="edit-2"></i>
+                            </a>
+                        </nav>
+                    </div>
+                    <!-- media -->
+                    <div class="media">
+                        <div class="avatar avatar-sm avatar-online">
+                            <span class="avatar-initial rounded-circle bg-indigo">
+                                    B
+                                </span>
+                        </div>
+                        <div class="media-body mg-l-10">
+                            <h6 class="tx-13 mg-b-3">
+                                Brandibelle Yap
+                            </h6>
+                            <span class="tx-12">
+                                    byap@urmail.com
+                                </span>
+                        </div>
+                        <!-- media-body -->
+                        <nav>
+                            <a href="">
+                                <i data-feather="star"></i>
+                            </a>
+                            <a href="">
+                                <i data-feather="edit-2"></i>
+                            </a>
+                        </nav>
+                    </div>
+                    <!-- media -->
+                    <div class="media">
+                        <div class="avatar avatar-sm avatar-online">
+                            <img alt="" class="rounded-circle" src="https://via.placeholder.com/500" />
+                        </div>
+                        <div class="media-body mg-l-10">
+                            <h6 class="tx-13 mg-b-3">
+                                Camille Audrey
+                            </h6>
+                            <span class="tx-12">
+                                    +1-234-567-890
+                                </span>
+                        </div>
+                        <!-- media-body -->
+                        <nav>
+                            <a href="">
+                                <i data-feather="star"></i>
+                            </a>
+                            <a href="">
+                                <i data-feather="edit-2"></i>
+                            </a>
+                        </nav>
+                    </div>
+                    <!-- media -->
+                    <div class="media">
+                        <div class="avatar avatar-sm avatar-offline">
+                            <span class="avatar-initial rounded-circle bg-success">
+                                    E
+                                </span>
+                        </div>
+                        <div class="media-body mg-l-10">
+                            <h6 class="tx-13 mg-b-3">
+                                Elvis Vircede
+                            </h6>
+                            <span class="tx-12">
+                                    +63929-123-4567
+                                </span>
+                        </div>
+                        <!-- media-body -->
+                        <nav>
+                            <a href="">
+                                <i data-feather="star"></i>
+                            </a>
+                            <a href="">
+                                <i data-feather="edit-2"></i>
+                            </a>
+                        </nav>
+                    </div>
+                    <!-- media -->
+                </div>
+                <!-- contact-list -->
+            </div>
+            <!-- tab-pane -->
+            <div class="tab-pane fade" id="tabPacientesCategorias">
+                <div class="pd-y-20 pd-x-10 contact-list">
+                    <label class="contact-list-divider">
+                            My Family
+                        </label>
+                    <div class="media">
+                        <div class="avatar avatar-sm avatar-online">
+                            <span class="avatar-initial rounded-circle bg-gray-700">
+                                    A
+                                </span>
+                        </div>
+                        <div class="media-body mg-l-10">
+                            <h6 class="tx-13 mg-b-3">
+                                Abigail Johnson
+                            </h6>
+                            <span class="tx-12">
+                                    +1-234-567-890
+                                </span>
+                        </div>
+                        <!-- media-body -->
+                        <nav>
+                            <a href="">
+                                <i data-feather="star"></i>
+                            </a>
+                            <a href="">
+                                <i data-feather="edit-2"></i>
+                            </a>
+                        </nav>
+                    </div>
+                    <!-- media -->
+                    <div class="media">
+                        <div class="avatar avatar-sm avatar-online">
+                            <img alt="" class="rounded-circle" src="https://via.placeholder.com/500" />
+                        </div>
+                        <div class="media-body mg-l-10">
+                            <h6 class="tx-13 mg-b-3">
+                                Archie Cantones
+                            </h6>
+                            <span class="tx-12">
+                                    archie@cantones.com
+                                </span>
+                        </div>
+                        <!-- media-body -->
+                        <nav>
+                            <a href="">
+                                <i data-feather="star"></i>
+                            </a>
+                            <a href="">
+                                <i data-feather="edit-2"></i>
+                            </a>
+                        </nav>
+                    </div>
+                    <!-- media -->
+                    <label class="contact-list-divider">
+                            My Friends
+                        </label>
+                    <div class="media">
+                        <div class="avatar avatar-sm avatar-online">
+                            <span class="avatar-initial rounded-circle bg-primary">
+                                    a
+                                </span>
+                        </div>
+                        <div class="media-body mg-l-10">
+                            <h6 class="tx-13 mg-b-3">
+                                Allan Rey Palban
+                            </h6>
+                            <span class="tx-12">
+                                    allanr@palban.com
+                                </span>
+                        </div>
+                        <!-- media-body -->
+                        <nav>
+                            <a href="">
+                                <i data-feather="star"></i>
+                            </a>
+                            <a href="">
+                                <i data-feather="edit-2"></i>
+                            </a>
+                        </nav>
+                    </div>
+                    <!-- media -->
+                    <div class="media">
+                        <div class="avatar avatar-sm avatar-offline">
+                            <span class="avatar-initial rounded-circle bg-primary">
+                                    D
+                                </span>
+                        </div>
+                        <div class="media-body mg-l-10">
+                            <h6 class="tx-13 mg-b-3">
+                                Daniel Calinawan
+                            </h6>
+                            <span class="tx-12">
+                                    daniel@youremail.com
+                                </span>
+                        </div>
+                        <!-- media-body -->
+                        <nav>
+                            <a href="">
+                                <i data-feather="star"></i>
+                            </a>
+                            <a href="">
+                                <i data-feather="edit-2"></i>
+                            </a>
+                        </nav>
+                    </div>
+                    <!-- media -->
+                    <div class="media">
+                        <div class="avatar avatar-sm avatar-offline">
+                            <span class="avatar-initial rounded-circle bg-success">
+                                    E
+                                </span>
+                        </div>
+                        <div class="media-body mg-l-10">
+                            <h6 class="tx-13 mg-b-3">
+                                Elvis Vircede
+                            </h6>
+                            <span class="tx-12">
+                                    +63929-123-4567
+                                </span>
+                        </div>
+                        <!-- media-body -->
+                        <nav>
+                            <a href="">
+                                <i data-feather="star"></i>
+                            </a>
+                            <a href="">
+                                <i data-feather="edit-2"></i>
+                            </a>
+                        </nav>
+                    </div>
+                    <!-- media -->
+                    <label class="contact-list-divider">
+                            My Officemates
+                        </label>
+                    <div class="media">
+                        <div class="avatar avatar-sm avatar-online">
+                            <span class="avatar-initial rounded-circle bg-gray-700">
+                                    E
+                                </span>
+                        </div>
+                        <div class="media-body mg-l-10">
+                            <h6 class="tx-13 mg-b-3">
+                                Elena Salubre
+                            </h6>
+                            <span class="tx-12">
+                                    e.salubre@myemail.com
+                                </span>
+                        </div>
+                        <!-- media-body -->
+                        <nav>
+                            <a href="">
+                                <i data-feather="star"></i>
+                            </a>
+                            <a href="">
+                                <i data-feather="edit-2"></i>
+                            </a>
+                        </nav>
+                    </div>
+                    <!-- media -->
+                </div>
+                <!-- contact-list -->
+            </div>
+            <!-- tab-pane -->
+            <div class="tab-pane fade" id="tabBuscarPacientes">
+                <div class="pd-y-25 pd-x-20">
+                    <h6 class="tx-12 tx-semibold tx-danger tx-spacing-1 tx-uppercase">
+                        <i class="fas fa-times-circle"></i> Sin Rsultados
+                    </h6>
+                    <p class="tx-13 tx-color-03 mg-b-20 tx-justify">
+                        Todavía no tienes pacientes para hoy. Apenas tengas citas egendadas te avisamos.
+                    </p>
+                </div>
+            </div>
+            <!-- tab-pane -->
+        </div>
+        <!-- tab-content -->
+    </div>
+    <!-- contact-sidebar-body -->
+</div>
+<!-- contact-sidebar pacientes-->
+
+<div class="contact-content d-none" id="panel-noticias">
+    <div class="contact-content-header">
+        <div class="d-none d-sm-block d-sm-none d-md-block">
+            <nav class="nav">
+                <a class="nav-link active" data-toggle="tab" href="#feedNoticias">
+                    <i class="fas fa-newspaper"></i> Noticias
+                </a>
+            </nav>
+        </div>
+        <a class="text-secondary mg-l-auto d-xl-none" href="" id="_contactOptions">
+            <i data-feather="more-horizontal"></i>
+        </a>
+    </div>
+    <!-- contact-content-header -->
+    <div class="content content-noticias wd-75p bg-white">
+        <div class="tab-content">
+            <div class="tab-pane show active pd-20 pd-xl-25" id="feedNoticias">
+                <div class="row">
+                    <div class="col-lg-12 col-xl-12">
+                        <div class="row row-sm mg-b-25">
+                            <div class="col-md-6">
+                                <div class="card card-event">
+                                    <img alt="" class="card-img-top" src="https://via.placeholder.com/500">
+                                    <div class="card-body tx-13">
+                                        <h5>
+                                            <a href="">
+                                                        Moto Rally Championship
+                                                    </a>
+                                        </h5>
+                                        <p class="mg-b-0">
+                                            Mar 22 - Mar 24, World Trade Center Metro
+                                        </p>
+                                        <span class="tx-12 tx-color-03">
+                                                    Manila, Philippines
+                                                </span>
+                                    </div>
+                                    <!-- card-body -->
+                                    <div class="card-footer tx-13">
+                                        <span class="tx-color-03">
+                                                    6,187 people interested
+                                                </span>
+                                        <button class="btn btn-xs btn-secondary">
+                                                    Interested
+                                                </button>
+                                    </div>
+                                    <!-- card-footer -->
+                                    </img>
+                                </div>
+                                <!-- card -->
+                            </div>
+                            <!-- col -->
+                            <div class="col-md-6 mg-t-20 mg-md-t-0">
+                                <div class="card card-event">
+                                    <img alt="" class="card-img-top" src="https://via.placeholder.com/500">
+                                    <div class="card-body tx-13">
+                                        <h5>
+                                            <a href="">
+                                                        Reggae Music Showdown
+                                                    </a>
+                                        </h5>
+                                        <p class="mg-b-0">
+                                            Mar 30 - Mar 31, Cebu Business Park
+                                        </p>
+                                        <span class="tx-12 tx-color-03">
+                                                    Cebu City, Cebu, Philippines
+                                                </span>
+                                    </div>
+                                    <!-- card-body -->
+                                    <div class="card-footer tx-13">
+                                        <span class="tx-color-03">
+                                                    5,092 people interested
+                                                </span>
+                                        <button class="btn btn-xs btn-secondary">
+                                                    Interested
+                                                </button>
+                                    </div>
+                                    <!-- card-footer -->
+                                    </img>
+                                </div>
+                                <!-- card -->
+                            </div>
+                            <!-- col -->
+                            <div class="col-md-6 mg-t-20">
+                                <div class="card card-event">
+                                    <img alt="" class="card-img-top" src="https://via.placeholder.com/500x281">
+                                    <div class="card-body tx-13">
+                                        <h5>
+                                            <a href="">
+                                                        Acoustic Workshop
+                                                    </a>
+                                        </h5>
+                                        <p class="mg-b-0">
+                                            Apr 10 - Apr 12, Cebu IT Park
+                                        </p>
+                                        <span class="tx-12 tx-color-03">
+                                                    Cebu City, Cebu, Philippines
+                                                </span>
+                                    </div>
+                                    <!-- card-body -->
+                                    <div class="card-footer tx-13">
+                                        <span class="tx-color-03">
+                                                    5,001 people interested
+                                                </span>
+                                        <button class="btn btn-xs btn-secondary">
+                                                    Interested
+                                                </button>
+                                    </div>
+                                    <!-- card-footer -->
+                                    </img>
+                                </div>
+                                <!-- card -->
+                            </div>
+                            <!-- col -->
+                            <div class="col-md-6 mg-t-20">
+                                <div class="card card-event">
+                                    <img alt="" class="card-img-top" src="https://via.placeholder.com/1000x666">
+                                    <div class="card-body tx-13">
+                                        <h5>
+                                            <a href="">
+                                                        Photoshop Effects Workshop
+                                                    </a>
+                                        </h5>
+                                        <p class="mg-b-0">
+                                            Apr 12 - Apr 13, 2nd Fl. Westfield Building
+                                        </p>
+                                        <span class="tx-12 tx-color-03">
+                                                    Bay Area, San Francisco, CA
+                                                </span>
+                                    </div>
+                                    <!-- card-body -->
+                                    <div class="card-footer tx-13">
+                                        <span class="tx-color-03">
+                                                    4,343 people interested
+                                                </span>
+                                        <button class="btn btn-xs btn-secondary">
+                                                    Interested
+                                                </button>
+                                    </div>
+                                    <!-- card-footer -->
+                                    </img>
+                                </div>
+                                <!-- card -->
+                            </div>
+                            <!-- col -->
+                            <div class="col-md-6 mg-t-20">
+                                <div class="card card-event">
+                                    <img alt="" class="card-img-top" src="https://via.placeholder.com/640x427">
+                                    <div class="card-body tx-13">
+                                        <h5>
+                                            <a href="">
+                                                        Annual Dog Showdown
+                                                    </a>
+                                        </h5>
+                                        <p class="mg-b-0">
+                                            Apr 15, 8:00am - 05:00pm, Fishermans Wharf
+                                        </p>
+                                        <span class="tx-12 tx-color-03">
+                                                    Bay Area, San Francisco, CA
+                                                </span>
+                                    </div>
+                                    <!-- card-body -->
+                                    <div class="card-footer tx-13">
+                                        <span class="tx-color-03">
+                                                    4,343 people interested
+                                                </span>
+                                        <button class="btn btn-xs btn-secondary">
+                                                    Interested
+                                                </button>
+                                    </div>
+                                    <!-- card-footer -->
+                                    </img>
+                                </div>
+                                <!-- card -->
+                            </div>
+                            <!-- col -->
+                        </div>
+                        <!-- row -->
+                    </div>
+                    <!-- col -->
+                </div>
+                <!-- row -->
+            </div>
+        </div>
+        <!-- tab-content -->
+    </div>
+    <!-- contact-content-body -->
+    <div class="contact-content-sidebar">
+        <!-- contact-content-sidebar noticias -->
+        <div class="mg-t-40 mg-lg-t-0" id="sidebar-prox-eventos">
+            <div class="d-flex align-items-center justify-content-between mg-b-20">
+                <h6 class="tx-uppercase tx-semibold mg-b-0">
+                    Próximos Eventos:
+                </h6>
+            </div>
+            <ul class="list-unstyled media-list mg-b-15">
+                <li class="media align-items-center">
+                    <div class="wd-40 ht-40 bg-dark tx-white d-flex align-items-center justify-content-center rounded">
+                        <i data-feather="calendar">
+                                        </i>
+                    </div>
+                    <div class="media-body pd-l-15">
+                        <h6 class="mg-b-2">
+                            <a class="link-01" href="">
+                                                My 32th Birthday
+                                            </a>
+                        </h6>
+                        <span class="tx-13 tx-color-03">
+                                            Today, April 21, 5:00pm
+                                        </span>
+                    </div>
+                </li>
+                <li class="media align-items-center mg-t-15">
+                    <div class="wd-40 ht-40 bg-indigo tx-white d-flex align-items-center justify-content-center rounded">
+                        <i data-feather="calendar">
+                                        </i>
+                    </div>
+                    <div class="media-body pd-l-15">
+                        <h6 class="mg-b-2">
+                            <a class="link-01" href="">
+                                                Dribbble Meetup
+                                            </a>
+                        </h6>
+                        <span class="tx-13 tx-color-03">
+                                            Tomorrow, April 22, 3:00pm
+                                        </span>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+        <!-- col -->
+        <!-- contact-content-sidebar noticias -->
+
+
+
+        <div class="sidebarPte-loader d-none clearfix mg-b-25">
+            <div class="pos-relative float-left">
+                <div class="avatar avatar-xl">
+                    <span class="avatar-initial rounded-circle bg-gray-700 tx-normal">
+                            <div class="placeholder-paragraph pd-y-5 pd-x-5">
+                                <div class="line"></div>
+                                <div class="line"></div>
+                            </div>
+                        </span>
+                </div>
+            </div>
+        </div>
+        <h5 class="sidebarPte-loader d-none tx-18 tx-xl-20 mg-b-5">
+            <div class="placeholder-paragraph pd-y-5 pd-x-5">
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </h5>
+        <div class="sidebarPte d-none clearfix mg-b-25">
+            <div class="pos-relative float-left" id="contactAvatar">
+                <div class="avatar avatar-xl">
+                    <span class="avatar-initial rounded-circle bg-gray-700 tx-normal">
+                        </span>
+                </div>
+            </div>
+        </div>
+
+        <p class="sidebarPte d-none tx-12 tx-lg-12 tx-xl-13 tx-color-03 mg-b-20">
+            <hr class="sidebarPte d-none" />
+        </p>
+        <nav class="sidebarPte d-none contact-call-nav mg-b-20">
+            <button class="iniTeleconsulta btn btn-primary btn-icon btn-block tx-semibold" data-toggle="tooltip" title="Iniciar Telecosnulta" type="button">
+                    <i class="tx-semibold" data-feather="video"></i>
+                    <t class="mg-l-6">Iniciar Teleconsulta</t>
+                </button>
+        </nav>
+        <!-- contact-call-nav -->
+        <div class="d-none">
+            <label class="sidebarPte d-none tx-10 tx-medium tx-spacing-1 tx-color-03 tx-uppercase tx-sans mg-b-10">
+                Próximas Citas
+                </label>
+            <ul class="sidebarPte d-none list-unstyled media-list mg-b-15">
+                <li class="media align-items-center">
+                    <div class="wd-40 ht-40 bg-dark tx-white d-flex align-items-center justify-content-center rounded">
+                        <i data-feather="calendar"></i>
+                    </div>
+                    <div class="media-body pd-l-15">
+                        <h6 class="mg-b-2">
+                            MEDICINA INTERNA
+                        </h6>
+                        <span class="tx-13 tx-color-03">
+                                Jueves, 25-02-2020, 15H00
+                            </span>
+                    </div>
+                </li>
+            </ul>
+            <hr class="sidebarPte d-none mg-y-20">
+            <label class="sidebarPte d-none tx-10 tx-medium tx-spacing-1 tx-color-03 tx-uppercase tx-sans mg-b-15">
+                    Opciones
+                </label>
+            <nav class="sidebarPte d-none nav flex-column contact-content-nav mg-b-25">
+                <a class="nav-link disabled" href="">
+                    <i data-feather="share"></i> Generar Pedido Médico
+                </a>
+                <a class="nav-link disabled" href="">
+                    <i data-feather="star"></i> Añadir a categoria
+                </a>
+                <a class="nav-link disabled" href="">
+                    <i data-feather="slash"></i> Bloquear a este paciente
+                </a>
+            </nav>
+            </hr>
+        </div>
+    </div>
+    <!-- contact-content-sidebar -->
+</div>
+
+<div class="contact-content d-none" id="panel-pacientes">
+    <div class="contact-content-header">
+        <div class="d-none d-sm-block d-sm-none d-md-block" id="navPte-md-lg">
+            <nav class="nav">
+                <a class="nav-link tabDatosPersonales active" data-toggle="tab" href="#datosPersonales">
+                    <i class="fas fa-id-card"></i> Datos Personales
+                </a>
+                <a class="nav-link tabDatosClinicos" data-toggle="tab" href="#datosClinicos">
+                    <i class="fas fa-hospital"></i> Datos Clínicos
+                </a>
+                <a class="nav-link tabLaboratorio" data-toggle="tab" href="#laboratorio">
+                    <i class="fas fa-flask"></i> Laboratorio
+                </a>
+                <a class="nav-link mg-r-15 tabImagen" data-toggle="tab" href="#imagen">
+                    <i class="fas fa-image"></i> Imagen
+                    <a class="reset-imagen d-none" href="#">
+                        <i class="fas fa-times-circle tx-danger mg-r-25" data-toggle="tooltip" title="Cerrar Resultados de Imagen"></i>
+                    </a>
+                </a>
+                <a class="nav-link d-none" data-toggle="tab" href="#userlogs">
+                    <i class="fas fa-info-circle"></i> Historial de Actividad
+                </a>
+            </nav>
+        </div>
+        <div class="d-block d-sm-none d-none d-sm-block d-md-none" id="navPte-sm-xs">
+            <nav class="nav">
+                <a class="nav-link tabDatosPersonales active" data-toggle="tab" href="#datosPersonales" title="Datos Personales">
+                    <i class="fas fa-id-card tx-15"></i>
+                </a>
+                <a class="nav-link tabDatosClinicos" data-toggle="tab" href="#datosClinicos">
+                    <i class="fas fa-hospital tx-15"></i>
+                </a>
+                <a class="nav-link tabLaboratorio" data-toggle="tab" href="#laboratorio">
+                    <i class="fas fa-flask tx-15"></i>
+                </a>
+                <a class="nav-link tabImagen" data-toggle="tab" href="#imagen">
+                    <i class="fas fa-image tx-15"></i>
+                </a>
+                <a class="nav-link d-none" data-toggle="tab" href="#userlogs">
+                    <i class="fas fa-info-circle tx-15"></i>
+                </a>
+            </nav>
+        </div>
+        <a class="text-secondary mg-l-auto d-xl-none" href="" id="contactOptions">
+            <i data-feather="more-horizontal"></i>
+        </a>
+    </div>
+    <!-- contact-content-header -->
+    <div class="contact-content-body panel-content-pacientes bg-white">
+        <div class="tab-content">
+            <div class="tab-pane show active pd-20 pd-xl-25" id="datosPersonales">
+                <div class="loader placeholder-paragraph pd-y-25 pd-x-20">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+                <div class="content d-none pd-0 ">
+                    <!-- row -->
+                </div>
+            </div>
+            <div class="tab-pane pd-20 pd-xl-25" id="datosClinicos">
+                <div class="loader placeholder-paragraph pd-y-25 pd-x-20">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+                <div class="content d-none pd-0 ">
+                    <!-- row -->
+                </div>
+
+            </div>
+            <div class="tab-pane pd-20 pd-xl-25" id="laboratorio">
+                <div class="loader placeholder-paragraph pd-y-25 pd-x-20">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+                <div class="content d-none pd-0 ">
+
+                </div>
+
+            </div>
+            <div class="tab-pane" id="imagen">
+                <div class="loader placeholder-paragraph pd-y-25 pd-x-20">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+                <div class="content d-none pd-0 ">
+                    <iframe id="zfpImg" src="" frameborder="0" width="100%" data-nhc="#!"></iframe>
+                </div>
+
+            </div>
+            <!-- tab-pane -->
+        </div>
+        <!-- tab-content -->
+    </div>
+    <!-- contact-content-body -->
+    <div class="contact-content-sidebar">
+        <div class="sidebarPte-loader clearfix mg-b-25">
+            <div class="pos-relative float-left">
+                <div class="avatar avatar-xl">
+                    <span class="avatar-initial rounded-circle bg-gray-700 tx-normal">
+                            <div class="placeholder-paragraph pd-y-5 pd-x-5">
+                                <div class="line"></div>
+                                <div class="line"></div>
+                            </div>
+                        </span>
+                </div>
+            </div>
+        </div>
+        <h5 class="sidebarPte-loader tx-18 tx-xl-20 mg-b-5">
+            <div class="placeholder-paragraph pd-y-5 pd-x-5">
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </h5>
+        <div class="sidebarPte d-none clearfix mg-b-25">
+            <div class="pos-relative float-left" id="contactAvatar">
+                <div class="avatar avatar-xl">
+                    <span class="avatar-initial rounded-circle bg-gray-700 tx-normal">
+                        </span>
+                </div>
+            </div>
+        </div>
+        <h5 class="sidebarPte d-none tx-18 tx-xl-20 mg-b-5" id="contactName">
+        </h5>
+        <p class="sidebarPte d-none tx-12 tx-lg-12 tx-xl-13 tx-color-03 mg-b-20">
+            <hr class="sidebarPte d-none" />
+        </p>
+        <nav class="sidebarPte d-none contact-call-nav mg-b-20">
+            <button class="iniTeleconsulta btn btn-primary btn-icon btn-block tx-semibold" data-toggle="tooltip" title="Iniciar Telecosnulta" type="button">
+                    <i class="tx-semibold" data-feather="video"></i>
+                    <t class="mg-l-6">Iniciar Teleconsulta</t>
+                </button>
+        </nav>
+        <!-- contact-call-nav -->
+        <div class="d-none">
+            <label class="sidebarPte d-none tx-10 tx-medium tx-spacing-1 tx-color-03 tx-uppercase tx-sans mg-b-10">
+                Próximas Citas
+                </label>
+            <ul class="sidebarPte d-none list-unstyled media-list mg-b-15">
+                <li class="media align-items-center">
+                    <div class="wd-40 ht-40 bg-dark tx-white d-flex align-items-center justify-content-center rounded">
+                        <i data-feather="calendar"></i>
+                    </div>
+                    <div class="media-body pd-l-15">
+                        <h6 class="mg-b-2">
+                            MEDICINA INTERNA
+                        </h6>
+                        <span class="tx-13 tx-color-03">
+                                Jueves, 25-02-2020, 15H00
+                            </span>
+                    </div>
+                </li>
+            </ul>
+            <hr class="sidebarPte d-none mg-y-20">
+            <label class="sidebarPte d-none tx-10 tx-medium tx-spacing-1 tx-color-03 tx-uppercase tx-sans mg-b-15">
+                    Opciones
+                </label>
+            <nav class="sidebarPte d-none nav flex-column contact-content-nav mg-b-25">
+                <a class="nav-link disabled" href="">
+                    <i data-feather="share"></i> Generar Pedido Médico
+                </a>
+                <a class="nav-link disabled" href="">
+                    <i data-feather="star"></i> Añadir a categoria
+                </a>
+                <a class="nav-link disabled" href="">
+                    <i data-feather="slash"></i> Bloquear a este paciente
+                </a>
+            </nav>
+            </hr>
+        </div>
+    </div>
+    <!-- contact-content-sidebar -->
+</div>
+
+<div class="chat-content bg-white d-none" id="panel-teleconsulta" style="left: 0px;">
+    <div class="chat-content-header bg-white">
+        <div>
+            <div class="d-flex align-items-center">
+                <div class="avatar avatar-sm">
+                    <span class="inicialPaciente avatar-initial bg-dark rounded-circle"></span>
+                </div>
+                <h6 class="mg-l-10 mg-b-0">
+                    <div class="nombrePaciente" style="font-size: 17px;"></div>
+                    <nav>
+                        <div class="nhcPaciente" data-toggle="tooltip" title="Número de Historia Clínica"></div>
+                    </nav>
+                </h6>
+            </div>
+        </div>
+        <div class="d-flex">
+            <nav>
+                <a class="countdown tx-primary tx-20 d-none" data-control="1"></a>
+                <a class="d-none" data-control="1" id="statusConnectPte" title="Status Paciente">
+                    <div id="s-statusConnectPte">
+                        <div class="spinner-grow spinner-grow-sm" role="status"></div>
+                        Esperando conexión de Paciente
+                    </div>
+                </a>
+                <button class="reset-tele-imagen tx-semibold tx-15 pd-15 btn btn-sm btn-white tx-gray bd-0 d-none" data-toggle="tooltip" title="Cerrar Resultados de Imagen">
+                        <i class="fas fa-times-circle tx-15 mg-r-5"></i>
+                       Cerrar Resultados de Imagen
+                    </button>
+                <button class="finishTeleconsulta tx-semibold tx-15 pd-18 btn btn-sm btn-white tx-danger bd-0" style="cursor: pointer;">
+                        <i class="fas fa-video tx-15 mg-r-5" style="cursor: pointer;"></i>
+                        Cerrar Teleconsulta
+                    </button>
+                <button class="btn btn-sm btn-white d-none tx-15 pd-15  bd-0" data-toggle="tooltip" title="Reconectar Teleconsulta">
+                        <i class="fas fa-sync-alt tx-15"></i>
+                    </button>
+            </nav>
+        </div>
+    </div>
+    <!-- chat-content-header -->
+    <div class="chat-content-body bg-white">
+        <div id="panelPte">
+            <div class="tab-content">
+                <div class="tab-pane show active">
+                    <div class="d-flex align-items-start">
+                        <div class=" col-sm-5 col-lg-5 pd-l-0 pd-r-0" id="contentLiveZoom">
+                            <iframe src="#!" class="wd-100p" style="border:none;" id="liveZoom"></iframe>
+                        </div>
+                        <div class="pos-relative scrollbar-lg bd bd-0 col-sm-7 col-lg-7 pd-l-0 pd-r-0" id="contentTeleconsulta">
+                            <div class="accordion bd-0 pd-r-15">
+                                <h6 class=" bd-0" id="motivoConsulta"><i class="fas fa-pencil-alt mg-r-5"></i> Motivo de Consulta *Es obligatorio</h6>
+                                <div class="scrollbar-lg pos-relative ht-200  pd-15 bdscrolling-container-contentMotivoConsulta" id="contentMotivoConsulta">
+                                    <div class="loader placeholder-paragraph pd-y-25 pd-x-20">
+                                        <div class="line"></div>
+                                        <div class="line"></div>
+                                    </div>
+                                    <div class="content d-none mg-b-10"></div>
+                                </div>
+                                <h6 class=""><i class="fas fa-id-card  mg-r-5"></i> Datos Personales</h6>
+                                <div class="scrollbar-lg pos-relative ht-auto bd" id="contentDatosPersonales">
+                                    <div class="loader d-none placeholder-paragraph pd-y-25 pd-x-20">
+                                        <div class="line"></div>
+                                        <div class="line"></div>
+                                    </div>
+                                    <div class="content d-none mg-b-10"></div>
+                                </div>
+                                <h6 class=""><i class="fas fa-hospital mg-r-5"></i> Datos Clínicos</h6>
+                                <div class="scrollbar-lg pos-relative ht-auto bd" id="contentDatosClinicos">
+                                    <div class="loader d-none placeholder-paragraph pd-y-25 pd-x-20">
+                                        <div class="line"></div>
+                                        <div class="line"></div>
+                                    </div>
+                                    <div class="content d-none"></div>
+                                </div>
+                                <h6 class=""> <i class="fas fa-file-medical-alt mg-r-5"></i> Antecedentes Familiares</h6>
+                                <div class="pd-0 scrollbar-lg pos-relative ht-auto bd" id="contentAntecedentesFamiliares">
+                                    <div class="lader d-none placeholder-paragraph pd-y-25 pd-x-20">
+                                        <div class="line"></div>
+                                        <div class="line"></div>
+                                    </div>
+                                    <div class="content d-none mg-b-10 pd-2"></div>
+                                </div>
+                                <h6 class=""><i class="fas fa-stethoscope mg-r-5"></i> Diagnóstico *Es obligatorio</h6>
+                                <div class="scrollbar-lg pd-0 pos-relative ht-auto bd " id="contentDiagnostico">
+                                    <div class="accordion-diagnosticos ht-auto pd-0">
+                                        <h6 class=" bd-0">
+                                            <div class="mg-l-25">Principal</div>
+                                        </h6>
+                                        <div class="pd-10 ht-auto wd-100p">
+                                            <div class="df-example demo-forms bd bd-0">
+                                                <div class="input-group">
+                                                    <div class="search-form search-suggestion-fixed wd-100p">
+                                                        <input type="search" class="form-control" id="diag-principal" placeholder="Buscar por código o diagnóstico." />
+                                                    </div>
+                                                </div>
+                                                <div class="df-example demo-forms bd bd-0">
+                                                    <table class="table table-diag-principal">
+                                                        <tbody></tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <h6 class=" bd-0">
+                                            <div class="mg-l-25">Secundarios</div>
+                                        </h6>
+                                        <div class="pd-10 ht-auto ">
+                                            <div class="df-example demo-forms bd bd-0">
+                                                <div class="input-group">
+                                                    <div class="search-form search-suggestion-fixed wd-100p">
+                                                        <input type="search" class="form-control" id="diag-presuntivo" placeholder="Buscar por código o diagnóstico." />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="df-example demo-forms bd bd-0">
+                                                <table class="table  table-diag-secundarios">
+                                                    <tbody></tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h6 class=""> <i class="fas fa-heartbeat mg-r-5"></i> Evoluciones *Es obligatorio</h6>
+                                <div class="scrollbar-lg pos-relative ht-auto bd pd-0" id="contentEvoluciones">
+                                    <div class="scrollbar-lg pos-relative ht-100 pd-15 bd bd-0 scrolling-container-nuevaEvolucion" id="nuevaEvolucion">
+                                    </div>
+                                    <div class="bd-0 pd-10 mg-l-10">Historial de Evoluciones</div>
+                                    <div class="scrolling-container-evoluciones" id="timeline-evoluciones"></div>
+                                </div>
+                                <h6 class=""><i class="fas fa-flask mg-r-5"></i> Laboratorio</h6>
+                                <div class="pd-0 pd-t-1 scrollbar-lg pos-relative ht-auto bd bt-t-0">
+                                    <div class="accordion-laboratorio ht-auto pd-0">
+                                        <h6 class=" bd-0">Pedidos de Laboratorio</h6>
+                                        <div class="ht-auto pd-10">
+                                            <div id="pedido-lab"></div>
+                                        </div>
+                                        <h6 class=" bd-0">Resultados de Laboratorio</h6>
+                                        <div class="scrollbar-lg pos-relative ht-auto bd pd-10" id="contentLaboratorio">
+                                            <div class="loader d-none placeholder-paragraph pd-y-25 pd-x-20">
+                                                <div class="line"></div>
+                                                <div class="line"></div>
+                                            </div>
+                                            <div class="content d-none mg-b-10 pd-t-10"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h6 class=""><i class="far fa-id-badge mg-r-5"></i> Imagen</h6>
+                                <div class="pd-0 scrollbar-lg pos-relative ht-auto bd bt-t-0" id="contentImagen">
+                                    <div class="accordion-imagen ht-auto pd-0">
+                                        <h6 class=" bd-0">Pedidos de Imagen</h6>
+                                        <div class="ht-auto pd-10">
+                                            <div id="pedido-img"></div>
+                                        </div>
+                                        <h6 class="teleTabImagen bd-0">Resultados de Imagen
+                                        </h6>
+                                        <div class="ht-auto pd-0" id="zfpTeleImagen">
+                                            <iframe id="teleZfpImg" src="" frameborder="0" width="100%"></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h6 class=""><i class="fas fa-pills mg-r-5"></i> Farmacia</h6>
+                                <div class="scrollbar-lg pos-relative ht-650 bd" id="contentFarmacia">
+                                    <div class="ht-auto pd-t-10" id="panel-receta">
+                                        <div class="input-group mg-b-1 pd-l-2 pd-r-2 pd-t-2">
+                                            <input class="form-control " data-toggle="tooltip" id="medicamento" placeholder="Medicamento" title="Medicamento" type="text" />
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-light tx-12" id="add-indicacion" type="button">
+                                                        <i class="fas fa-info-circle mg-r-5"></i>
+                                                        Indicación
+                                                    </button>
+                                                <button class="btn btn-outline-light tx-12 d-none" id="close-indicacion" type="button">
+                                                        <i class="fas fa-info-circle mg-r-5"></i>
+                                                        Indicación
+                                                    </button>
+                                            </div>
+                                        </div>
+                                        <div class="input-group mg-b-1 pd-l-2 pd-r-2 pd-t-2 d-none">
+                                            <input class="form-control " data-toggle="tooltip" id="indicaciones" placeholder="Indicaciones" title="Indicaciones" type="text" />
+                                        </div>
+                                        <div class="input-group mg-b-5 pd-l-2 pd-r-2 pd-t-2">
+                                            <input class="form-control" id="cantidadComprar" placeholder="Cantidad a comprar" title="Cantidad a Comprar" type="number" min="1" />
+                                            <select class="custom-select" id="unidadComprar" title="Unidad  a Comprar"></select>
+                                            <input class="form-control" id="cantidadTomar" placeholder="Cantidad a Tomar" title="Cantidad a Tomar" type="number" min="1" />
+                                            <select class="custom-select" id="unidadTomar" title="Unidad a Tomar"></select>
+                                            <input class="form-control" id="frecuenciaDosis" placeholder="Frecuencia Dosis" title="Frecuencia Dosis" type="number" min="1" />
+                                            <select class="custom-select" id="uniDosis" title="Unidosis"></select>
+                                            <input class="form-control" id="frecuenciaTotal" placeholder="frecuenciaTotal" title="Frecuencia Total" type="number" min="1" />
+                                            <select class="custom-select" id="unidadTotal" title="Unidad Total"></select>
+                                            <select class="custom-select" id="viaAdministracion" title="Via Administración"></select>
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary tx-12" id="add-med" type="button">
+                                                        <i class="fas fa-check-circle mg-r-5"></i>
+                                                        Agregar
+                                                    </button>
+                                            </div>
+                                        </div>
+                                        <p class="mg-b-4 pd-5">
+                                            Medicamentos:
+                                        </p>
+                                        <table class="d-flex table pd-5 table-sm" id="grid-medicamentos">
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <h6 class=""><i class="fas fa-pencil-alt mg-r-5"></i>Recomendaciones No Farmacológicas *Es obligatorio</h6>
+                                <div class="scrollbar-lg pos-relative ht-200 pd-15 bd bd-0 scrolling-container-contentNoFarmacologicas" id="contentNoFarmacologicas">
+                                    <div class="loader placeholder-paragraph pd-y-25 pd-x-20">
+                                        <div class="line"></div>
+                                        <div class="line"></div>
+                                    </div>
+                                    <div class="content d-none mg-b-10"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- tab-content -->
+        </div>
+    </div>
+    <!-- chat-content-body -->
+
+</div>
+<!-- chat-content -->
+
+</div>
+<!-- contact-wrapper -->
+
+<div class="modal fade effect-scale" id="modalNewContact" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body pd-20 pd-sm-30">
+                <button type="button" class="close pos-absolute t-15 r-20" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+                <h5 class="tx-18 tx-sm-20 mg-b-20">Create New Contact</h5>
+                <p class="tx-13 tx-color-03 mg-b-30">
+                    You can add more information than what you see here, such as address and birthday by clicking
+                    <span class="tx-color-02">Add More Fields</span> button below to bring up more options.
+                </p>
+
+                <div class="d-sm-flex">
+                    <div class="mg-sm-r-30">
+                        <div class="pos-relative d-inline-block mg-b-20">
+                            <div class="avatar avatar-xxl">
+                                <span class="avatar-initial rounded-circle bg-gray-700 tx-normal"><i
+                                        class="icon ion-md-person"></i></span>
+                            </div>
+                            <a href="" class="contact-edit-photo"><i data-feather="edit-2"></i></a>
+                        </div>
+                    </div>
+                    <!-- col -->
+                    <div class="flex-fill">
+                        <h6 class="mg-b-10">Personal Information</h6>
+                        <div class="form-group mg-b-10">
+                            <input type="text" class="form-control" placeholder="Firstname" />
+                        </div>
+                        <!-- form-group -->
+                        <div class="form-group mg-b-10">
+                            <input type="text" class="form-control" placeholder="Lastname" />
+                        </div>
+                        <!-- form-group -->
+
+                        <h6 class="mg-t-20 mg-b-10">Contact Information</h6>
+
+                        <div class="form-group mg-b-10">
+                            <input type="text" class="form-control" placeholder="Phone number" />
+                        </div>
+                        <!-- form-group -->
+                        <div class="form-group mg-b-10">
+                            <input type="email" class="form-control" placeholder="Email address" />
+                        </div>
+                        <!-- form-group -->
+
+                        <h6 class="mg-t-20 mg-b-10">Notes</h6>
+                        <textarea class="form-control" rows="2" placeholder="Add notes"></textarea>
+                    </div>
+                    <!-- col -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="wd-100p d-flex flex-column flex-sm-row justify-content-end">
+                    <div class="dropup mg-b-15 mg-sm-b-0 mg-sm-r-auto">
+                        <button type="button" class="btn btn-block bd bd-gray-300" data-toggle="dropdown">
+                            Add More Fields <i class="icon ion-ios-arrow-up mg-l-5"></i>
+                        </button>
+                        <div class="dropdown-menu tx-13">
+                            <a href="" class="dropdown-item">Email</a>
+                            <a href="" class="dropdown-item">Phone</a>
+                            <a href="" class="dropdown-item">Address</a>
+                            <a href="" class="dropdown-item">Custom</a>
+                        </div>
+                        <!-- dropdown-menu -->
+                    </div>
+                    <button type="button" class="btn btn-primary mg-b-5 mg-sm-b-0">
+                        Save Contact
+                    </button>
+                    <button type="button" class="btn btn-secondary mg-sm-l-5" data-dismiss="modal">
+                        Discard
+                    </button>
+                </div>
+            </div>
+            <!-- modal-footer -->
+        </div>
+        <!-- modal-content -->
+    </div>
+    <!-- modal-dialog -->
+</div>
+<!-- modal -->
+
+<div class="modal fade effect-scale" id="modalEditContact" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body pd-20 pd-sm-30">
+                <button type="button" class="close pos-absolute t-15 r-20" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+                <h5 class="tx-18 tx-sm-20 mg-b-20">Edit Contact</h5>
+                <p class="tx-13 tx-color-03 mg-b-30">
+                    You can add more information than what you see here, such as address and birthday by clicking
+                    <span class="tx-color-02">Add More Fields</span> button below to bring up more options.
+                </p>
+
+                <div class="d-sm-flex">
+                    <div class="mg-sm-r-30">
+                        <div class="pos-relative d-inline-block mg-b-20">
+                            <div class="avatar avatar-xxl">
+                                <span class="avatar-initial rounded-circle bg-gray-700 tx-normal">A</span>
+                            </div>
+                            <a href="" class="contact-edit-photo"><i data-feather="edit-2"></i></a>
+                        </div>
+                    </div>
+                    <!-- col -->
+                    <div class="flex-fill">
+                        <h6 class="mg-b-10">Personal Information</h6>
+                        <div class="form-group mg-b-10">
+                            <input type="text" class="form-control" placeholder="Firstname" value="Abigail" />
+                        </div>
+                        <!-- form-group -->
+                        <div class="form-group mg-b-10">
+                            <input type="text" class="form-control" placeholder="Lastname" value="Johnson" />
+                        </div>
+                        <!-- form-group -->
+
+                        <h6 class="mg-t-20 mg-b-10">Contact Information</h6>
+
+                        <div class="form-group mg-b-10">
+                            <input type="text" class="form-control" placeholder="Phone number" value="+1 234 567 8910" />
+                        </div>
+                        <!-- form-group -->
+                        <div class="form-group mg-b-10">
+                            <input type="email" class="form-control" placeholder="Email address" value="me@themepixels.me" />
+                        </div>
+                        <!-- form-group -->
+
+                        <h6 class="mg-t-20 mg-b-10">Notes</h6>
+                        <textarea class="form-control" rows="2" placeholder="Add notes"></textarea>
+                    </div>
+                    <!-- col -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="wd-100p d-flex flex-column flex-sm-row justify-content-end">
+                    <div class="dropup mg-b-15 mg-sm-b-0 mg-sm-r-auto">
+                        <button type="button" class="btn btn-block bd bd-gray-300" data-toggle="dropdown">
+                            Add More Fields <i class="icon ion-ios-arrow-up mg-l-5"></i>
+                        </button>
+                        <div class="dropdown-menu tx-13">
+                            <a href="" class="dropdown-item">Email</a>
+                            <a href="" class="dropdown-item">Phone</a>
+                            <a href="" class="dropdown-item">Address</a>
+                            <a href="" class="dropdown-item">Custom</a>
+                        </div>
+                        <!-- dropdown-menu -->
+                    </div>
+                    <button type="button" class="btn btn-primary mg-b-5 mg-sm-b-0">
+                        Save Changes
+                    </button>
+                    <button type="button" class="btn btn-secondary mg-sm-l-5" data-dismiss="modal">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+            <!-- modal-footer -->
+        </div>
+        <!-- modal-content -->
+    </div>
+    <!-- modal-dialog -->
+</div>
+<!-- modal -->
+
+<div class="modal fade effect-scale" id="modalDeleteContact" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title">Delete Contact</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="mg-b-0">Do you really want to delete this contact?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                    Cancel
+                </button>
+                <button type="button" class="btn btn-primary">
+                    Continue Delete
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="pos-absolute t-10 r-10  animated bounceInRight">
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="10000">
+        <div class="toast-header bg-success op-10 tx-white">
+            <h6 class="tx-14 mg-b-0 mg-r-auto tx-white">Notificación</h6>
+            <small>11 mins ago</small>
+            <button type="button" class="ml-2 mb-1 close tx-normal" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body">
+            Hello, world! This is a toast message.
+        </div>
+    </div>
+</div>
+
+
+<div class="content-logs off-canvas off-canvas-overlay off-canvas-right">
+    <pre class="language-js"></pre> {% endblock %} {% block appFooter %} {% include 'pacientes/roles/1/templates' %} {% endblock %} {% block appCustomScriptsApp %}
+    <script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/jquery/jquery.min.js"></script>
+    <script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/feather-icons/feather.min.js"></script>
+    {% endblock %} {% block appCustomScriptsPage %}
+    <script defer="" nonce="{{ nonceHash }}" src="//mozilla.github.io/pdf.js/build/pdf.js"></script>
+    <script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/typeahead.js/typeahead.bundle.min.js"></script>
+    <script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/handlebars/handlebars.min.js"></script>
+
+    <script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/moment/min/moment.min.js"></script>
+
+    <script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/datatables.net-dt/js/dataTables.dataTables.min.js"></script>
+    <script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/datatables.net-responsive-dt/js/responsive.dataTables.min.js"></script>
+
+    <script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/quill/quill.min.js"></script>
+
+    <script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/parsleyjs/parsley.min.js"></script>
+    <script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/assets/js/dashforge.js"></script>
+    {% set fileTools = ocrend_encode('tools.js', 'temp') %}
+    <script defer="" nonce="{{ nonceHash }}" src="dist/app/js/{{ fileTools }}.js?key={{ nonceHash }}" target="_blank"></script>
+
+    {% set fileDatosPersonales = ocrend_encode('datos-personales.js', 'temp') %}
+    <script defer="" nonce="{{ nonceHash }}" src="dist/app/js/{{ fileDatosPersonales }}.js?key={{ nonceHash }}" target="_blank"></script>
+
+    {% set fileDatosClinicos = ocrend_encode('datos-clinicos.js', 'temp') %}
+    <script defer="" nonce="{{ nonceHash }}" src="dist/app/js/{{ fileDatosClinicos }}.js?key={{ nonceHash }}" target="_blank"></script>
+
+    {% set fileAntecedentes = ocrend_encode('antecedentes.js', 'temp') %}
+    <script defer="" nonce="{{ nonceHash }}" src="dist/app/js/{{ fileAntecedentes }}.js?key={{ nonceHash }}" target="_blank"></script>
+
+    {% set fileDiagnosticos = ocrend_encode('diagnosticos.js', 'temp') %}
+    <script defer="" nonce="{{ nonceHash }}" src="dist/app/js/{{ fileDiagnosticos }}.js?key={{ nonceHash }}" target="_blank"></script>
+
+    {% set fileEvoluciones = ocrend_encode('evoluciones.js', 'temp') %}
+    <script defer="" nonce="{{ nonceHash }}" src="dist/app/js/{{ fileEvoluciones }}.js?key={{ nonceHash }}" target="_blank"></script>
+
+    {% set fileLaboratorio = ocrend_encode('laboratorio.js', 'temp') %}
+    <script defer="" nonce="{{ nonceHash }}" src="dist/app/js/{{ fileLaboratorio }}.js?key={{ nonceHash }}" target="_blank"></script>
+
+    {% set fileImagen = ocrend_encode('imagen.js', 'temp') %}
+    <script defer="" nonce="{{ nonceHash }}" src="dist/app/js/{{ fileImagen }}.js?key={{ nonceHash }}" target="_blank"></script>
+
+    {% set fileFarmacia = ocrend_encode('farmacia.js', 'temp') %}
+    <script defer="" nonce="{{ nonceHash }}" src="dist/app/js/{{ fileFarmacia }}.js?key={{ nonceHash }}" target="_blank"></script>
+
+
+    {% set filePedidos = ocrend_encode('pedidos.js', 'temp') %}
+    <script defer="" nonce="{{ nonceHash }}" src="dist/app/js/{{ filePedidos }}.js?key={{ nonceHash }}" target="_blank"></script>
+
+    {% set fileZoom = ocrend_encode('zoom.js', 'temp') %}
+    <script defer="" nonce="{{ nonceHash }}" src="dist/app/js/{{ fileZoom }}.js?key={{ nonceHash }}" target="_blank"></script>
+
+    {% set filePacientes = ocrend_encode('pacientes.js', 'temp') %}
+    <script defer="" nonce="{{ nonceHash }}" src="dist/app/js/{{ filePacientes }}.js?key={{ nonceHash }}" target="_blank"></script>
+
+    {% set fileLogs = ocrend_encode('logs.js', 'temp') %}
+    <script defer="" nonce="{{ nonceHash }}" src="dist/app/js/{{ fileLogs }}.js?key={{ nonceHash }}" target="_blank"></script>
+
+    {% set fileNotificaciones= ocrend_encode('notificaciones.js', 'temp') %}
+    <script defer="" nonce="{{ nonceHash }}" src="dist/app/js/{{ fileNotificaciones }}.js?key={{ nonceHash }}" target="_blank"></script>
+
+    <script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/assets/js/dashforge.contacts.js"></script>
+    {% endblock %}

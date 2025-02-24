@@ -1,0 +1,40 @@
+{# App Template Home Dashboard #}
+{% extends 'overall/layout' %}
+{% block appFavicon %}
+	<!-- Favicon -->
+	<link href="assets/favicon.png" rel="shortcut icon" type="image/x-icon"/>
+{% endblock %}
+{% block appPageTittle %}
+	<title>
+		404 Error |
+		{{config.build.appName}}
+		v{{config.build.version}}.
+	</title>
+{% endblock %}
+{% block appCustomCssApp %}{% endblock %}
+{% block appCustomCssPage %}
+	<link href="assets/dashforge/assets/css/dashforge.auth.css" rel="stylesheet"/>
+{% endblock %}
+{% block appHeader %}{% endblock %}
+{% block appContent %}
+	<div class="content content-fixed content-auth-alt">
+		<div class="container ht-100p tx-center">
+			<div class="ht-100p d-flex flex-column align-items-center justify-content-center">
+				<div class="wd-70p wd-sm-250 wd-lg-300 mg-b-15">
+					<img alt="" class="img-fluid" src="assets/dashforge/img/img19.png"/>
+				</div>
+				<h1 class="tx-color-01 tx-24 tx-sm-32 tx-lg-36 mg-xl-b-5">
+					404 Expediente no encontrado
+				</h1>
+				<h5 class="tx-16 tx-sm-18 tx-lg-20 tx-normal mg-b-20">
+					Oopps. El expediente que estabas buscando no existe o no esta disponible.
+				</h5>
+				<p class="tx-color-03 mg-b-30">
+					Soporte Ext.: 2020 CONCAS - Hospital Metropolitano.
+				</p>
+
+			</div>
+		</div>
+	</div>
+{% endblock %}
+{% block appFooter %}{% endblock %}

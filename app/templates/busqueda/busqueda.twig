@@ -1,0 +1,38 @@
+{# App Template Home Dashboard #}
+{% extends 'overall/layout' %}
+{% block appFavicon %}
+	<!-- Favicon -->
+	<link href="assets/favicon.png" rel="shortcut icon" type="image/x-icon"/>
+{% endblock %}
+{% block appPageTittle %}
+	<title>
+		Documentos Expedientes |
+		{{ config.build.appName }}
+		v{{ config.build.version }}.
+	</title>
+{% endblock %}
+{% block appCustomCssApp %}{% endblock %}
+{% block appCustomCssPage %}
+	<link href="assets/dashforge/assets/css/dashforge.auth.css" rel="stylesheet"/>
+	<style>
+		body {
+			margin: 0; /* Reset default margin */
+		}
+		iframe {
+			border: none; /* Reset default border */
+			height: 100vh; /* Viewport-relative units */
+			width: 100vw;
+		}
+	</style>
+{% endblock %}
+{% block appHeader %}{% endblock %}
+{% block appContent %}
+	<iframe src="http://172.16.2.28/expedientes/{{rutaExp}}" title="Documentos"></iframe>
+{% endblock %}
+{% block appFooter %}{% endblock %}
+{% block appCustomScriptsApp %}{% endblock %}
+{% block appCustomScriptsPage %}
+	<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/parsleyjs/parsley.min.js"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/assets/js/dashforge.js"></script>
+{% endblock %}

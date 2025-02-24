@@ -1,0 +1,3 @@
+function finalizar() {
+    window.close();
+}

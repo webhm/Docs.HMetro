@@ -1,0 +1,91 @@
+{# App Template Home Dashboard #}
+{% extends 'overall/layout' %}
+{% block appFavicon %}
+    <!-- Favicon -->
+    <link href="assets/favicon.png" rel="shortcut icon" type="image/x-icon"/>
+{% endblock %}
+{% block appPageTittle %}
+    <title>
+        Teleconsulta Live Stream |
+        {{ config.build.appName }}
+        v{{ config.build.version }}.
+    </title>
+{% endblock %}
+{% block appCustomCssApp %}{% endblock %}
+{% block appCustomCssPage %}
+    <link href="assets/dashforge/assets/css/dashforge.css" rel="stylesheet"/>
+    <link href="assets/dashforge/assets/css/dashforge.contacts.css" rel="stylesheet"/>
+    <link href="assets/dashforge/assets/css/dashforge.profile.css" rel="stylesheet"/>
+    <link href="assets/dashforge/assets/css/dashforge.demo.css" rel="stylesheet"/>
+{% endblock %}
+{% block appHeader %}{% endblock %}
+{% block appContent %}
+    <div class="content content-fixed content-auth-alt">
+        <div class="container ht-100p tx-center">
+            <div class="ht-100p d-flex flex-column align-items-center justify-content-center">
+                <div class="wd-70p wd-sm-250 wd-lg-300 mg-b-15">
+                    <img alt="" class="img-fluid" src="assets/mail/images/metrolab.logo.png"/>
+                </div>
+                <h1 class="tx-color-01 tx-24 tx-sm-32 tx-lg-36 mg-xl-b-5">
+                    Teleconsulta
+                </h1>
+                <h5 class="tx-16 tx-sm-18 tx-lg-20 tx-normal mg-b-30 mg-t-20">
+                    Su Médico iniciará su atención pronto.
+                </h5>
+
+                <p class="tx-color-03 mg-b-15" id="doctor"></p>
+                <p class="tx-color-03 mg-b-15" id="espe"></p>
+                <p class="tx-color-03 mg-b-15" id="cita"></p>
+                <p class="tx-color-03 mg-b-15" id="dura"></p>
+                <div class="mg-b-40" id="loading-cita">
+                    <button class="btn btn-white pd-x-30">
+                        <div class="spinner-grow spinner-grow-sm" role="status">
+                            ...
+                        </div>
+                        Esperando Conexión
+                    </button>
+                    <br/>
+                    <span class="tx-12 tx-color-0">
+                        *Nuestro especialista esta por conectarse, no salgas de este sitio.
+                    </span>
+                </div>
+                <div class="mg-b-40 d-none" id="link-zoom">
+                    <a class="btn btn-primary pd-x-30" href="#!" id="b-link-zoom" role="button">
+                        Ingresar a mi atención
+                    </a>
+                </div>
+                <p class="tx-color-03 mg-b-15">
+                    Prueba tu conexión de Internet antes de la cita.
+                    <br/>
+                    <a class="btn btn-warning pd-x-30" target="_blank" href="https://teleconsulta.hospitalmetropolitano.org/precalltest/" role="button">
+                        Probar mi conexión.
+                    </a>
+                </p>
+
+                <span class="tx-12 tx-color-0 mg-b-100">
+                    Comentarios y Sugerencias
+                    <a href="mailto:serv.cliente@hmetro.med.ec">
+                        Servicio al Cliente
+                    </a>
+                </span>
+            </div>
+        </div>
+        <!-- container -->
+    </div>
+    <!-- content -->
+{% endblock %}
+{% block appFooter %}
+    {% include 'overall/footer' %}
+{% endblock %}
+{% block appCustomScriptsApp %}
+    <script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+{% endblock %}
+{% block appCustomScriptsPage %}
+    <script defer="" nonce="{{ nonceHash }}" type="text/javascript">
+        var idH = '{{ get.idH }}';
+        var idT = '{{ get.idT }}';
+    </script>
+    {% set fileLive = ocrend_encode('live.js', 'temp') %}
+    <script defer="" nonce="{{ nonceHash }}" src="dist/app/js/{{ fileLive }}.js?key={{ nonceHash }}" target="_blank"></script>
+</script>
+<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/assets/js/dashforge.js"></script>{% endblock %}

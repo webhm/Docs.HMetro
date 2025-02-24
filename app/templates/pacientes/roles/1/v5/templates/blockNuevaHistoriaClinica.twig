@@ -1,0 +1,1017 @@
+<div class="df-example demo-forms mg-l-10 mg-r-10">
+	<div class="d-flex align-items-start justify-content-between">
+		<div class="d-flex justify-content-start">
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb breadcrumb-style1 mg-b-10">
+					<li class="breadcrumb-item">
+						<a href="#" class="closeNuevaHC">Datos Clínicos</a>
+					</li>
+					<li class="breadcrumb-item active" aria-current="page">Nueva Historia Clínica
+					</li>
+				</ol>
+			</nav>
+		</div>
+	</div>
+	<div class="d-flex align-items-start justify-content-between">
+		<div class="d-flex justify-content-start">
+			<h4 class="mg-b-0 tx-spacing--1">
+				Nueva Historia Clinica
+				<tx class="tx-10 tx-semibold mg-l-0 mg-b-10">
+					Hospital Metropolitano
+				</tx>
+				<p class="tx-semibold tx-14 mg-b-5">Fecha y Hora: %timestampString%</p>
+				<p class="cdiagnostico tx-semibold tx-14 mg-b-10"></p>
+			</h4>
+		</div>
+		<div class="d-flex justify-content-end">
+			<button class="resetNuevaHC btn btn-sm btn-white d-flex align-items-center" title="Cancelar">
+				<i class="fas fa-times-circle mg-r-5 tx-16 lh--9"></i>
+				Cancelar
+			</button>
+		</div>
+	</div>
+	<div class="row row-xs" id="pageHC-1">
+		<div class="col-12">
+			<nav aria-label="breadcrumb" class="d-flex flex-column flex-row-reverse mg-b-10">
+				<ol class="breadcrumb breadcrumb-style1 mg-b-0">
+					<li class="loadMoti breadcrumb-item tx-primary" style="cursor:pointer;">
+						Motivo de Consulta
+					</li>
+					<li class="loadAnte breadcrumb-item tx-purple" style="cursor:pointer;">
+						Antecedentes Personales
+					</li>
+					<li class="loadEnfe breadcrumb-item tx-success" style="cursor:pointer;">
+						Enfermedad Actual
+					</li>
+					<li class="loadAler breadcrumb-item tx-primary" style="cursor:pointer;">
+						Alergias
+					</li>
+				</ol>
+			</nav>
+			<div class="card" id="blockMotivoConsulta">
+				<div class="card-header bd-b-0  pd-t-20 pd-b-20 pd-lg-t-25 pd-l-20 pd-lg-l-25 d-flex flex-column flex-sm-row align-items-sm-start justify-content-sm-between">
+					<div class="col-12">
+						<h4 class="mg-b-5">Motivo de Consulta</h4>
+						<div class="ht-150 wd-auto scrolling-container-contentMotivoConsulta" id="contentMotivoConsulta"></div>
+					</div>
+				</div>
+				<!-- card-header -->
+			</div>
+			<!-- card -->
+			<div class="card d-none" id="blockAntecedentesPersonales">
+				<div class="card-header bd-b-0 pd-t-20 pd-lg-t-25 pd-l-20 pd-lg-l-25 d-flex flex-column flex-sm-row align-items-sm-start justify-content-sm-between">
+					<div class="col-12">
+						<h4 class="mg-b-5">Antecedentes Personales</h4>
+						<div class="ht-150 wd-auto scrollbar-lg pos-relative  pd-0 bd-0 scrolling-container-contentAntecedentesPersonales" id="contentAntecedentesPersonales"></div>
+					</div>
+				</div>
+				<!-- card-header -->
+			</div>
+			<!-- card -->
+			<div class="card d-none" id="blockEnfermedadActual">
+				<div class="card-header bd-b-0 pd-t-20 pd-lg-t-25 pd-l-20 pd-lg-l-25 d-flex flex-column flex-sm-row align-items-sm-start justify-content-sm-between">
+					<div class="col-12">
+						<h4 class="mg-b-5">Enfermedad Actual</h4>
+						<div class="ht-150 wd-auto scrollbar-lg pos-relative pd-0 bd-0 scrolling-container-contentEnfermedadActual" id="contentEnfermedadActual"></div>
+					</div>
+				</div>
+				<!-- card-header -->
+			</div>
+			<!-- card -->
+			<div class="card d-none" id="blockAlergias">
+				<div class="card-header bd-b-0 pd-t-20 pd-lg-t-25 pd-l-20 pd-lg-l-25 d-flex flex-column flex-sm-row align-items-sm-start justify-content-sm-between">
+					<div class="col-12">
+						<h4 class="mg-b-5">Alergias</h4>
+						<div class="ht-150 wd-auto scrollbar-lg pos-relative pd-0 bd-0 scrolling-container-contentAlergias" id="contentAlergias"></div>
+					</div>
+
+				</div>
+				<!-- card-header -->
+
+			</div>
+			<!-- card -->
+		</div>
+		<div class="blockOptionsHC col-12 mg-t-10" style="display:block;">
+			<div class="row row-xs">
+				<div class="col-6 col-sm-4 col-md-3 col-xl-3">
+					<div class="checkSignosVitales card card-file" style="cursor:pointer;">
+						<div class="card-file-thumb tx-indigo">
+							<i class="fas fa-heartbeat"></i>
+						</div>
+						<div class="card-body">
+							<h6>
+								<div class="title link-02">Agregar Sígnos Vitales</div>
+							</h6>
+						</div>
+						<div class="card-footer">
+							<span class="d-none d-sm-inline">Historia Clínica
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-6 col-sm-4 col-md-3 col-xl-3">
+					<div class="checkExamenFisico card card-file" style="cursor:pointer;">
+						<div class="card-file-thumb tx-primary">
+							<i class="fas fa-running"></i>
+						</div>
+						<div class="card-body">
+							<h6>
+								<div class="title link-02">Agregar Examen Físico</div>
+							</h6>
+						</div>
+						<div class="card-footer">
+							<span class="d-none d-sm-inline">
+								Historia Clínica
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-6 col-sm-4 col-md-3 col-xl-3">
+					<div class="checkRevisionOrganos card card-file" style="cursor:pointer;">
+						<div class="card-file-thumb tx-success">
+							<i class="fas fa-brain"></i>
+						</div>
+						<div class="card-body">
+							<h6>
+								<div class="link-02">Agregar Revisión de Organos</div>
+							</h6>
+						</div>
+						<div class="card-footer">
+							<span class="d-none d-sm-inline">
+								Historia Clínica
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-6 col-sm-4 col-md-3 col-xl-3">
+					<div class="checkAntecedentesFamiliares card card-file" style="cursor:pointer;">
+						<div class="card-file-thumb tx-primary">
+							<i class="fas fa-users"></i>
+						</div>
+						<div class="card-body">
+							<h6>
+								<div class="link-02">Ver Antecedentes Familliares</div>
+							</h6>
+						</div>
+						<div class="card-footer">
+							<span class="d-none d-sm-inline">
+								Historia Clínica
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row row-xs mg-t-10">
+				<div class="col-6 col-sm-4 col-md-3 col-xl-3">
+					<div class="checkEvoluciones card card-file" style="cursor:pointer;">
+						<div class="card-file-thumb tx-purple">
+							<i class="fas fa-chart-line"></i>
+						</div>
+						<div class="card-body">
+							<h6>
+								<div class="link-02">Ver Evoluciones</div>
+							</h6>
+						</div>
+						<div class="card-footer">
+							<span class="d-none d-sm-inline">Historia Clínica
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-6 col-sm-4 col-md-3 col-xl-3">
+					<div class="checkDiagnosticoPrincipal card card-file" style="cursor:pointer;">
+						<div class="card-file-thumb tx-success">
+							<i class="fas fa-stethoscope"></i>
+						</div>
+						<div class="card-body">
+							<h6>
+								<div class="link-02">Diagnóstico Principal
+									<t style="font-size: xx-small;color:red;">*Es obligatorio</t>
+								</div>
+							</h6>
+						</div>
+						<div class="card-footer">
+							<span class="d-none d-sm-inline">
+								Historia Clínica
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-6 col-sm-4 col-md-3 col-xl-3">
+					<div class="checkDiagnosticoSecundarios card card-file" style="cursor:pointer;">
+						<div class="card-file-thumb tx-orange">
+							<i class="fas fa-stethoscope"></i>
+						</div>
+						<div class="card-body">
+							<h6>
+								<div class="link-02">Diagnósticos Secundarios</div>
+							</h6>
+						</div>
+						<div class="card-footer">
+							<span class="d-none d-sm-inline">
+								Historia Clínica
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-6 col-sm-4 col-md-3 col-xl-3">
+					<div class="masHerramientasMed card card-file" style="cursor:pointer;">
+						<div class="card-file-thumb tx-success">
+							<i class="fas fa-medkit"></i>
+						</div>
+						<div class="card-body">
+							<h6>
+								<div class="link-02">Más Herramientas Médicas</div>
+							</h6>
+						</div>
+						<div class="card-footer">
+							<span class="d-none d-sm-inline">
+								Historia Clínica
+							</span>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<div class="blockSignosVitales col-12 mg-t-10" style="display:none;">
+			<div class="card">
+				<div class="card-header d-flex">
+					<h6 class="mg-b-0 tx-18  tx-gray-500" style="cursor:pointer;">
+						<i class="fas fa-chevron-circle-left tx-18 lh--9 mg-r-10 mg-t-5 " id="tSignosVitales"></i>
+						Signos Vitales y Antropometría
+					</h6>
+					<div class="borrarSignosVitales mg-l-auto tx-danger tx-18" style="cursor:pointer;">
+						<i class="fas fa-trash"></i>
+					</div>
+				</div>
+				<!-- card-header -->
+				<div class="card-body pd-y-15 pd-x-10 parsley-style-1" id="bSignosVitales">
+					<div class="row">
+						<div class="col-6 mg-b-5">
+							<p class="tx-15 tx-uppercase tx-medium tx-color-03 tx-spacing-1 tx-nowrap mg-b-5">Temperatura Bucal</p>
+							<div class="d-flex align-items-center">
+								<div class="wd-10 ht-10 rounded-circle bg-pink mg-r-5"></div>
+								<input id="temperaturaBucal" class="form-control" placeholder="Escribir..." style="font-size: initial;" data-parsley-type="number" data-parsley-min="0" data-parsley-min-message="Valores no pueden ser negativos." data-parsley-type-message="Valor número es requerido." data-parsley-trigger="keyup"/>
+							</div>
+							<p class="tx-15 tx-primary tx-spacing-1 tx-nowrap mg-b-5 mg-t-5" id="valTemperaturaBucal"></p>
+						</div>
+						<!-- col -->
+						<div class="col-6 mg-b-5">
+							<p class="tx-15 tx-uppercase tx-medium tx-color-03 tx-spacing-1 mg-b-5">Temperatura Axiliar</p>
+							<div class="d-flex align-items-center">
+								<div class="wd-10 ht-10 rounded-circle bg-primary mg-r-5"></div>
+								<input id="temperaturaAxiliar" class="form-control" placeholder="Escribir..." style="font-size: initial;" data-parsley-type="number" data-parsley-min="0" data-parsley-min-message="Valores no pueden ser negativos." data-parsley-type-message="Valor número es requerido." data-parsley-trigger="keyup"/>
+							</div>
+							<p class="tx-15 tx-primary tx-spacing-1 tx-nowrap mg-b-5 mg-t-5" id="valTemperaturaAxiliar"></p>
+						</div>
+						<!-- col -->
+						<div class="col-6 mg-b-5">
+							<p class="tx-15 tx-uppercase tx-medium tx-color-03 tx-spacing-1 mg-b-5">Temperatura Rectal</p>
+							<div class="d-flex align-items-center">
+								<div class="wd-10 ht-10 rounded-circle bg-teal mg-r-5"></div>
+								<input id="temperaturaRectal" class="form-control" placeholder="Escribir..." style="font-size: initial;" data-parsley-type="number" data-parsley-min="0" data-parsley-min-message="Valores no pueden ser negativos." data-parsley-type-message="Valor número es requerido." data-parsley-trigger="keyup"/>
+							</div>
+							<p class="tx-15 tx-primary tx-spacing-1 tx-nowrap mg-b-5 mg-t-5" id="valTemperaturaRectal"></p>
+						</div>
+						<!-- col -->
+						<div class="col-6 mg-b-5">
+							<p class="tx-15 tx-uppercase tx-medium tx-color-03 tx-spacing-1 mg-b-5">Presión Sistólica</p>
+							<div class="d-flex align-items-center">
+								<div class="wd-10 ht-10 rounded-circle bg-orange mg-r-5"></div>
+								<input id="taSistolica" class="form-control" placeholder="Escribir..." style="font-size: initial;" data-parsley-type="number" data-parsley-min="0" data-parsley-min-message="Valores no pueden ser negativos." data-parsley-type-message="Valor número es requerido." data-parsley-trigger="keyup"/>
+							</div>
+							<p class="tx-15 tx-primary tx-spacing-1 tx-nowrap mg-b-5 mg-t-5" id="valTaSistolica"></p>
+						</div>
+						<!-- col -->
+					</div>
+					<!-- row -->
+					<div class="row">
+						<div class="col-6 mg-b-5">
+							<p class="tx-15 tx-uppercase tx-medium tx-color-03 tx-spacing-1 tx-nowrap mg-b-5">Presión Diastólica</p>
+							<div class="d-flex align-items-center">
+								<div class="wd-10 ht-10 rounded-circle bg-pink mg-r-5"></div>
+								<input id="taDiastolica" class="form-control" placeholder="Escribir..." style="font-size: initial;" data-parsley-type="number" data-parsley-min="0" data-parsley-min-message="Valores no pueden ser negativos." data-parsley-type-message="Valor número es requerido." data-parsley-trigger="keyup"/>
+							</div>
+							<p class="tx-15 tx-primary tx-spacing-1 tx-nowrap mg-b-5 mg-t-5" id="valTaDiastolica"></p>
+						</div>
+						<!-- col -->
+						<div class="col-6 mg-b-5">
+							<p class="tx-15 tx-uppercase tx-medium tx-color-03 tx-spacing-1 mg-b-5">Pulso</p>
+							<div class="d-flex align-items-center">
+								<div class="wd-10 ht-10 rounded-circle bg-primary mg-r-5"></div>
+								<input id="pulso" class="form-control" placeholder="Escribir..." style="font-size: initial;" data-parsley-type="number" data-parsley-min="0" data-parsley-min-message="Valores no pueden ser negativos." data-parsley-type-message="Valor número es requerido." data-parsley-trigger="keyup"/>
+							</div>
+							<p class="tx-15 tx-primary tx-spacing-1 tx-nowrap mg-b-5 mg-t-5" id="valPulso"></p>
+						</div>
+						<!-- col -->
+						<div class="col-6 mg-b-5">
+							<p class="tx-15 tx-uppercase tx-medium tx-color-03 tx-spacing-1 mg-b-5">Frecuencia Respiratoria</p>
+							<div class="d-flex align-items-center">
+								<div class="wd-10 ht-10 rounded-circle bg-teal mg-r-5"></div>
+								<input id="frecuenciaRespiratoria" class="form-control" placeholder="Escribir..." style="font-size: initial;" data-parsley-type="number" data-parsley-min="0" data-parsley-min-message="Valores no pueden ser negativos." data-parsley-type-message="Valor número es requerido." data-parsley-trigger="keyup"/>
+							</div>
+							<p class="tx-15 tx-primary tx-spacing-1 tx-nowrap mg-b-5 mg-t-5" id="valFrecuenciaRespiratoria"></p>
+						</div>
+						<!-- col -->
+						<div class="col-6 mg-b-5">
+							<p class="tx-15 tx-uppercase tx-medium tx-color-03 tx-spacing-1 mg-b-5">Perímetro Cefálico</p>
+							<div class="d-flex align-items-center">
+								<div class="wd-10 ht-10 rounded-circle bg-orange mg-r-5"></div>
+								<input id="perimetroCef" class="form-control" placeholder="Escribir..." style="font-size: initial;" data-parsley-type="number" data-parsley-min="0" data-parsley-min-message="Valores no pueden ser negativos." data-parsley-type-message="Valor número es requerido." data-parsley-trigger="keyup"/>
+							</div>
+							<p class="tx-15 tx-primary tx-spacing-1 tx-nowrap mg-b-5 mg-t-5" id="valPerimetroCef"></p>
+						</div>
+						<!-- col -->
+					</div>
+					<!-- row -->
+					<div class="row">
+						<div class="col-6 mg-b-5">
+							<p class="tx-15 tx-uppercase tx-medium tx-color-03 tx-spacing-1 tx-nowrap mg-b-5">Peso</p>
+							<div class="d-flex align-items-center">
+								<div class="wd-10 ht-10 rounded-circle bg-pink mg-r-5"></div>
+								<input id="peso" class="form-control" placeholder="Escribir..." style="font-size: initial;" data-parsley-type="number" data-parsley-min="0" data-parsley-min-message="Valores no pueden ser negativos." data-parsley-type-message="Valor número es requerido." data-parsley-trigger="keyup"/>
+							</div>
+							<p class="tx-15 tx-primary tx-spacing-1 tx-nowrap mg-b-5 mg-t-5" id="valPeso"></p>
+						</div>
+						<!-- col -->
+						<div class="col-6 mg-b-5">
+							<p class="tx-15 tx-uppercase tx-medium tx-color-03 tx-spacing-1 mg-b-5">Talla</p>
+							<div class="d-flex align-items-center">
+								<div class="wd-10 ht-10 rounded-circle bg-primary mg-r-5"></div>
+								<input id="talla" class="form-control" placeholder="Escribir..." style="font-size: initial;" data-parsley-type="number" data-parsley-min="0" data-parsley-min-message="Valores no pueden ser negativos." data-parsley-type-message="Valor número es requerido." data-parsley-trigger="keyup"/>
+							</div>
+							<p class="tx-15 tx-primary tx-spacing-1 tx-nowrap mg-b-5 mg-t-5" id="valTalla"></p>
+						</div>
+						<!-- col -->
+						<div class="col-6 mg-b-5">
+							<p class="tx-15 tx-uppercase tx-medium tx-color-03 tx-spacing-1 mg-b-5">IMC</p>
+							<div class="d-flex align-items-center">
+								<div class="wd-10 ht-10 rounded-circle bg-teal mg-r-5"></div>
+								<input id="imc" class="form-control" placeholder="Escribir..." style="font-size: initial;" data-parsley-type="number" data-parsley-min="0" data-parsley-min-message="Valores no pueden ser negativos." data-parsley-type-message="Valor número es requerido." data-parsley-trigger="keyup"/>
+							</div>
+							<p class="tx-15 tx-primary tx-spacing-1 tx-nowrap mg-b-5 mg-t-5" id="valImc"></p>
+						</div>
+						<!-- col -->
+					</div>
+					<!-- row -->
+				</div>
+				<!-- card-body -->
+			</div>
+			<!-- card -->
+		</div>
+		<div class="blockExamenFisico col-lg-12 mg-t-10" style="display:none;">
+			<div class="card">
+				<div class="card-header d-flex" style="cursor:pointer;">
+					<h6 class="mg-b-0 tx-18  tx-gray-500">
+						<i class="fas fa-chevron-circle-left tx-18 lh--9 mg-r-10 mg-t-5 " id="tExamenFisico"></i>
+						Examen Físico
+					</h6>
+					<div class="borrarExamenFisico  mg-l-auto tx-danger tx-18" style="cursor:pointer;">
+						<i class="fas fa-trash"></i>
+					</div>
+				</div>
+				<!-- card-header -->
+				<div class="card-body pd-y-15 pd-x-10" id="bExamenFisico" style="display:block;">
+					<div class="row ">
+						<div class="col-6 mg-b-5">
+							<p class="tx-15 tx-uppercase tx-medium tx-color-03 tx-spacing-1 tx-nowrap mg-b-5">Cabeza1R</p>
+							<div class="d-flex align-items-center">
+								<div class="wd-10 ht-10 rounded-circle bg-pink mg-r-5"></div>
+								<input id="cabeza1R" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+							</div>
+							<p class="tx-15 tx-primary tx-spacing-1 tx-nowrap mg-b-5 mg-t-5" id="valCabeza1R"></p>
+						</div>
+						<!-- col -->
+						<div class="col-6 mg-b-5">
+							<p class="tx-15 tx-uppercase tx-medium tx-color-03 tx-spacing-1 mg-b-5">cuello2R</p>
+							<div class="d-flex align-items-center">
+								<div class="wd-10 ht-10 rounded-circle bg-primary mg-r-5"></div>
+								<input id="cuello2R" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+							</div>
+							<p class="tx-15 tx-primary tx-spacing-1 tx-nowrap mg-b-5 mg-t-5" id="valCuello2R"></p>
+
+						</div>
+						<!-- col -->
+						<div class="col-6 mg-b-5">
+							<p class="tx-15 tx-uppercase tx-medium tx-color-03 tx-spacing-1 mg-b-5">torax3R</p>
+							<div class="d-flex align-items-center">
+								<div class="wd-10 ht-10 rounded-circle bg-teal mg-r-5"></div>
+								<input id="torax3R" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+							</div>
+							<p class="tx-15 tx-primary tx-spacing-1 tx-nowrap mg-b-5 mg-t-5" id="valTorax3R"></p>
+						</div>
+						<!-- col -->
+						<div class="col-6 mg-b-5">
+							<p class="tx-15 tx-uppercase tx-medium tx-color-03 tx-spacing-1 mg-b-5">abdomen4R</p>
+							<div class="d-flex align-items-center">
+								<div class="wd-10 ht-10 rounded-circle bg-orange mg-r-5"></div>
+								<input id="abdomen4R" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+							</div>
+							<p class="tx-15 tx-primary tx-spacing-1 tx-nowrap mg-b-5 mg-t-5" id="valAbdomen4R"></p>
+						</div>
+						<!-- col -->
+					</div>
+					<!-- row -->
+					<div class="row ">
+						<div class="col-6 mg-b-5">
+							<p class="tx-15 tx-uppercase tx-medium tx-color-03 tx-spacing-1 tx-nowrap mg-b-5">pelvis5R</p>
+							<div class="d-flex align-items-center">
+								<div class="wd-10 ht-10 rounded-circle bg-pink mg-r-5"></div>
+								<input id="pelvis5R" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+							</div>
+							<p class="tx-15 tx-primary tx-spacing-1 tx-nowrap mg-b-5 mg-t-5" id="valPelvis5R"></p>
+						</div>
+						<!-- col -->
+						<div class="col-6 mg-b-5">
+							<p class="tx-15 tx-uppercase tx-medium tx-color-03 tx-spacing-1 mg-b-5">extremidades6R</p>
+							<div class="d-flex align-items-center">
+								<div class="wd-10 ht-10 rounded-circle bg-primary mg-r-5"></div>
+								<input id="extremidades6R" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+							</div>
+							<p class="tx-15 tx-primary tx-spacing-1 tx-nowrap mg-b-5 mg-t-5" id="valExtremidades6R"></p>
+						</div>
+						<!-- col -->
+						<div class="col-6 mg-b-5">
+							<p class="tx-15 tx-uppercase tx-medium tx-color-03 tx-spacing-1 mg-b-5">planTratamiento.</p>
+							<div class="d-flex align-items-center">
+								<div class="wd-10 ht-10 rounded-circle bg-teal mg-r-5"></div>
+								<input id="planTratamiento" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+							</div>
+							<p class="tx-15 tx-primary tx-spacing-1 tx-nowrap mg-b-5 mg-t-5" id="valPlanTratamiento"></p>
+						</div>
+						<!-- col -->
+					</div>
+					<!-- row -->
+
+				</div>
+				<!-- card-body -->
+			</div>
+			<!-- card -->
+		</div>
+		<div class="blockRevisionOrganos col-lg-12 mg-t-10" style="display:none;">
+			<div class="card">
+				<div class="card-header d-sm-flex align-items-start justify-content-between" style="cursor:pointer;">
+					<h6 class="lh-5 mg-b-0 tx-18  tx-gray-500">
+						<i class="fas fa-chevron-circle-left tx-18 lh--9 mg-r-10 mg-t-5" id="tRevisionOrganos"></i>
+						Revisión de Organos
+					</h6>
+					<div class="borrarRevisionOrganos mg-l-auto tx-danger tx-18 " style="cursor:pointer;">
+						<i class="fas fa-trash"></i>
+					</div>
+				</div>
+				<!-- card-header -->
+				<div class="card-body pd-y-15 pd-x-10" id="bRevisionOrganos" style="display:block;">
+					<div class="table-responsive">
+						<table class="table table-borderless table-sm tx-13 tx-nowrap mg-b-0">
+							<thead>
+								<tr class="tx-10 tx-spacing-1 tx-color-03 tx-uppercase">
+									<th class="wd-5p">&nbsp;</th>
+									<th>Item</th>
+									<th class="text-right">Valor</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<i class="fab fa-chrome tx-primary op-6"></i>
+									</td>
+									<td class="tx-medium">Sentidos</td>
+									<td class="text-right">
+										<input id="sentidos" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<i class="fab fa-chrome tx-primary op-6"></i>
+									</td>
+									<td class="tx-medium">Cardio Vascular</td>
+									<td class="text-right">
+										<input id="cardioVascular" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<i class="fab fa-chrome tx-primary op-6"></i>
+									</td>
+									<td class="tx-medium">Genital</td>
+									<td class="text-right">
+										<input id="genital" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<i class="fab fa-chrome tx-primary op-6"></i>
+									</td>
+									<td class="tx-medium">Msc. Esqueletico</td>
+									<td class="text-right">
+										<input id="muscEsqueletico" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<i class="fab fa-chrome tx-primary op-6"></i>
+									</td>
+									<td class="tx-medium">Hemo. Linfatico</td>
+									<td class="text-right">
+										<input id="hemoLinfatico" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<i class="fab fa-chrome tx-primary op-6"></i>
+									</td>
+									<td class="tx-medium">Respiratorio</td>
+									<td class="text-right">
+										<input id="respiratorio" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<i class="fab fa-chrome tx-primary op-6"></i>
+									</td>
+									<td class="tx-medium">Digestivo</td>
+									<td class="text-right">
+										<input id="digestivo" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<i class="fab fa-chrome tx-primary op-6"></i>
+									</td>
+									<td class="tx-medium">Urinario</td>
+									<td class="text-right">
+										<input id="urinario" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<i class="fab fa-chrome tx-primary op-6"></i>
+									</td>
+									<td class="tx-medium">Endocrino</td>
+									<td class="text-right">
+										<input id="endocrino" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<i class="fab fa-chrome tx-primary op-6"></i>
+									</td>
+									<td class="tx-medium">Nervioso</td>
+									<td class="text-right">
+										<input id="nervioso" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+									</td>
+								</tr>
+
+
+							</tbody>
+						</table>
+					</div>
+					<!-- table-responsive -->
+				</div>
+				<!-- card-body -->
+			</div>
+			<!-- card -->
+		</div>
+		<div class="blockAntecedentesFamiliares col-lg-12 mg-t-10" style="display:none;">
+			<div class="card">
+				<div class="card-header d-sm-flex align-items-start justify-content-between" style="cursor:pointer;">
+					<h6 class="lh-5 mg-b-0 tx-18  tx-gray-500">
+						<i class="fas fa-chevron-circle-left tx-18 lh--9 mg-r-10 mg-t-5 " id="tAntecedentesFamiliares"></i>
+						Antecedentes Familliares
+					</h6>
+				</div>
+				<!-- card-header -->
+				<div class="card-body pd-y-15 pd-x-10" style="display:block;" id="bAntecedentesFamiliares">
+					<div class="table-responsive">
+						<table class="table table-borderless table-sm tx-13 tx-nowrap mg-b-0">
+							<thead>
+								<tr class="tx-10 tx-spacing-1 tx-color-03 tx-uppercase">
+									<th class="wd-5p">&nbsp;</th>
+									<th>Item</th>
+									<th class="text-right">Valor</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<i class="fab fa-chrome tx-primary op-6"></i>
+									</td>
+									<td class="tx-medium">Cardiopatía</td>
+									<td class="text-right">
+										<input id="cardiopatia" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<i class="fab fa-chrome tx-primary op-6"></i>
+									</td>
+									<td class="tx-medium">Diabetes</td>
+									<td class="text-right">
+										<input id="diabetes" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<i class="fab fa-chrome tx-primary op-6"></i>
+									</td>
+									<td class="tx-medium">Enfermedad Vascular</td>
+									<td class="text-right">
+										<input id="enfermedadVascular" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<i class="fab fa-chrome tx-primary op-6"></i>
+									</td>
+									<td class="tx-medium">Hipertension</td>
+									<td class="text-right">
+										<input id="hipertension" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<i class="fab fa-chrome tx-primary op-6"></i>
+									</td>
+									<td class="tx-medium">Cancer</td>
+									<td class="text-right">
+										<input id="cancer" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<i class="fab fa-chrome tx-primary op-6"></i>
+									</td>
+									<td class="tx-medium">Tuberculosis</td>
+									<td class="text-right">
+										<input id="tuberculosis" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<i class="fab fa-chrome tx-primary op-6"></i>
+									</td>
+									<td class="tx-medium">Enfermendad Mental</td>
+									<td class="text-right">
+										<input id="enfermendadMental" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<i class="fab fa-chrome tx-primary op-6"></i>
+									</td>
+									<td class="tx-medium">Enfermedad Infecciosa</td>
+									<td class="text-right">
+										<input id="enfermedadInfecciosa" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<i class="fab fa-chrome tx-primary op-6"></i>
+									</td>
+									<td class="tx-medium">Malformacion</td>
+									<td class="text-right">
+										<input id="malformacion" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<i class="fab fa-chrome tx-primary op-6"></i>
+									</td>
+									<td class="tx-medium">Otro</td>
+									<td class="text-right">
+										<input id="otro" class="form-control" placeholder="Escribir..." style="font-size: initial;"/>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<!-- table-responsive -->
+				</div>
+				<!-- card-body -->
+			</div>
+			<!-- card -->
+		</div>
+		<div class="blockEvoluciones col-lg-12 mg-t-10" style="display:none;">
+			<div class="card">
+				<div class="card-header d-sm-flex align-items-start justify-content-between" id="tEvoluciones" style="cursor:pointer;">
+					<h6 class="lh-5 mg-b-0 tx-18 tx-gray-500">
+						<i class="fas fa-chevron-circle-left tx-18 lh--9 mg-r-10 mg-t-5 "></i>
+						Evoluciones
+					</h6>
+
+				</div>
+				<!-- card-header -->
+				<div class="card-body pd-y-15 pd-x-10" id="bEvoluciones" style="display:block;">
+					<div class="table-responsive">
+						<table class="table table-borderless table-sm tx-13 tx-nowrap mg-b-15">
+							<thead>
+								<tr class="tx-10 tx-spacing-1 tx-color-03 tx-uppercase">
+									<th class="wd-5p">&nbsp;</th>
+									<th>Opciones</th>
+									<th class="text-right">Fecha de Evolución:</th>
+									<th class="text-right">Detalle de Evolución:</th>
+								</tr>
+							</thead>
+							<tbody>
+
+								<tr>
+									<td>
+										<i class="fab fa-safari tx-primary"></i>
+									</td>
+									<td class="pd-0">
+										<a href="#" class="nuevaEvolucion btn btn-xs btn-primary">
+											Nueva Evolución
+										</a>
+									</td>
+									<td class="text-right">
+										<div id="fechaEvolucion" class="mg-t-10" style="display:none;"></div>
+									</td>
+									<td class="text-right">
+										<input id="evolucion" class="form-control bd-0 pd-0" placeholder="Escribir..." style="font-size: initial;display:none;"/>
+									</td>
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+					<!-- table-responsive -->
+					<!-- table-responsive -->
+					<div class="table-responsive ht-150 scrolling-container-historialEvoluciones mg-b-30">
+						<table class="table table-borderless table-sm tx-13 tx-nowrap mg-b-0">
+							<thead>
+
+								<tr class="tx-10 tx-spacing-1 tx-color-03 tx-uppercase">
+									<th class="wd-5p">&nbsp;</th>
+									<th>Historial de Evoluciones</th>
+								</tr>
+								<tr class="tx-10 tx-spacing-1 tx-color-03 tx-uppercase">
+									<th class="wd-5p">&nbsp;</th>
+									<th>Opciones</th>
+									<th class="text-right">Fecha de Evolución</th>
+									<th class="text-right">Detalle de Evolución</th>
+								</tr>
+							</thead>
+							<tbody id="historialEvoluciones"></tbody>
+						</table>
+					</div>
+					<!-- table-responsive -->
+				</div>
+				<!-- card-body -->
+			</div>
+			<!-- card -->
+		</div>
+		<div class="blockDiagnostico col-lg-12 mg-t-10" style="display:none;">
+			<div class="card ">
+				<div class="card-header d-sm-flex align-items-start justify-content-between" style="cursor:pointer;">
+					<h6 class="lh-5 mg-b-0 tx-18  tx-gray-500">
+						<i class="fas fa-chevron-circle-left tx-18 lh--9 mg-r-10 mg-t-5 " id="tDiagnosticoPrincipal"></i>
+						Diagnóstico Principal *Es Obligatorio
+					</h6>
+				</div>
+				<!-- card-header -->
+				<div class="card-body pd-y-15 pd-x-10 ht-auto" id="bDiagnosticoPrincipal" style="display:block;">
+					<div class="table-responsive">
+						<table class="table table-borderless table-sm tx-13 tx-nowrap mg-b-0">
+							<thead>
+								<tr class="tx-10 tx-spacing-1 tx-color-03 tx-uppercase">
+									<th class="wd-5p">&nbsp;</th>
+									<th>Opciones</th>
+									<th class="text-right">Código de Diagnóstico:</th>
+									<th class="text-right">Descripción de Diagnóstico:</th>
+								</tr>
+							</thead>
+							<tbody>
+
+								<tr>
+									<td>
+										<i class="fab fa-safari tx-primary"></i>
+									</td>
+									<td class="pd-0">
+										<a href="#" class="agregarDiagnostico btn btn-xs btn-primary">
+											Diagnostico Principal
+										</a>
+									</td>
+									<td class="text-right" colspan="2" id="cdiagnostico"></td>
+
+								</tr>
+
+
+							</tbody>
+						</table>
+
+					</div>
+					<div class="df-example demo-forms bd bd-0" id="tdiagnostico" style="display:none;">
+						<div class="input-group">
+							<div class="search-form search-suggestion-fixed wd-100p">
+								<input type="search" class="form-control" id="diagPrincipalHC" placeholder="Buscar por código o diagnóstico."/>
+							</div>
+						</div>
+					</div>
+					<!-- table-responsive -->
+					<!-- table-responsive -->
+				</div>
+				<!-- card -->
+			</div>
+			<!-- col -->
+
+		</div>
+		<div class="blockDiagnosticoSecundarios col-lg-12 mg-t-10" style="display:none;">
+			<div class="card ">
+				<div class="card-header d-sm-flex align-items-start justify-content-between " id="tDiagnosticoSecundarios" style="cursor:pointer;">
+					<h6 class="lh-5 mg-b-0 tx-18  tx-gray-500">
+						<i class="fas fa-chevron-circle-left tx-18 lh--9 mg-r-10 mg-t-5 "></i>
+
+						Diagnóstico Secundarios</h6>
+
+				</div>
+				<!-- card-header -->
+				<div class="card-body pd-y-15 pd-x-10 ht-auto" id="bDiagnosticoSecundarios" style="display:block;">
+
+
+					<div class="table-responsive">
+						<table class="grid-diagnosticos table table-borderless table-sm tx-13 tx-nowrap mg-b-0">
+							<thead>
+								<tr class="tx-10 tx-spacing-1 tx-color-03 tx-uppercase">
+									<th class="text-left">Diagnóstico:</th>
+									<th class="text-right">Opciones:</th>
+								</tr>
+							</thead>
+							<tbody></tbody>
+						</table>
+					</div>
+					<!-- table-responsive -->
+
+					<div class="df-example demo-forms bd bd-0 mg-t-10">
+						<div class="input-group">
+							<label>Diagnósticos Secundarios:</label>
+							<div class="search-form search-suggestion-fixed wd-100p">
+								<input type="search" class="form-control" id="diagSegundarios" placeholder="Buscar por código o diagnóstico."/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- card -->
+			</div>
+			<!-- col -->
+		</div>
+		<div class="blockMasHerramientas col-12 mg-t-10" style="display:none;">
+			<div class="card">
+				<div class="card-header d-flex">
+					<h6 class="mg-b-0 tx-18  tx-gray-500" style="cursor:pointer;">
+						<i class="fas fa-chevron-circle-left tx-18 lh--9 mg-r-10 mg-t-5 " id="tMasHerramientas"></i>
+						Más Herramientas Médicas
+					</h6>
+
+				</div>
+				<!-- card-header -->
+				<div class="card-body pd-y-15 pd-x-10 parsley-style-1 d-none" id="bMasHerramientas">
+					<div class="col-sm-12 col-lg-12 mg-t-10">
+						<div class="card ht-md-100p">
+							<div class="card-body pd-0">
+								<ul class="list-unstyled mg-b-0">
+									<li class="list-label">Today, Mar 20</li>
+									<li class="list-item">
+										<div class="media align-items-center">
+											<div class="wd-35 ht-35 bd bd-2 bd-info tx-info rounded-circle align-items-center justify-content-center op-6 d-none d-sm-flex">
+												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download wd-20 ht-20">
+													<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+													<polyline points="7 10 12 15 17 10"></polyline>
+													<line x1="12" y1="15" x2="12" y2="3"></line>
+												</svg>
+											</div>
+											<div class="media-body mg-sm-l-15">
+												<p class="tx-medium mg-b-0">Received Bitcoin</p>
+												<p class="tx-12 mg-b-0 tx-color-03">Received via PayPal</p>
+											</div>
+											<!-- media-body -->
+										</div>
+										<!-- media -->
+										<div class="text-right tx-rubik">
+											<p class="mg-b-0">+0.0108 BTC</p>
+											<p class="tx-12 mg-b-0 tx-success">+$25.00 USD</p>
+										</div>
+										<!-- media-body -->
+									</li>
+									<li class="list-item">
+										<div class="media align-items-center">
+											<div class="wd-35 ht-35 bd bd-2 bd-primary tx-primary rounded-circle align-items-center justify-content-center op-6 d-none d-sm-flex">
+												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-upload wd-20 ht-20">
+													<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+													<polyline points="17 8 12 3 7 8"></polyline>
+													<line x1="12" y1="3" x2="12" y2="15"></line>
+												</svg>
+											</div>
+											<div class="media-body mg-sm-l-15">
+												<p class="tx-medium mg-b-0">Sent Bitcoin</p>
+												<p class="tx-12 mg-b-0 tx-color-03">To Bitcoin address</p>
+											</div>
+											<!-- media-body -->
+										</div>
+										<!-- media -->
+										<div class="text-right tx-rubik">
+											<p class="tx-normal mg-b-2">-0.0157 BTC</p>
+											<p class="tx-12 mg-b-0 tx-danger">-$289.00 USD</p>
+										</div>
+										<!-- media-body -->
+									</li>
+									<li class="list-label">Yesterday, Mar 19</li>
+									<li class="list-item">
+										<div class="media align-items-center">
+											<div class="wd-35 ht-35 bd bd-2 bd-success tx-success rounded-circle align-items-center justify-content-center op-6 d-none d-sm-flex">
+												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-bag wd-20 ht-20">
+													<path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+													<line x1="3" y1="6" x2="21" y2="6"></line>
+													<path d="M16 10a4 4 0 0 1-8 0"></path>
+												</svg>
+											</div>
+											<div class="media-body mg-sm-l-15">
+												<p class="tx-medium mg-b-0">Bought Ethereum</p>
+												<p class="tx-12 mg-b-0 tx-color-03">Using PayPal account</p>
+											</div>
+											<!-- media-body -->
+										</div>
+										<!-- media -->
+										<div class="text-right tx-rubik">
+											<p class="mg-b-0">+2.0157 ETH</p>
+											<p class="tx-12 mg-b-0 tx-success">+$21.50 USD</p>
+										</div>
+									</li>
+									<li class="list-item">
+										<div class="media align-items-center">
+											<div class="wd-35 ht-35 bd bd-2 bd-success tx-success rounded-circle align-items-center justify-content-center op-6 d-none d-sm-flex">
+												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-bag wd-20 ht-20">
+													<path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+													<line x1="3" y1="6" x2="21" y2="6"></line>
+													<path d="M16 10a4 4 0 0 1-8 0"></path>
+												</svg>
+											</div>
+											<div class="media-body mg-sm-l-15">
+												<p class="tx-medium mg-b-0">Bought Bitcoin</p>
+												<p class="tx-12 mg-b-0 tx-color-03">Using visa
+													<span class="d-lg-none d-xl-inline">debit</span>
+													***1146</p>
+											</div>
+											<!-- media-body -->
+										</div>
+										<!-- media -->
+										<div class="text-right tx-rubik">
+											<p class="mg-b-0">+0.004 BTC</p>
+											<p class="tx-12 mg-b-0 tx-success">+$18.50 USD</p>
+										</div>
+									</li>
+									<li class="list-item">
+										<div class="media align-items-center">
+											<div class="wd-35 ht-35 bd bd-2 bd-primary tx-primary rounded-circle align-items-center justify-content-center op-6 d-none d-sm-flex">
+												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-upload wd-20 ht-20">
+													<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+													<polyline points="17 8 12 3 7 8"></polyline>
+													<line x1="12" y1="3" x2="12" y2="15"></line>
+												</svg>
+											</div>
+											<div class="media-body mg-sm-l-15">
+												<p class="tx-medium mg-b-0">Sent Bitcoin</p>
+												<p class="tx-12 mg-b-0 tx-color-03">To Bitcoin address</p>
+											</div>
+											<!-- media-body -->
+										</div>
+										<!-- media -->
+										<div class="text-right tx-rubik">
+											<p class="mg-b-0">-0.0025 BTC</p>
+											<p class="tx-12 mg-b-0 tx-danger">-$289.00 USD</p>
+										</div>
+									</li>
+									<li class="list-item">
+										<div class="media align-items-center">
+											<div class="wd-35 ht-35 bd bd-2 bd-primary tx-primary rounded-circle align-items-center justify-content-center op-6 d-none d-sm-flex">
+												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-upload wd-20 ht-20">
+													<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+													<polyline points="17 8 12 3 7 8"></polyline>
+													<line x1="12" y1="3" x2="12" y2="15"></line>
+												</svg>
+											</div>
+											<div class="media-body mg-sm-l-15">
+												<p class="tx-medium mg-b-0">Sent Bitcoin</p>
+												<p class="tx-12 mg-b-0 tx-color-03">To Bitcoin address</p>
+											</div>
+											<!-- media-body -->
+										</div>
+										<!-- media -->
+										<div class="text-right tx-rubik">
+											<p class="mg-b-0">-0.0025 BTC</p>
+											<p class="tx-12 mg-b-0 tx-danger">-$289.00 USD</p>
+										</div>
+									</li>
+								</ul>
+							</div>
+							<!-- card-body -->
+						</div>
+						<!-- card -->
+					</div>
+				</div>
+				<!-- card-body -->
+			</div>
+			<!-- card -->
+		</div>
+	</div>
+</div>

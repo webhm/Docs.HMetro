@@ -1,0 +1,208 @@
+<div class="df-example demo-forms mg-t-20 mg-l-10 mg-r-10">
+    <div id="wizardNuevaCita">
+        <h3>Ver Agenda</h3>
+        <section>
+            <p class="mg-b-20">
+                Consulta la disponibilidad del Médico
+            </p>
+            <div class="row row-sm">
+                <div class="col-md-7">
+                    <div class="mg-b-10">
+                        <label class="form-control-label">Desde:
+                            <span class="tx-danger">*</span>
+                        </label>
+                        <input id="fechaAgendaDesde" class="form-control" placeholder="Fecha desde" type="date" required="required"/>
+                    </div>
+                    <div class="mg-b-10">
+                        <label class="form-control-label">
+                            Hasta :
+                            <span class="tx-danger">
+                                *
+                            </span>
+                        </label>
+                        <input id="fechaAgendaHasta" class="form-control" name="fechaAgenda" placeholder="Fecha hasta" type="date" required="required"/>
+                        <div class="mg-b-10 mg-t-30">
+                            <input id="iCitaSeleccionada" type="hidden" required="required"/>
+                            <button type="button" class="btn btn-primary btn-block" id="buscarAgenda">
+                                Buscar
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="">
+                        <label class="form-control-label">
+                            Citas Seleccionada :
+                        </label>
+                        <div class="citaSeleccionada" class=""></div>
+                    </div>
+                    <div class="mg-b-10">
+                        <label class="form-control-label">
+                            Citas Disponibles
+                        </label>
+                        <div class="pos-relative ht-200 bd  pd-l-0 pd-r-0 " id="contentAgendas">
+                            <ul class="list-unstyled media-list mg-b-15" id="resAgendas"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <h3>Datos del Paciente</h3>
+        <section>
+            <h6>Cita:</h6>
+            <div class="citaSeleccionada" class="mg-t-10 mg-b-2"></div>
+            <p>¿Estas agendando una nueva cita para?</p>
+            <div class="form-group">
+                <label class="form-control-label">Cedula de Identidad:
+                    <span class="tx-danger">*</span>
+                </label>
+                <div class="input-group">
+                    <input id="docPaciente" type="text" class="form-control" placeholder="Cedula de Identidad" aria-label="Cedula de Identidad" aria-describedby="button-addon2" required=""/>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button" id="buscarPacienteCita">Buscar Paciente</button>
+                    </div>
+                </div>
+                <!-- form-group -->
+            </div>
+            <div class="form-group">
+                <div class="resDataAfiliacion"></div>
+            </div>
+            <div id="f-nuevoPaciente" class="d-none">
+                <div class="form-row mg-l-1">
+                    <h3>Nuevo Paciente:</h3>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label class="tx-18 tx-semibold">Número de Identificación:</label>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="nuevoNumId tx-18"></label>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>Primer Nombre:</label>
+                        <input type="text" class="form-control" id="primerNombre" placeholder="Primer Nombre" required="required"/>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Segundo Nombre:</label>
+                        <input type="text" class="form-control" id="segundoNombre" placeholder="Segundo Nombre" required="required"/>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>Primer Apellido:</label>
+                        <input type="text" class="form-control" id="primerApellido" placeholder="Primer Apellido" required="required"/>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Segundo Apellido:</label>
+                        <input type="text" class="form-control" id="segundoApellido" placeholder="Segundo Apellido" required="required"/>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>Fecha de Nacimiento:</label>
+                        <input id="fechaNacimientoPaciente" class="form-control" placeholder="Fecha desde" type="date" required="required"/>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Género:</label>
+                        <select class="custom-select" id="generoPaciente" required="required">
+                            <option value="">Seleccione...</option>
+                            <option value="M">Masculino</option>
+                            <option value="F">Femenino</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-9">
+                        <label>Dirección:</label>
+                        <input type="text" class="form-control" id="dirPaciente" placeholder="Dirección" required="required"/>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Celular:</label>
+                        <input type="text" class="form-control" id="celPaciente" placeholder="Celular" required="required"/>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>Correo electrónico:</label>
+                        <input type="email" class="form-control" id="emailPaciente" placeholder="Correo electrónico" required="required"/>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Confirma Correo electrónico:</label>
+                        <input type="email" class="form-control" id="emailPaciente2" placeholder="Correo electrónico" required="required"/>
+                    </div>
+                </div>
+            </div>
+            <div id="f-paciente" class="d-none">
+                <div class="form-row mg-l-1">
+                    <h3>Paciente:</h3>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label class="tx-18 tx-semibold">Número de Identificación:</label>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="nuevoNumId tx-18"></label>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label class="tx-18 tx-semibold">Nombres Completos:</label>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="pteCita tx-18"></label>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label class="tx-18 tx-semibold">Correos Electrónicos:
+                            <label class="tx-12 tx-semibold">Agrega un correo electrónico si lo necesitas.</label>
+                        </label>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="correosPteCita tx-18"></label>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <h3>Confirmación y Pago</h3>
+        <section>
+            <h6>Cita:</h6>
+            <div class="citaSeleccionada" class="mg-t-10 mg-b-2"></div>
+            <p>Confirmación y método de Pago</p>
+            <div class="form-group">
+                <div class="resAgendaCita"></div>
+            </div>
+            <div class="form-group">
+                <label>Correo electrónico:
+                    <span class="tx-danger">*Agrega un correo electrónico si lo neceistas.</span>
+                </label>
+                <input type="email" class="form-control" id="emailPacienteCita" placeholder="Correo electrónico" required="required"/>
+            </div>
+            <div class="form-group">
+                <label class="form-control-label">Tipo de Cita:
+                    <span class="tx-danger">*</span>
+                </label>
+                <select id="tipoCita" class="custom-select" required="required">
+                    <option value="">Seleccione...</option>
+                    <option value="P">Primera Vez</option>
+                    <option value="S">Subsecuente</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-control-label">Forma de Pago de la Cita:
+                    <span class="tx-danger">*</span>
+                </label>
+                <select id="formaPago" class="custom-select" required="required">
+                    <option value="">Seleccione...</option>
+                    <option value="E">Efectivo</option>
+                    <option value="T">Transferencia Bancaria</option>
+                </select>
+            </div>
+
+        </section>
+    </div>
+</div>

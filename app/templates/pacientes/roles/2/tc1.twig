@@ -1,0 +1,374 @@
+{# App Template Home Dashboard #}
+{% extends 'overall/layout' %}
+{% block appFavicon %}
+    <!-- Favicon -->
+    <link href="assets/favicon.png" rel="shortcut icon" type="image/x-icon"/>
+{% endblock %}
+{% block appPageTittle %}
+    <title>
+        Mis Pacientes |
+        {{ config.build.appName }}
+        v{{ config.build.version }}.
+    </title>
+{% endblock %}
+{% block appCustomCssApp %}
+    <link href="assets/dashforge/lib/quill/quill.core.css" rel="stylesheet"/>
+    <link href="assets/dashforge/lib/quill/quill.snow.css" rel="stylesheet"/>
+    <link href="assets/dashforge/lib/quill/quill.bubble.css" rel="stylesheet"/>
+    <link href="assets/dashforge/lib/datatables.net-dt/css/jquery.dataTables.min.css" rel="stylesheet"/>
+    <link href="assets/dashforge/lib/datatables.net-responsive-dt/css/responsive.dataTables.min.css" rel="stylesheet"/>
+    <link href="assets/dashforge/lib/select2/css/select2.min.css" rel="stylesheet"/>
+    <link href="assets/dashforge/lib/animate.css/animate.min.css" rel="stylesheet"/>
+{% endblock %}
+{% block appCustomCssPage %}
+    <link href="assets/dashforge/assets/css/dashforge.contacts.css" rel="stylesheet"/>
+    <link href="assets/dashforge/assets/css/dashforge.chat.css" rel="stylesheet"/>
+    <link href="assets/dashforge/assets/css/dashforge.demo.css" rel="stylesheet"/>
+    <link href="assets/dashforge/assets/css/dashforge.profile.css" rel="stylesheet"/>
+    <link href="assets/dashforge/assets/css/dashforge.css" rel="stylesheet"/>
+    <style type="text/css">
+        .ql-tooltip ql-flip {
+            display: none !important;
+        }
+
+        .ql-tooltip-arrow {
+            display: none !important;
+        }
+
+        .ql-toolbar {
+            display: none !important;
+        }
+
+        .ql-editor {
+            padding: 0 !important;
+        }
+
+        .twitter-typeahead {
+            width: 100%;
+        }
+
+        .accordion-diagnosticos .ui-accordion-header .ui-accordion-header-icon {
+            margin-left: 20px !important;
+        }
+    </style>
+{% endblock %}
+{% block appHeader %}
+    {% include 'overall/menu/roles/1/header-teleconsulta' %}
+{% endblock %}
+{% block appContent %}
+    <div
+        class="contact-wrapper" id="preloader">
+        <!-- Init Consola Teleconsulta -->
+        <div class="content content-fixed content-auth-alt" id="contentNetwork">
+            <div class="container ht-100p tx-center">
+                <div class="ht-100p d-flex flex-column align-items-center justify-content-center">
+                    <div class="wd-70p wd-sm-250 wd-lg-300 mg-b-15" id="i-contentNetwork">
+                        <i class="fas fa-wifi tx-50"></i>
+                    </div>
+                    <h1 class="tx-color-01 tx-24 tx-sm-32 tx-lg-36 mg-xl-b-5">
+                        <div class="spinner-grow text-green" role="status">
+                            <span class="sr-only">Cargando...</span>
+                        </div>
+                        <div class="mg-l-5 d-inline" id="titlecontentNetwork">Estamos preprarando todo</div>
+                    </h1>
+                    <h5 class="tx-16 tx-sm-18 tx-lg-20 tx-normal mg-b-5" id="textNetwork"></h5>
+                    <span class="tx-12 tx-color-03  mg-b-5" id="dataNetwork"></span>
+                    <div class="d-flex mg-b-40">
+                        <a href="{{ config.build.url }}" role="button" class="reloadPage btn btn-outline-primary mg-t-10 d-none">Reintentar</a>
+                    </div>
+                </div>
+            </div>
+            <!-- container -->
+        </div>
+    </div>
+    <div class="contact-wrapper d-none" id="panelPacientes">
+        <div class="contact-navleft">
+            <nav class="nav flex-column">
+                <a href="#pacientesAgendados" class="nav-link active" data-toggle="tab">
+                    <span data-toggle="tooltip" title="Mis Pacientes Agendados" data-placement="right">
+                        <i data-feather="calendar"></i>
+                    </span>
+                </a>
+                <a href="#tabPhoneCall" class="nav-link" data-toggle="tab">
+                    <span data-toggle="tooltip" title="Todos mis Pacientes" data-placement="right">
+                        <i data-feather="users"></i>
+                    </span>
+                </a>
+            </nav>
+        </div>
+        <!-- contact-navleft -->
+        <div class="contact-sidebar">
+            <div class="contact-sidebar-header">
+                <i data-feather="search"></i>
+                <div class="search-form">
+                    <input type="search" class="form-control" placeholder="Buscar Pacientes"></div>
+                    <nutton class="btn btn-xs btn-icon btn-primary" id="nuevaCita" style="cursor:pointer;" title="Nueva Cita">
+                        <i data-feather="plus"></i>
+                    </nutton>
+                    <!-- contact-add -->
+                </div>
+            </div>
+            <!-- contact-sidebar-header -->
+            <div class="contact-sidebar-body">
+                <div class="tab-content">
+                    <div id="pacientesAgendados" class="tab-pane fade active show">
+                        <div class="pd-y-20 pd-x-10 contact-list" id="contentPacientesAgendados">
+                            <div class="placeholder-paragraph">
+                                <div class="line"></div>
+                                <div class="line"></div>
+                            </div>
+                        </div>
+                        <!-- contact-list -->
+                    </div>
+                    <!-- tab-pane -->
+                    <div id="tabPhoneCall" class="tab-pane fade"></div>
+                    <!-- tab-pane -->
+                    <div id="tabFavorites" class="tab-pane fade">
+                        <div class="pd-y-20 pd-x-10 contact-list"></div>
+                        <!-- contact-list -->
+                    </div>
+                    <!-- tab-pane -->
+                    <div id="tabTags" class="tab-pane fade">
+                        <div class="pd-y-20 pd-x-10 contact-list">
+                            <label class="contact-list-divider">My Family</label>
+                            <div class="media">
+                                <div class="avatar avatar-sm avatar-online">
+                                    <span class="avatar-initial rounded-circle bg-gray-700">A</span>
+                                </div>
+                                <div class="media-body mg-l-10">
+                                    <h6 class="tx-13 mg-b-3">Abigail Johnson</h6>
+                                    <span class="tx-12">+1-234-567-890</span>
+                                </div>
+                                <!-- media-body -->
+                                <nav>
+                                    <a href="">
+                                        <i data-feather="star"></i>
+                                    </a>
+                                    <a href="">
+                                        <i data-feather="edit-2"></i>
+                                    </a>
+                                </nav>
+                            </div>
+                            <!-- media -->
+                            <div class="media">
+                                <div class="avatar avatar-sm avatar-online">
+                                    <img src="../../assets/img/img14.jpg" class="rounded-circle" alt=""></div>
+                                    <div class="media-body mg-l-10">
+                                        <h6 class="tx-13 mg-b-3">Archie Cantones</h6>
+                                        <span class="tx-12">archie@cantones.com</span>
+                                    </div>
+                                    <!-- media-body -->
+                                    <nav>
+                                        <a href="">
+                                            <i data-feather="star"></i>
+                                        </a>
+                                        <a href="">
+                                            <i data-feather="edit-2"></i>
+                                        </a>
+                                    </nav>
+                                </div>
+                                <!-- media -->
+                                <label class="contact-list-divider">My Friends</label>
+                                <div class="media">
+                                    <div class="avatar avatar-sm avatar-online">
+                                        <span class="avatar-initial rounded-circle bg-primary">a</span>
+                                    </div>
+                                    <div class="media-body mg-l-10">
+                                        <h6 class="tx-13 mg-b-3">Allan Rey Palban</h6>
+                                        <span class="tx-12">allanr@palban.com</span>
+                                    </div>
+                                    <!-- media-body -->
+                                    <nav>
+                                        <a href="">
+                                            <i data-feather="star"></i>
+                                        </a>
+                                        <a href="">
+                                            <i data-feather="edit-2"></i>
+                                        </a>
+                                    </nav>
+                                </div>
+                                <!-- media -->
+                                <div class="media">
+                                    <div class="avatar avatar-sm avatar-offline">
+                                        <span class="avatar-initial rounded-circle bg-primary">D</span>
+                                    </div>
+                                    <div class="media-body mg-l-10">
+                                        <h6 class="tx-13 mg-b-3">Daniel Calinawan</h6>
+                                        <span class="tx-12">daniel@youremail.com</span>
+                                    </div>
+                                    <!-- media-body -->
+                                    <nav>
+                                        <a href="">
+                                            <i data-feather="star"></i>
+                                        </a>
+                                        <a href="">
+                                            <i data-feather="edit-2"></i>
+                                        </a>
+                                    </nav>
+                                </div>
+                                <!-- media -->
+                                <div class="media">
+                                    <div class="avatar avatar-sm avatar-offline">
+                                        <span class="avatar-initial rounded-circle bg-success">E</span>
+                                    </div>
+                                    <div class="media-body mg-l-10">
+                                        <h6 class="tx-13 mg-b-3">Elvis Vircede</h6>
+                                        <span class="tx-12">+63929-123-4567</span>
+                                    </div>
+                                    <!-- media-body -->
+                                    <nav>
+                                        <a href="">
+                                            <i data-feather="star"></i>
+                                        </a>
+                                        <a href="">
+                                            <i data-feather="edit-2"></i>
+                                        </a>
+                                    </nav>
+                                </div>
+                                <!-- media -->
+                                <label class="contact-list-divider">My Officemates</label>
+                                <div class="media">
+                                    <div class="avatar avatar-sm avatar-online">
+                                        <span class="avatar-initial rounded-circle bg-gray-700">E</span>
+                                    </div>
+                                    <div class="media-body mg-l-10">
+                                        <h6 class="tx-13 mg-b-3">Elena Salubre</h6>
+                                        <span class="tx-12">e.salubre@myemail.com</span>
+                                    </div>
+                                    <!-- media-body -->
+                                    <nav>
+                                        <a href="">
+                                            <i data-feather="star"></i>
+                                        </a>
+                                        <a href="">
+                                            <i data-feather="edit-2"></i>
+                                        </a>
+                                    </nav>
+                                </div>
+                                <!-- media -->
+                            </div>
+                            <!-- contact-list -->
+                        </div>
+                        <!-- tab-pane -->
+                        <div id="tabExport" class="tab-pane fade">
+                            <div class="pd-y-25 pd-x-20">
+                                <h6 class="tx-12 tx-semibold tx-spacing-1 tx-uppercase">Export Contacts</h6>
+                                <p class="tx-13 tx-color-03 mg-b-20">You can export your contacts and import them into other email apps.</p>
+                                <div class="form-group">
+                                    <label class="tx-13">Which contacts do you want to export?</label>
+                                    <select class="custom-select tx-13">
+                                        <option value="1" selected="selected">All Contacts</option>
+                                        <option value="2">My Favorites</option>
+                                        <option value="3">My Family</option>
+                                        <option value="4">My Friends</option>
+                                        <option value="4">My Officemates</option>
+                                    </select>
+                                </div>
+                                <!-- form-group -->
+                                <button class="btn btn-sm btn-primary">Export</button>
+                            </div>
+                        </div>
+                        <!-- tab-pane -->
+                    </div>
+                    <!-- tab-content -->
+                </div>
+                <!-- contact-sidebar-body -->
+            </div>
+        </div>
+        <div class="contact-content">
+            <div class="contact-content-header">
+                <nav class="blockNuevaCita nav d-none">
+                    <a href="#contentNuevaCita" id="linkNuevaCita" class="nav-link" data-toggle="tab">Nueva Cita</a>
+                </nav>
+                <nav class="blockNoticias nav">
+                    <a href="#noticias" class=" nav-link active" data-toggle="tab">Noticias
+                    </a>
+                </nav>
+                <nav class="blockPaciente nav d-none">
+                    <a href="#live" class="live nav-link d-none" data-toggle="tab" id="inlive">
+                        En Vivo
+                        <div class="spinner-grow spinner-grow-sm text-danger mg-l-5" role="status"></div>
+                    </a>
+                    <a href="#datosPersonales" class="datosPersonales nav-link active" data-toggle="tab">Datos Personales
+                    </a>
+                    <a href="#datosClinicos" class="datosClinicos nav-link " data-toggle="tab">Datos Clínicos
+                    </a>
+                    <a href="#laboratorio" class="laboratorio nav-link " data-toggle="tab">Laboratorio
+                    </a>
+                    <a href="#patologia" class="patologia nav-link d-none" data-toggle="tab">Patologia
+                    </a>
+                    <a href="#imagen" class="imagen nav-link " data-toggle="tab">Imagen
+                    </a>
+                </nav>
+                <a href="#" id="hideImagen" class="text-secondary mg-l-auto d-none" title="Cerrar Visor de Imagen">
+                    <i class="fas fa-compress-arrows-alt mg-r-5 tx-20 lh--9"></i>
+                </a>
+                <a href="" id="contactOptions" class="text-secondary mg-l-auto d-xl-none">
+                    <i data-feather="more-horizontal"></i>
+                </a>
+            </div>
+            <!-- contact-content-header -->
+            <div class="contact-content-body">
+                <div class="tab-content">
+                    <div id="contentNuevaCita" class="tab-pane pd-l-0 pd-r-0"></div>
+                    <div id="live" class="tab-pane pd-l-0 pd-r-0 d-none">
+                        <iframe src="#!" class="wd-100p" style="border:none;" id="liveZoom"></iframe>
+                    </div>
+                    <div id="noticias" class="tab-pane pd-20 pd-xl-25">
+                        <p>Noticias</p>
+                    </div>
+                    <div id="datosPersonales" class="tab-pane pd-20 pd-xl-25">
+                        <p>datos personales</p>
+                    </div>
+                    <div id="datosClinicos" class="tab-pane  pd-20 pd-xl-25">
+                        <p>datosClinicos</p>
+                    </div>
+                    <div id="laboratorio" class="tab-pane  pd-20 pd-xl-25">
+                        <p>laboratorio</p>
+                    </div>
+                    <div id="patologia" class="tab-pane  pd-20 pd-xl-25 d-none">
+                        <p>patologia</p>
+                    </div>
+                    <div id="imagen" class="tab-pane  pd-20 pd-xl-25"></div>
+                    <!-- tab-pane -->
+                </div>
+                <!-- tab-content -->
+            </div>
+            <!-- contact-content-body -->
+            <div class="contact-content-sidebar" id="sidebarPaciente">
+                <div class="placeholder-paragraph">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+            </div>
+            <!-- contact-content-sidebar -->
+        </div>
+        <!-- contact-content -->
+    </div>
+</div>{% endblock %}{% block appFooter %}{% endblock %}{% block appCustomScriptsApp %}{% endblock %}{% block appCustomScriptsPage %}
+<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script defer="" nonce="{{ nonceHash }}" src="//mozilla.github.io/pdf.js/build/pdf.js"></script>
+<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/typeahead.js/typeahead.bundle.min.js"></script>
+<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/handlebars/handlebars.min.js"></script>
+<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/moment/min/moment.min.js"></script>
+<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/datatables.net-dt/js/dataTables.dataTables.min.js"></script>
+<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/datatables.net-responsive-dt/js/responsive.dataTables.min.js"></script>
+<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/quill/quill.min.js"></script>
+<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/parsleyjs/parsley.min.js"></script>
+<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/jquery-steps/build/jquery.steps.min.js"></script>
+{% set consolaApp = ocrend_encode('consola/pacientes/app.js', 'temp') %}
+{% set consolaUrl = ocrend_encode('consola/url.js', 'temp') %}
+{% set ui = ocrend_encode('consola/pacientes/UI.js', 'temp') %}
+{% set pacientes = ocrend_encode('consola/pacientes/pacientes.js','temp') %}
+{% set citas = ocrend_encode('consola/pacientes/citas.js', 'temp') %}
+{% set viewer = ocrend_encode('consola/pacientes/viewer.js', 'temp') %}
+<script defer="" nonce="{{ nonceHash }}" src="dist/app/js/{{ viewer }}.js?key={{ nonceHash }}" target="_blank"></script>
+<script defer="" nonce="{{ nonceHash }}" src="dist/app/js/{{ ui }}.js?key={{ nonceHash }}" target="_blank"></script>
+<script defer="" nonce="{{ nonceHash }}" src="dist/app/js/{{ citas }}.js?key={{ nonceHash }}" target="_blank"></script>
+<script defer="" nonce="{{ nonceHash }}" src="dist/app/js/{{ pacientes }}.js?key={{ nonceHash }}" target="_blank"></script>
+<script defer="" nonce="{{ nonceHash }}" src="dist/app/js/{{ consolaUrl }}.js?key={{ nonceHash }}" target="_blank"></script>
+<script defer="" nonce="{{ nonceHash }}" src="dist/app/js/{{ consolaApp }}.js?key={{ nonceHash }}" target="_blank"></script>
+<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/assets/js/dashforge.js"></script>
+<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/assets/js/dashforge.contacts.js"></script>{% endblock %}

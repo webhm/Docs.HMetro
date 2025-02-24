@@ -1,0 +1,242 @@
+{# App Template Home Dashboard #}
+{% extends 'overall/layout' %}
+{% block appFavicon %}
+	<!-- Favicon -->
+	<link href="assets/favicon.png" rel="shortcut icon" type="image/x-icon"/>
+{% endblock %}
+{% block appPageTittle %}
+	<title>
+		Mis Pacientes |
+		{{ config.build.appName }}
+		v{{ config.build.version }}.
+	</title>
+{% endblock %}
+{% block appCustomCssApp %}
+	<link href="assets/dashforge/lib/quill/quill.core.css" rel="stylesheet"/>
+	<link href="assets/dashforge/lib/quill/quill.snow.css" rel="stylesheet"/>
+	<link href="assets/dashforge/lib/quill/quill.bubble.css" rel="stylesheet"/>
+	<link href="assets/dashforge/lib/datatables.net-dt/css/jquery.dataTables.min.css" rel="stylesheet"/>
+	<link href="assets/dashforge/lib/datatables.net-responsive-dt/css/responsive.dataTables.min.css" rel="stylesheet"/>
+	<link href="assets/dashforge/lib/select2/css/select2.min.css" rel="stylesheet"/>
+	<link href="assets/dashforge/lib/animate.css/animate.min.css" rel="stylesheet"/>
+{% endblock %}
+{% block appCustomCssPage %}
+	<link href="assets/dashforge/assets/css/dashforge.contacts.css" rel="stylesheet"/>
+	<link href="assets/dashforge/assets/css/dashforge.chat.css" rel="stylesheet"/>
+	<link href="assets/dashforge/assets/css/dashforge.demo.css" rel="stylesheet"/>
+	<link href="assets/dashforge/assets/css/dashforge.profile.css" rel="stylesheet"/>
+	<link href="assets/dashforge/assets/css/dashforge.css" rel="stylesheet"/>
+	<link href="assets/dashforge/assets/css/dashforge.filemgr.css" rel="stylesheet"/>
+	<link href="assets/dashforge/lib/contextmenu/dist/jquery.contextMenu.min.css" rel="stylesheet"/>
+
+	<style type="text/css">
+		.ql-tooltip ql-flip {
+			display: none !important;
+		}
+
+		.ql-tooltip-arrow {
+			display: none !important;
+		}
+
+		.ql-toolbar {
+			display: none !important;
+		}
+
+		.ql-editor {
+			padding: 0 !important;
+		}
+
+		.twitter-typeahead {
+			width: 100%;
+		}
+	</style>
+{% endblock %}
+{% block appHeader %}
+	{% include 'overall/menu/roles/1/header-teleconsulta' %}
+{% endblock %}
+{% block appContent %}
+	<div
+		class="contact-wrapper" id="preloader">
+		<!-- Init Consola Teleconsulta -->
+		<div class="content content-fixed content-auth-alt" id="contentNetwork">
+			<div class="container ht-100p tx-center">
+				<div class="ht-100p d-flex flex-column align-items-center justify-content-center">
+					<div class="wd-70p wd-sm-250 wd-lg-300 mg-b-15" id="i-contentNetwork">
+						<i class="fas fa-wifi tx-50"></i>
+					</div>
+					<h1 class="tx-color-01 tx-24 tx-sm-32 tx-lg-36 mg-xl-b-5">
+						<div class="spinner-grow text-green" role="status">
+							<span class="sr-only">Cargando...</span>
+						</div>
+						<div class="mg-l-5 d-inline" id="titlecontentNetwork">Estamos preprarando todo</div>
+					</h1>
+					<h5 class="tx-16 tx-sm-18 tx-lg-20 tx-normal mg-b-5" id="textNetwork"></h5>
+					<span class="tx-12 tx-color-03  mg-b-5" id="dataNetwork"></span>
+					<div class="d-flex mg-b-40">
+						<a href="{{ config.build.url }}" role="button" class="reloadPage btn btn-outline-primary mg-t-10 d-none">Reintentar</a>
+					</div>
+				</div>
+			</div>
+			<!-- container -->
+		</div>
+	</div>
+
+	<div class="contact-wrapper d-none" id="panelPacientes">
+		<div class="contact-navleft">
+			<nav class="nav flex-column">
+				<a href="#pacientesAgendados" class="nav-link active" data-toggle="tab">
+					<span data-toggle="tooltip" title="Mis Pacientes Agendados" data-placement="right">
+						<i data-feather="calendar"></i>
+					</span>
+				</a>
+				<a href="#tabPhoneCall" class="nav-link" data-toggle="tab">
+					<span data-toggle="tooltip" title="Todos mis Pacientes" data-placement="right">
+						<i data-feather="users"></i>
+					</span>
+				</a>
+			</nav>
+		</div>
+		<!-- contact-navleft -->
+
+		<div class="contact-sidebar">
+			<div class="contact-sidebar-header">
+				<i data-feather="search"></i>
+				<div class="search-form">
+					<input type="search" class="form-control" placeholder="Search contacts"/>
+				</div>
+				<button id="nuevaCita" class="btn btn-xs btn-icon btn-primary" data-toggle="tooltip" title="Nueva Cita">
+					<i data-feather="plus"></i>
+				</button>
+				<!-- contact-add -->
+			</div>
+			<!-- contact-sidebar-header -->
+			<div class="contact-sidebar-body">
+				<div class="tab-content">
+					<div id="pacientesAgendados" class="tab-pane fade active show">
+						<div class="pd-y-20 pd-x-10 contact-list" id="contentPacientesAgendados">
+							<div class="placeholder-paragraph">
+								<div class="line"></div>
+								<div class="line"></div>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+				<!-- tab-content -->
+			</div>
+			<!-- contact-sidebar-body -->
+		</div>
+		<!-- contact-sidebar -->
+
+		<div class="contact-content">
+			<div class="contact-content-header">
+				<nav class="blockNuevaHistoriaClinica nav d-none">
+					<a href="#contentNuevaHC" id="linkNuevaHC" class="nav-link" data-toggle="tab">Nueva Historia Clínica</a>
+				</nav>
+				<nav class="blockNuevaCita nav d-none">
+					<a href="#contentNuevaCita" id="linkNuevaCita" class="nav-link" data-toggle="tab">Nueva Cita</a>
+					<i class="resetNuevoPaciente fas fa-times-circle tx-16 lh--9 mg-l-20 tx-danger" style="cursor:pointer;"></i>
+				</nav>
+				<nav class="blockNoticias nav">
+					<a href="#noticias" class=" nav-link active" data-toggle="tab">Noticias
+					</a>
+				</nav>
+				<nav class="blockPaciente nav d-none" style="margin-left: -1.5rem;">
+					<a href="#live" class="live nav-link d-none" data-toggle="tab" id="inlive">
+						En Vivo
+						<div class="spinner-grow spinner-grow-sm text-danger mg-l-5" role="status"></div>
+					</a>
+					<a href="#datosPersonales" class="datosPersonales nav-link active" data-toggle="tab">Datos Personales
+					</a>
+					<a href="#datosClinicos" class="datosClinicos nav-link " data-toggle="tab">Datos Clínicos
+					</a>
+					<a href="#laboratorio" class="laboratorio nav-link " data-toggle="tab">Laboratorio
+					</a>
+					<a href="#patologia" class="patologia nav-link d-none" data-toggle="tab">Patologia
+					</a>
+					<a href="#imagen" class="imagen nav-link " data-toggle="tab">Imagen
+					</a>
+				</nav>
+				<a href="#" id="hideImagen" class="text-secondary mg-l-auto d-none" title="Cerrar Visor de Imagen">
+					<i class="fas fa-compress-arrows-alt mg-r-5 tx-20 lh--9"></i>
+				</a>
+				<a href="" id="contactOptions" class="text-secondary mg-l-auto d-xl-none">
+					<i data-feather="more-horizontal"></i>
+				</a>
+			</div>
+			<!-- contact-content-header -->
+
+			<div class="contact-content-body">
+				<div class="tab-content">
+					<div id="contentNuevaHC" class="tab-pane pd-l-0 pd-r-0"></div>
+
+					<div id="contentNuevaCita" class="tab-pane pd-l-0 pd-r-0"></div>
+					<div id="live" class="tab-pane pd-l-0 pd-r-0 d-none">
+						<iframe class="wd-100p" style="border:none;" id="liveZoom"></iframe>
+					</div>
+					<div id="noticias" class="tab-pane pd-20 pd-xl-25"></div>
+					<div id="datosPersonales" class="tab-pane pd-20 pd-xl-25">
+						<p>datos personales</p>
+					</div>
+					<div id="datosClinicos" class="tab-pane  pd-20 pd-xl-25">
+						<p>datosClinicos</p>
+					</div>
+					<div id="laboratorio" class="tab-pane  pd-20 pd-xl-25">
+						<p>laboratorio</p>
+					</div>
+					<div id="patologia" class="tab-pane  pd-20 pd-xl-25 d-none">
+						<p>patologia</p>
+					</div>
+					<div id="imagen" class="tab-pane  pd-20 pd-xl-25"></div>
+					<!-- tab-pane -->
+				</div>
+				<!-- tab-content -->
+			</div>
+			<!-- contact-content-body -->
+
+			<div class="contact-content-sidebar" id="sidebarPaciente">
+				<div class="placeholder-paragraph">
+					<div class="line"></div>
+					<div class="line"></div>
+				</div>
+			</div>
+			<!-- contact-content-sidebar -->
+		</div>
+		<!-- contact-content -->
+	</div>
+	<!-- contact-wrapper -->
+
+{% endblock %}
+{% block appFooter %}{% endblock %}
+{% block appCustomScriptsApp %}{% endblock %}
+{% block appCustomScriptsPage %}
+	{% set consolaApp = ocrend_encode('consola/pacientes/app.js', 'temp') %}
+	{% set consolaUrl = ocrend_encode('consola/url.js', 'temp') %}
+	{% set ui = ocrend_encode('consola/pacientes/UI.js', 'temp') %}
+	{% set pacientes = ocrend_encode('consola/pacientes/pacientes.js','temp') %}
+	{% set citas = ocrend_encode('consola/pacientes/citas.js', 'temp') %}
+	{% set viewer = ocrend_encode('consola/pacientes/viewer.js', 'temp') %}
+	<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="//mozilla.github.io/pdf.js/build/pdf.js"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/typeahead.js/typeahead.bundle.min.js"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/handlebars/handlebars.min.js"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/moment/min/moment.min.js"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/datatables.net-dt/js/dataTables.dataTables.min.js"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/datatables.net-responsive-dt/js/responsive.dataTables.min.js"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/quill/quill.min.js"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/parsleyjs/parsley.min.js"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/jquery-steps/build/jquery.steps.min.js"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/contextmenu/dist/jquery.contextMenu.js"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/contextmenu/dist/jquery.ui.position.min.js"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="dist/app/js/{{ viewer }}.js?key={{ nonceHash }}" target="_blank"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="dist/app/js/{{ ui }}.js?key={{ nonceHash }}" target="_blank"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="dist/app/js/{{ citas }}.js?key={{ nonceHash }}" target="_blank"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="dist/app/js/{{ pacientes }}.js?key={{ nonceHash }}" target="_blank"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="dist/app/js/{{ consolaUrl }}.js?key={{ nonceHash }}" target="_blank"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="dist/app/js/{{ consolaApp }}.js?key={{ nonceHash }}" target="_blank"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/assets/js/dashforge.js"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/assets/js/dashforge.contacts.js"></script>
+{% endblock %}

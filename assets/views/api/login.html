@@ -1,0 +1,128 @@
+ <div class="signin-form-area">
+         <div class="row text-center m-t-100">
+            <br/>
+            <div class="col-xs-12">
+               <img src="views/assets/metro_logo.gif" alt="logo" width="250rem" class="logo-img">
+            </div>
+         </div>
+         <h1><b>  </b></h1>
+         <div class="signin-top-info">Entrar | Metro Analytics v1.0</div>
+         <div class="row padding-15">
+            <div class="col-sm-2 col-md-2 col-lg-4"></div>
+            <div class="col-sm-8 col-md-8 col-lg-4">
+               <div class="alert hide" id="ajax_login"></div>
+               <form id="login_form_analytics">
+                  <div class="form-group has-feedback">
+                     <input type="text" class="form-control" placeholder="Usuario" name="user" id="user" required/>
+                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                  </div>
+                  <div class="form-group has-feedback">
+                     <input type="password" class="form-control" placeholder="Contraseña" name="pass" id="pass"
+                        required/>
+                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                  </div>
+                  <div class="row">
+                     <div class="col-xs-12">
+                        <button id="login" class="btn btn-primary btn-block btn-flat">Entrar</button>
+                     </div>
+                  </div>
+               </form>
+               <div class="social-media-area">
+               </div>
+            </div>
+            <div class="col-sm-2 col-md-2 col-lg-4"></div>
+         </div>
+      </div>
+      <div class="signin-right-image">
+         <div class="background-layer" style="background-color:#00aeef;"></div>
+         <div class="copyright-info">
+            <p><b>&copy;  HMetro</b>. Todos los Derechos Reservados.</p>
+         </div>
+      </div>
+      <div class="signin-bottom-info hidden">
+         <a href="registro">
+         <i class="fa fa-user-circle-o m-r-5"></i>Registrarse
+         </a>
+         <a href="recordar" class="pull-right">Recordar Contraseña
+         <i class="fa fa-unlock m-l-5 font-14"></i>
+         </a>
+      </div>
+      </div>
+
+      <!--<body class="sign-in-page">-->
+
+      <!-- Bootstrap Core Js -->
+      <script src="views/assets/plugins/bootstrap/dist/js/bootstrap.js"></script>
+      <!-- iCheck Js -->
+
+      <script type="text/javascript">
+     
+
+          function _ini_login() {
+        var error_icon = '<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> ',
+            success_icon = '<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> ',
+            process_icon = '<span class="fa fa-spinner fa-spin" aria-hidden="true"></span> ';
+        $('#ajax_login').removeClass('alert-danger');
+        $('#ajax_login').removeClass('alert-warning');
+        $('#ajax_login').addClass('alert-warning');
+        $("#ajax_login").html(process_icon + 'Iniciando sesión, por favor espere...');
+        $('#ajax_login').removeClass('hide');
+        $('#login').html(process_icon + 'Conectando...');
+        $('#login').attr('disabled', true);
+        $.ajax({
+            processData: false,
+            contentType: false,
+            type: "POST",
+            url: "http://api.hospitalmetropolitano.org/analytics/v1/auth",
+            data: $('#login_form_analytics').serialize(),
+            success: function(json) {
+                if (json.status) {
+                    $('#ajax_login').html(success_icon + json.message);
+                    $("#ajax_login").removeClass('alert-warning');
+                    $("#ajax_login").addClass('alert-success');
+                    $("#login").removeClass();
+                    $("#login").addClass('btn btn-default btn-block btn-flat');
+                    $("#login").css('color', '#00aeef');
+                    $('#login').html('<b>Bienvenido</b>');
+                    localStorage.setItem("token", json.token);
+                    getContent('modules');
+                } else {
+                    $('#ajax_login').html(error_icon + json.message);
+                    $("#ajax_login").removeClass('alert-warning');
+                    $("#ajax_login").addClass('alert-danger');
+                    $('#login').removeAttr('disabled');
+                    $('#login').html('Entrar');
+                }
+            },
+            error: function() {
+                window.alert('#Request Error!');
+            }
+        });
+    };
+    if (document.getElementById('login')) {
+        document.getElementById('login').onclick = function(e) {
+            e.preventDefault();
+            _ini_login();
+        };
+    }
+    if (document.getElementById('login_form_analytics')) {
+        document.getElementById('login_form_analytics').onkeypress = function(e) {
+            if (!e) e = window.event;
+            var keyCode = e.keyCode || e.which;
+            if (keyCode == '13') {
+                _ini_login();
+                return false;
+            }
+        };
+    };
+
+    function utf8_to_b64(str) {
+        return window.btoa(unescape(encodeURIComponent(str)));
+    }
+
+    function b64_to_utf8(str) {
+        return decodeURIComponent(escape(window.atob(str)));
+    }
+
+         
+      </script>

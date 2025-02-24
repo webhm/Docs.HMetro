@@ -1,0 +1,48 @@
+<div class="col-lg-12 col-xl-12 pd-0">
+    <div class="card">
+        <div class="card-header bd-b-0 pd-t-20 pd-lg-t-25 pd-l-20 pd-lg-l-25 d-flex flex-column flex-sm-row align-items-sm-start justify-content-sm-between">
+            <div class="col-11">
+                <h4 class="mg-b-5">Nueva Receta:</h4>
+            </div>
+            <div class="btn-group mg-t-20 mg-sm-t-0">
+                <i class="send-nuevaReceta fas fa-paper-plane tx-primary tx-20 mg-r-10" style="cursor:pointer;" title="Enviar Receta Medica"></i>
+                <i class="reset-recetaHC far fa-times-circle tx-20" style="cursor:pointer;" title="Cerrar Receta"></i>
+            </div>
+        </div>
+    </div>
+    <div class="card" id="blockReceta">
+        <div class="card-header bd-b-0 pd-t-20 pd-lg-t-25 pd-l-20 pd-lg-l-25 d-flex flex-column flex-sm-row align-items-sm-start justify-content-sm-between">
+            <div class="col-12">
+                <h4 class="mg-b-5">Diagnóstico de Receta:</h4>
+                <div class="df-example demo-forms bd bd-0 pd-0 pd-t-10">
+                    <div class="cdiagnostico"></div>
+                </div>
+                <div class="df-example demo-forms bd bd-0 pd-0 pd-t-10">
+                    <div class="input-group">
+                        <div class="search-form search-suggestion-fixed wd-100p">
+                            <input type="search" class="form-control" id="diag-principal-receta" placeholder="Buscar por código o diagnóstico."/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-header bd-b-0 pd-t-20 pd-lg-t-25 pd-l-20 pd-lg-l-25 d-flex flex-column flex-sm-row align-items-sm-start justify-content-sm-between">
+            <div class="col-11">
+                <h4 class="mg-b-5">Antecedentes de Alergias:</h4>
+                <div class="ht-30 wd-auto mg-t-20 pd-0 bd-0  scrolling-container-contentAnteAlergias" id="contentAnteAlergias"></div>
+            </div>
+        </div>
+        <div class="card-header bd-b-0 pd-t-20 pd-lg-t-25 pd-l-20 pd-lg-l-25 d-flex flex-column flex-sm-row align-items-sm-start justify-content-sm-between">
+            <div class="col-11">
+                <h4 class="mg-b-5">Prescripción:</h4>
+                <div class="ht-200 wd-auto mg-t-20 pd-0 bd-0  scrolling-container-contentReceta" id="contentReceta"></div>
+            </div>
+        </div>
+        <div class="card-header bd-b-0 pd-t-20 pd-lg-t-25 pd-l-20 pd-lg-l-25 d-flex flex-column flex-sm-row align-items-sm-start justify-content-sm-between">
+            <div class="col-11">
+                <h4 class="mg-b-5">Recomendaciónes No Farmacológicas:</h4>
+                <div class="ht-250 wd-auto mg-t-20 pd-0 bd-0  scrolling-container-contentNoFarma" id="contentNoFarma"></div>
+            </div>
+        </div>
+    </div>
+</div>

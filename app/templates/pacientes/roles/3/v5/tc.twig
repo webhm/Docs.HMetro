@@ -1,0 +1,383 @@
+{# App Template Home Dashboard #}
+{% extends 'overall/layout' %}
+{% block appFavicon %}
+	<!-- Favicon -->
+	<link href="assets/favicon.png" rel="shortcut icon" type="image/x-icon"/>
+{% endblock %}
+{% block appPageTittle %}
+	<title>
+		Mis Pacientes |
+		{{ config.build.appName }}
+		v{{ config.build.version }}.
+	</title>
+{% endblock %}
+{% block appCustomCssApp %}
+	<link href="assets/dashforge/lib/quill/quill.core.css" rel="stylesheet"/>
+	<link href="assets/dashforge/lib/quill/quill.snow.css" rel="stylesheet"/>
+	<link href="assets/dashforge/lib/quill/quill.bubble.css" rel="stylesheet"/>
+	<link href="assets/dashforge/lib/datatables.net-dt/css/jquery.dataTables.min.css" rel="stylesheet"/>
+	<link href="assets/dashforge/lib/datatables.net-responsive-dt/css/responsive.dataTables.min.css" rel="stylesheet"/>
+	<link href="assets/dashforge/lib/select2/css/select2.min.css" rel="stylesheet"/>
+	<link href="assets/dashforge/lib/animate.css/animate.min.css" rel="stylesheet"/>
+{% endblock %}
+{% block appCustomCssPage %}
+	<link href="assets/dashforge/assets/css/dashforge.contacts.css" rel="stylesheet"/>
+	<link href="assets/dashforge/assets/css/dashforge.chat.css" rel="stylesheet"/>
+	<link href="assets/dashforge/assets/css/dashforge.demo.css" rel="stylesheet"/>
+	<link href="assets/dashforge/assets/css/dashforge.profile.css" rel="stylesheet"/>
+	<link href="assets/dashforge/assets/css/dashforge.dashboard.css" rel="stylesheet"/>
+	<link href="assets/dashforge/assets/css/dashforge.css" rel="stylesheet"/>
+	<link href="assets/dashforge/assets/css/dashforge.filemgr.css" rel="stylesheet"/>
+	<link href="assets/dashforge/lib/contextmenu/dist/jquery.contextMenu.min.css" rel="stylesheet"/>
+
+
+	<style type="text/css">
+		.ql-tooltip ql-flip {
+			display: none !important;
+		}
+
+		.ql-tooltip-arrow {
+			display: none !important;
+		}
+
+		.ql-toolbar {
+			display: none !important;
+		}
+
+		.ql-editor {
+			padding: 0 !important;
+		}
+
+		.twitter-typeahead {
+			width: 100%;
+		}
+
+
+		input.parsley-error,
+		input.parsley-error:focus,
+		textarea.parsley-error,
+		textarea.parsley-error:focus {
+			box-shadow: none !important;
+			border-color: transparent;
+		}
+	</style>
+{% endblock %}
+{% block appHeader %}
+	{% include 'overall/menu/roles/1/header-teleconsulta' %}
+{% endblock %}
+{% block appContent %}
+	<div
+		class="contact-wrapper" id="preloader">
+		<!-- Init Consola Teleconsulta -->
+		<div class="content content-fixed content-auth-alt" id="contentNetwork">
+			<div class="container ht-100p tx-center">
+				<div class="ht-100p d-flex flex-column align-items-center justify-content-center">
+					<div class="wd-70p wd-sm-250 wd-lg-300 mg-b-15" id="i-contentNetwork">
+						<i class="fas fa-wifi tx-50"></i>
+					</div>
+					<h1 class="tx-color-01 tx-24 tx-sm-32 tx-lg-36 mg-xl-b-5">
+						<div class="spinner-grow text-green" role="status">
+							<span class="sr-only">Cargando...</span>
+						</div>
+						<div class="mg-l-5 d-inline" id="titlecontentNetwork">
+							Estamos preparando todo
+						</div>
+					</h1>
+					<h5 class="tx-16 tx-sm-18 tx-lg-20 tx-normal mg-b-5" id="textNetwork"></h5>
+					<span class="tx-12 tx-color-03 mg-b-5" id="dataNetwork"></span>
+					<div class="d-flex mg-b-40">
+						<a href="{{ config.build.url }}" role="button" class="reloadPage btn btn-outline-primary mg-t-10 d-none">
+							Reintentar
+						</a>
+					</div>
+				</div>
+			</div>
+			<!-- container -->
+		</div>
+	</div>
+	<div class="contact-wrapper d-none" id="panelPacientes">
+		<div class="contact-navleft">
+			<nav class="nav flex-column">
+				<a href="#pacientesAgendados" class="pacientesAgendados nav-link active" data-toggle="tab">
+					<span data-toggle="tooltip" title="Mis Citas" data-placement="right">
+						<i data-feather="clock"></i>
+					</span>
+				</a>
+				<a href="#buscarPacientes" class="buscarPacientes nav-link" data-toggle="tab">
+					<span data-toggle="tooltip" title="Buscar Citas" data-placement="right">
+						<i data-feather="book-open"></i>
+					</span>
+				</a>
+				<a href="#buscarFechasCitas" class="buscarFechasCitas nav-link" data-toggle="tab">
+					<span data-toggle="tooltip" title="Buscar citas por Fechas" data-placement="right">
+						<i data-feather="calendar"></i>
+					</span>
+				</a>
+
+				<a href="#buscarMisPacientes" class="buscarMisPacientes nav-link" data-toggle="tab">
+					<span data-toggle="tooltip" title="Buscar Pacientes" data-placement="right">
+						<i data-feather="search"></i>
+					</span>
+				</a>
+				<a href="#todosMisPacientes" class="todosMisPacientes nav-link" data-toggle="tab">
+					<span data-toggle="tooltip" title="Todos mis Pacientes" data-placement="right">
+						<i data-feather="users"></i>
+					</span>
+				</a>
+				<a href="#noticias" class="noticias nav-link d-none" data-toggle="tab">
+					<span data-toggle="tooltip" title="Noticias" data-placement="right">
+						<i data-feather="globe"></i>
+					</span>
+				</a>
+			</nav>
+		</div>
+		<!-- contact-navleft -->
+		<div class="contact-sidebar">
+			<div class="contact-sidebar-header" id="blockPacientesHoy">
+				<div class="search-form">
+					<div class="tz-15 tx-semibold">
+						Mis Citas
+					</div>
+				</div>
+				<button class="nuevasOpciones btn btn-xs btn-icon btn-primary" data-toggle="tooltip" title="Nueva Cita">
+					<i data-feather="plus"></i>
+				</button>
+				<!-- contact-add -->
+			</div>
+			<div class="contact-sidebar-header d-none" id="blockBuscarPacientes">
+				<i data-feather="search"></i>
+				<div class="search-form">
+					<input type="search" id="searchCitas" class="form-control" placeholder="Buscar por nombres"/>
+				</div>
+				<button class="buscarCitaPte btn btn-xs btn-icon btn-primary" data-toggle="tooltip" title="Buscar Cita">
+					<i class="fas fa-search tx-2 mg-t-2 mg-b-2 mg-r-2 mg-l-2"></i>
+				</button>
+				<!-- contact-add -->
+			</div>
+			<div class="contact-sidebar-header d-none" id="blockTodosMisPacientes">
+				<div class="search-form">
+					<div class="tz-15 tx-semibold">
+						Todos Mis Pacientes
+					</div>
+				</div>
+
+				<button class="nuevoPaciente btn btn-xs btn-icon btn-primary" data-toggle="tooltip" title="Nuevo Paciente">
+					<i data-feather="plus"></i>
+				</button>
+				<!-- contact-add -->
+
+			</div>
+			<div class="contact-sidebar-header d-none" id="blockFechasCitas">
+				<div class="search-form">
+					<div class="tz-15 tx-semibold">
+						Citas por Fechas
+					</div>
+				</div>
+
+				<button class="searchFechasCitas btn btn-xs btn-icon btn-primary" data-toggle="tooltip" title="Buscar citas por Fecha">
+					<i class="fas fa-search tx-2 mg-t-2 mg-b-2 mg-r-2 mg-l-2"></i>
+				</button>
+				<!-- contact-add -->
+			</div>
+			<div class="contact-sidebar-header d-none" id="blockBuscarPtes">
+				<i data-feather="search"></i>
+				<div class="search-form">
+					<input type="search" id="searchPtes" class="form-control" placeholder="Buscar por nombres"/>
+				</div>
+				<button class="buscarPtes btn btn-xs btn-icon btn-primary" data-toggle="tooltip" title="Buscar Pacientes">
+					<i class="fas fa-search tx-2 mg-t-2 mg-b-2 mg-r-2 mg-l-2"></i>
+				</button>
+				<!-- contact-add -->
+			</div>
+			<!-- contact-sidebar-header -->
+			<div class="contact-sidebar-body">
+				<div class="tab-content">
+					<div id="pacientesAgendados" class="tab-pane fade active show">
+						<div class="pd-y-20 pd-x-10 contact-list" id="contentPacientesAgendados">
+							<div class="placeholder-paragraph">
+								<div class="line"></div>
+								<div class="line"></div>
+							</div>
+						</div>
+					</div>
+					<div id="buscarPacientes" class="tab-pane fade">
+						<div class="pd-y-20 pd-x-10 contact-list" id="contentBuscarPacientes">
+							<div class="placeholder-paragraph">
+								<div class="line"></div>
+								<div class="line"></div>
+							</div>
+						</div>
+					</div>
+					<div id="buscarFechasCitas" class="tab-pane fade">
+						<div class="pd-y-20 pd-x-10 contact-list" id="blockFechasBusquedaCitas" style="display:none;">
+							<input type="date" id="fechaBuscarCitas" class="form-control" placeholder="Fecha de Busqueda" required=""/>
+						</div>
+						<div class="pd-y-20 pd-x-10 contact-list" id="contentBuscarFechasCitas">
+							<div class="placeholder-paragraph">
+								<div class="line"></div>
+								<div class="line"></div>
+							</div>
+						</div>
+					</div>
+					<div id="todosMisPacientes" class="tab-pane fade">
+						<div class="pd-y-20 pd-x-10 contact-list" id="contentTodosMisPacientes">
+							<div class="placeholder-paragraph">
+								<div class="line"></div>
+								<div class="line"></div>
+							</div>
+						</div>
+					</div>
+					<div id="buscarMisPacientes" class="tab-pane fade">
+						<div class="pd-y-20 pd-x-10 contact-list" id="contentBuscarMisPacientes">
+							<div class="placeholder-paragraph">
+								<div class="line"></div>
+								<div class="line"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- tab-content -->
+			</div>
+			<!-- contact-sidebar-body -->
+		</div>
+		<!-- contact-sidebar -->
+		<div class="contact-content">
+			<div class="contact-content-header">
+				<nav class="blockNuevaCita nav d-none">
+					<a href="#contentNuevaCita" class="nav-link active" data-toggle="tab">
+						<div class="tx-14 tx-semibold">
+							Nueva Cita
+						</div>
+					</a>
+					<i class="resetNuevaCita fas fa-times-circle tx-16 lh--9 mg-l-20 tx-danger" style="cursor:pointer;"></i>
+				</nav>
+				<nav class="blockNoticias nav">
+					<a href="#noticias" class="nav-link active" data-toggle="tab">
+						<div class="tx-14 tx-semibold">
+							Metrovirtual
+						</div>
+					</a>
+				</nav>
+				<nav class="blockPaciente nav d-none">
+					<a href="#live" class="live nav-link mg-r-20 d-none" data-toggle="tab" id="inlive">
+						<div class="tx-14 tx-semibold">
+							En Vivo<div class="spinner-grow spinner-grow-sm text-danger mg-l-5" role="status"></div>
+						</div>
+					</a>
+					<a href="#datosPersonales" class="contentBlockPte nav-link" data-toggle="tab" style="margin-left: auto;">
+						<div class="tx-14 tx-semibold">
+							Datos Personales
+						</div>
+					</a>
+					<a href="#datosClinicos" class="contentBlockPte nav-link" data-toggle="tab">
+						<div class="tx-14 tx-semibold">
+							Datos Clínicos
+						</div>
+					</a>
+					<a href="#laboratorio" class="contentBlockPte nav-link" data-toggle="tab">
+						<div class="tx-14 tx-semibold">
+							Laboratorio
+						</div>
+					</a>
+					<a href="#imagen" class="contentBlockPte nav-link" data-toggle="tab">
+						<div class="tx-14 tx-semibold">
+							Imagen
+						</div>
+					</a>
+				</nav>
+				<a href="#" id="close-imagen" class="text-secondary mg-l-auto d-none" title="Cerrar Visor de Imagen">
+					<i class="fas fa-compress-arrows-alt tx-primary mg-r-5 tx-20 lh--9"></i>
+				</a>
+				<a href="" id="contactOptions" class="text-secondary mg-l-auto d-xl-none">
+					<i data-feather="more-horizontal"></i>
+				</a>
+			</div>
+			<!-- contact-content-header -->
+			<div class="contact-content-body">
+				<div class="tab-content">
+					<div id="contentNuevaHC" class="tab-pane pd-l-0 pd-r-0"></div>
+					<div id="contentNuevoPte" class="tab-pane pd-l-0 pd-r-0"></div>
+					<div id="contentNuevaCita" class="tab-pane pd-l-0 pd-r-0"></div>
+					<div id="live" class="tab-pane pd-l-0 pd-r-0 d-none">
+						<div id="controls" class="tab-pane pd-20 pd-xl-25"></div>
+						<iframe class="wd-100p" style="border:none;display:none;" id="liveZoom"></iframe>
+					</div>
+					<div id="noticias" class="tab-pane pd-20 pd-xl-25 mg-t-20 show active tx-center">
+						<img src="data:image/png;base64,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" class="img-fluid mg-b-10" alt=""/>
+						<p class="tx-12 tx-semibold-03 mg-b-0">
+							Servicio de atención para pacientes
+						</p>
+						<p class="tx-12 tx-color-03 mg-b-0">
+							Dirección de TI - Hospital Metropolitano
+						</p>
+
+					</div>
+					<div id="datosPersonales" class="tab-pane pd-20 pd-xl-25">
+						<p>
+							datos personales
+						</p>
+					</div>
+					<div id="datosClinicos" class="tab-pane pd-20 pd-xl-25">
+						<p>
+							datosClinicos
+						</p>
+					</div>
+					<div id="laboratorio" class="tab-pane pd-20 pd-xl-25">
+						<p>
+							laboratorio
+						</p>
+					</div>
+					<div id="imagen" class="tab-pane pd-20 pd-xl-25"></div>
+					<!-- tab-pane -->
+				</div>
+				<!-- tab-content -->
+			</div>
+			<!-- contact-content-body -->
+
+			<!-- contact-content-sidebar -->
+
+			<div class="contact-content-sidebar" id="sidebarPaciente"></div>
+			<!-- contact-content -->
+
+		</div>
+		<!-- contact-wrapper -->
+	</div>
+{% endblock %}
+{% block appFooter %}{% endblock %}
+{% block appCustomScriptsApp %}{% endblock %}
+{% block appCustomScriptsPage %}
+	{% set templates = ocrend_encode('consola/v5/templates.js', 'temp') %}
+	{% set consolaApp = ocrend_encode('consola/v5/app.js', 'temp') %}
+	{% set ui = ocrend_encode('consola/v5/UI.js', 'temp') %}
+	{% set pacientes = ocrend_encode('consola/v5/pacientes.js', 'temp') %}
+	{% set citas = ocrend_encode('consola/v5/citas.js', 'temp') %}
+	{% set viewer = ocrend_encode('consola/v5/viewer.js', 'temp') %}
+	{% set atenciones = ocrend_encode('consola/v5/atenciones.js', 'temp') %}
+	{% set hc = ocrend_encode('consola/v5/historiaclinica.js', 'temp') %}
+	{% set resultados = ocrend_encode('consola/v5/resultados.js', 'temp') %}
+	<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/pdf.js/build/pdf.js"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/typeahead.js/typeahead.bundle.min.js"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/handlebars/handlebars.min.js"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/moment/min/moment.min.js"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/datatables.net-dt/js/dataTables.dataTables.min.js"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/datatables.net-responsive-dt/js/responsive.dataTables.min.js"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/quill/quill.min.js"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/parsleyjs/parsley.min.js"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/jquery-steps/build/jquery.steps.min.js"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/contextmenu/dist/jquery.contextMenu.js"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/lib/contextmenu/dist/jquery.ui.position.min.js"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="dist/app/js/{{ resultados }}.js?{{ date().timestamp }}&key={{ nonceHash }}" target="_blank"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="dist/app/js/{{ viewer }}.js?{{ date().timestamp }}&key={{ nonceHash }}" target="_blank"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="dist/app/js/{{ hc }}.js?{{ date().timestamp }}&key={{ nonceHash }}" target="_blank"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="dist/app/js/{{ atenciones }}.js?{{ date().timestamp }}&key={{ nonceHash }}" target="_blank"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="dist/app/js/{{ pacientes }}.js?{{ date().timestamp }}&key={{ nonceHash }}" target="_blank"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="dist/app/js/{{ citas }}.js?{{ date().timestamp }}&key={{ nonceHash }}" target="_blank"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="dist/app/js/{{ ui }}.js?{{ date().timestamp }}&key={{ nonceHash }}" target="_blank"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="dist/app/js/{{ templates }}.js?{{ date().timestamp }}&key={{ nonceHash }}" target="_blank"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="dist/app/js/{{ consolaApp }}.js?{{ date().timestamp }}&key={{ nonceHash }}" target="_blank"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/assets/js/dashforge.js?{{ date().timestamp }}"></script>
+	<script defer="" nonce="{{ nonceHash }}" src="assets/dashforge/assets/js/dashforge.contacts.js?{{ date().timestamp }}"></script>
+{% endblock %}

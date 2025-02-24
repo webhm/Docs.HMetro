@@ -1,0 +1,297 @@
+<div class="d-flex wd-100p align-items-center justify-content-between mg-b-20">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb breadcrumb-style1 mg-b-10">
+            <li class="breadcrumb-item">
+                <a href="#">Datos Clínicos</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Nueva Historia Clínica</li>
+        </ol>
+    </nav>
+    <h6 class="tx-15 mg-b-0 mg-l-30">
+        <i class="fas fa-file-medical-alt mg-r-5"></i>
+        Nueva Historia Clínica
+    </h6>
+    <div class="d-flex align-items-right">
+        <button class="btn btn-sm btn-white d-flex align-items-center" id="save-nuevaHistoriaClinica">
+            <i class="fas fa-save mg-r-5 tx-13 lh--9"></i>
+        </button>
+        <button class="btn btn-sm btn-white d-flex align-items-center" id="reset-nuevaHistoriaClinica">
+            <i class="fas fa-times-circle mg-r-5 tx-13 lh--9"></i>
+        </button>
+    </div>
+</div>
+<div class="divider-text mg-b-20">Nueva Historia Clínica</div>
+<div class="d-flex wd-100p mg-b-30">
+    <div class="accordion bg-white col-12" id="accordionHC">
+        <h6 class=" bd-0" id="motivoConsulta">
+            <i class="fas fa-pencil-alt mg-r-5"></i>
+            Motivo de Consulta *Es obligatorio
+        </h6>
+        <div class="scrollbar-lg pos-relative ht-200  pd-15 bdscrolling-container-contentMotivoConsulta" id="contentMotivoConsulta"></div>
+
+        <h6 class=" bd-0" id="antecedentesPersonales">
+            <i class="fas fa-pencil-alt mg-r-5"></i>
+            Antecedentes Personales
+        </h6>
+        <div class="scrollbar-lg pos-relative ht-200  pd-15 bdscrolling-container-contentAntecedentesPersonales" id="contentAntecedentesPersonales"></div>
+
+        <h6 class=" bd-0" id="problemaActual">
+            <i class="fas fa-pencil-alt mg-r-5"></i>
+            Enfermedad o Problema Actual
+        </h6>
+        <div class="scrollbar-lg pos-relative ht-200  pd-15 bdscrolling-container-contentEnfermedadActual" id="contentEnfermedadActual"></div>
+
+        <h6 class=" bd-0" id="alergias">
+            <i class="fas fa-pencil-alt mg-r-5"></i>
+            Alergias
+        </h6>
+        <div class="scrollbar-lg pos-relative ht-200  pd-15 bdscrolling-container-contentAlergias" id="contentAlergias"></div>
+
+
+        <h6 class=" bd-0" id="revisionOrganos">
+            <i class="fas fa-pencil-alt mg-r-5"></i>
+            Revisión de Organos
+        </h6>
+        <div class=" pos-relative ht-auto  pd-15 " id="contentRevisionOrganos">
+            <div
+                class="card mg-b-10">
+                <!-- card-body -->
+                <div class="table-responsive mg-b-30">
+                    <table class="table  mg-b-0">
+                        <thead>
+                            <tr>
+                                <th>Organos y Sistemas</th>
+                                <th class="text-left">Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="tx-color-03 tx-teal">
+                                    ORGANOS DE LOS SENTIDOS
+                                </td>
+                                <td class="tx-color-03 tx-medium text-left">
+                                    <div id="organos"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tx-color-03 tx-teal">
+                                    CARDIO VASCULAR
+                                </td>
+                                <td class="tx-color-03 tx-medium text-left">
+                                    <div id="cardioVascular"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tx-color-03 tx-teal">
+                                    GENITAL
+                                </td>
+                                <td class="tx-color-03 tx-medium text-left">
+                                    <div id="genital"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tx-color-03 tx-teal">
+                                    MUSCULO ESQUELÉTICO
+                                </td>
+                                <td class="tx-color-03 tx-medium text-left">
+                                    <div id="muscEsqueletico"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tx-color-03 tx-teal">
+                                    HEMO LINFÁTICO
+                                </td>
+                                <td class="tx-color-03 tx-medium text-left">
+                                    <div id="hemoLinfatico"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tx-color-03 tx-teal">
+                                    RESPIRATORIO
+                                </td>
+                                <td class="tx-color-03 tx-medium text-left">
+                                    <div id="respiratorio"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tx-color-03 tx-teal">
+                                    DIGESTIVO
+                                </td>
+                                <td class="tx-color-03 tx-medium text-left">
+                                    <div id="digestivo"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tx-color-03 tx-teal">
+                                    URINARIO
+                                </td>
+                                <td class="tx-color-03 tx-medium text-left">
+                                    <div id="urinario"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tx-color-03 tx-teal">
+                                    ENDOCRINO
+                                </td>
+                                <td class="tx-color-03 tx-medium text-left">
+                                    <div id="endocrino"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tx-color-03 tx-teal">
+                                    NERVIOSO
+                                </td>
+                                <td class="tx-color-03 tx-medium text-left">
+                                    <div id="nervioso"></div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- table-responsive -->
+            </div>
+        </div>
+
+        <h6 class=" bd-0" id="revisionOrganos">
+            <i class="fas fa-pencil-alt mg-r-5"></i>
+            Antecedentes Familiares
+        </h6>
+        <div class=" pos-relative ht-auto  pd-15 " id="contentAntecedentesFamiliares">
+            <div
+                class="card mg-b-10">
+                <!-- card-body -->
+                <div class="table-responsive mg-b-30">
+                    <table class="table  mg-b-0">
+                        <thead>
+                            <tr>
+                                <th>Antecedentes</th>
+                                <th class="text-left">Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="tx-color-03 tx-teal">
+                                    CARDIOPATÍA
+                                </td>
+                                <td class="tx-color-03 tx-medium text-left">
+                                    <div id="cardiopatia"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tx-color-03 tx-teal">
+                                    DIABETES
+                                </td>
+                                <td class="tx-color-03 tx-medium text-left">
+                                    <div id="diabetes"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tx-color-03 tx-teal">
+                                    ENFERMEDAD VASCULAR
+                                </td>
+                                <td class="tx-color-03 tx-medium text-left">
+                                    <div id="enfermedadVascular"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tx-color-03 tx-teal">
+                                    HIPERTENSIÓN
+                                </td>
+                                <td class="tx-color-03 tx-medium text-left">
+                                    <div id="hipertension"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tx-color-03 tx-teal">
+                                    CANCER
+                                </td>
+                                <td class="tx-color-03 tx-medium text-left">
+                                    <div id="cancer"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tx-color-03 tx-teal">
+                                    TUBERCULOSIS
+                                </td>
+                                <td class="tx-color-03 tx-medium text-left">
+                                    <div id="tuberculosis"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tx-color-03 tx-teal">
+                                    ENFERMEDAD MENTAL
+                                </td>
+                                <td class="tx-color-03 tx-medium text-left">
+                                    <div id="enfermendadMental"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tx-color-03 tx-teal">
+                                    ENFERMEDAD INFECCIOSA
+                                </td>
+                                <td class="tx-color-03 tx-medium text-left">
+                                    <div id="enfermedadInfecciosa"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tx-color-03 tx-teal">
+                                    MALFORMACIÓN
+                                </td>
+                                <td class="tx-color-03 tx-medium text-left">
+                                    <div id="malformacion"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tx-color-03 tx-teal">
+                                    OTRO
+                                </td>
+                                <td class="tx-color-03 tx-medium text-left">
+                                    <div id="otroAntecedente"></div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- table-responsive -->
+            </div>
+        </div>
+
+        <h6 class=" bd-0" id="signosVitales">
+            <i class="fas fa-pencil-alt mg-r-5"></i>
+            Signos Vitales y Antroprometría
+        </h6>
+        <div class=" pos-relative ht-auto  pd-15 " id="contentSignosVitales"></div>
+
+
+        <h6 class=" bd-0" id="diagnostico">
+            <i class="fas fa-pencil-alt mg-r-5"></i>
+            Diagnóstico
+        </h6>
+        <div class=" pos-relative ht-auto  pd-15 " id="contentDiagnostico"></div>
+
+
+        <h6 class=" bd-0" id="evoluciones">
+            <i class="fas fa-pencil-alt mg-r-5"></i>
+            Evoluciones
+        </h6>
+        <div class=" pos-relative ht-auto  pd-15 " id="contentEvoluciones"></div>
+
+        <h6 class=" bd-0" id="receta">
+            <i class="fas fa-pencil-alt mg-r-5"></i>
+            Receta
+        </h6>
+        <div class=" pos-relative ht-auto  pd-15 " id="contentReceta"></div>
+
+        <h6 class=" bd-0" id="noFarmacologicas">
+            <i class="fas fa-pencil-alt mg-r-5"></i>
+            Recomendaciones No Farmacológicas
+        </h6>
+        <div class=" pos-relative ht-auto  pd-15 " id="contentReceta"></div>
+
+        <h6 class=" bd-0" id="certificado">
+            <i class="fas fa-pencil-alt mg-r-5"></i>
+            Certificado Médico
+        </h6>
+        <div class=" pos-relative ht-auto  pd-15 " id="contentCertificado"></div>
+    </div>
+</div>

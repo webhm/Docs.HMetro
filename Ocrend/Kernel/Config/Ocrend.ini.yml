@@ -1,0 +1,667 @@
+# This file is part of the Ocrend Framewok 3 package.
+#
+# (c) Ocrend Software <info@ocrend.com>
+#
+# For the full copyright and license information, please view the LICENS
+# file that was distributed with this source code.
+
+# Configuración de la base de datos
+database:
+  default_driver: mysql
+  drivers:
+    mysql: 
+      host: localhost
+      user: admin_hmetro
+      pass: 1501128480
+      name: admin_hmetro
+      port: default
+      socket: default
+    oracle_produccion: 
+      dbname: conclina
+      user: mchang
+      password : 1501508480
+      port: 1521
+      host: 172.16.3.247
+      servicename: conclina
+      service: true
+      driver: oci8
+      charset: UTF8
+    oracle_metrored: 
+      dbname: metroamb
+      user: mchang1
+      password: mchang5080
+      port: 1521
+      host: 172.16.3.247
+      servicename: metroamb
+      service: true
+      driver: oci8
+      charset: UTF8
+    oracleMedora: 
+      dbname: rad
+      user: medora
+      password : geris8615rad
+      port: 1521
+      host: 172.16.1.24
+      driver: oci8
+      charset: UTF8
+    oracle_metrored: 
+      dbname: metroamb
+      user: mchang
+      password: mchang5080
+      port: 1521
+      host: 172.16.3.247
+      servicename: metroamb
+      service: true
+      driver: oci8
+      charset: UTF8
+    oracle_mtr:
+      dbname: xe
+      user: mchang
+      password: 1501508480
+      port: 1526
+      host: 172.16.210.4
+      servicename: xe
+      service: true
+      driver: oci8
+      charset: UTF8
+    oracle_pruebas: 
+      dbname: conclina
+      user: TELEMEDICINA
+      password : TELEME2020
+      port: 1521
+      host: 172.16.3.247
+      servicename: conclina
+      service: true
+      driver: oci8
+      charset: UTF8
+    sqlite3:
+      file: '___ROOT___Ocrend/Kernel/Database/Drivers/Sqlite/db.sqlite3'
+    
+# Configuración de servidor SMTP
+mailer:
+  host: smtp.trx.icommarketing.com
+  user: 6f347f1d-faa5-4989-aee4-a955c677dc6b
+  pass: 6f347f1d-faa5-4989-aee4-a955c677dc6b
+  from: web@hmetro.med.ec
+  port: 587
+  logo:
+
+# Configuración de twig
+twig:
+  cache: false
+  compiled_dir: false # ./app/templates/.compiled/
+  charset: UTF-8
+  strict_variables: false
+  autoescape: html
+  
+# Configuración del sitio
+build:
+  production: false
+  name: Web APP DOCS HM v1.0.0
+  url: https://docs.hospitalmetropolitano.org/
+  timezone: America/Guayaquil
+  version: 3.0.1
+
+# Configuración de cookies
+sessions:
+  lifetime: 3600
+  user_cookie:
+    enable: true
+    key_encrypt: X8f3p@9Vde0WvKauzI8CMX
+    lifetime: 3600
+
+# Configuración de la api
+api:
+  active: true
+  origin: '*' 
+  url: http://docs.hospitalmetropolitano.org/
+
+# Configuración de ruta
+router:
+  ssl: false
+  path: docs.hospitalmetropolitano.org/
+
+#URL reportes
+url_reportes:
+    oas: http://oas.hm.med.ec:7780
+    subdominio: https://reportes.hm.med.ec
+
+# Errores Globales de la api  ERROR MAPERAR ERRORES DE PAGOS 4020
+errors:
+  notParameters: 
+    message: ¡Error! No estan definidos todos los parámetros para este request.
+    code: 4000
+  notDNI: 
+    message: ¡Error! Cédula RUC o Pasaporte es obligatorio.
+    code: 4001
+  notEmailRegister: 
+    message: ¡Error! Cédula RUC o Pasaporte ingresado no tiene un correo electrónico registrado para crear una cuenta electrónica.
+    code: 4002
+  notAvalibleDNI: 
+    message: ¡Error! Cédula RUC o Pasaporte ingresado no tiene un formato válido.
+    code: 4003
+  notExistedGema: 
+    message: ¡Error! Cédula RUC o Pasaporte ingresado no existe en nuestra base de datos o presenta inconsistencias.
+    code: 4004
+  notFormatPass: 
+    message: ¡Error! Pasaporte o Documento extrangero no puede ser mayor a 25 caracteres.
+    code: 4005
+  notActiveAccount: 
+    message: '¡Error! Cuenta electrónica sin activar. Active su cuenta mediante el correo enviado a: '
+    code: 4007
+  notRegisterAccount: 
+    message: ¡Error! Cuenta electrónica no esta registrada.
+    code: 4006
+  AccountisRegistered: 
+    message: ¡Error! Cuenta electrónica ya esta registrada.
+    code: 4008
+  notFormatEmail: 
+    message: ¡Error! Correo electrónico no tiene un formato válido.
+    code: 4009
+  incorrectMailRegister: 
+    message: ¡Error! Correo electrónico no esta asociado al usuario.
+    code: 4011
+  incorrectPassword: 
+    message: ¡Error! Contraseña incorrecta.
+    code: 4013
+  codigoParametroNumerico: 
+    message: Código de parámetro debe ser numérico.
+    code: 4015
+  codigoMedicoNumerico: 
+    message: Código del médico debe ser numérico.
+    code: 4016 
+  codigoMedicoObligatorio: 
+    message: Código del médico es obligatorio.
+    code: 4017 
+  startDateObligatorio: 
+    message: Fecha de inicio es obligatorio.
+    code: 4018
+  startDateIncorrecta: 
+    message: Fecha de inicio no puede ser mayor a fecha final.
+    code: 4019
+  endDateObligatorio: 
+    message: Fecha final es obligatorio.
+    code: 4020
+  lengthObligatorio: 
+    message: Length es obligatorio.
+    code: 4021
+  lengthIncorrecto: 
+    message: Length debe ser mayor que cero (0).
+    code: 4022
+  startObligatorio: 
+    message: Start es obligatorio.
+    code: 4023
+  startIncorrecto: 
+    message: Start debe ser mayor o igual a cero (0).
+    code: 4024
+  codigoHorarioNumerico: 
+    message: Código del horario debe ser numérico.
+    code: 4025
+  codigoHorarioObligatorio: 
+    message: Código del horario es obligatorio.
+    code: 4026 
+  numeroTurnoNumerico: 
+    message: Número de turno debe ser numérico.
+    code: 4027
+  numeroTurnoObligatorio: 
+    message: Número de turno es obligatorio.
+    code: 4028 
+  codigoConsultaNumerico: 
+    message: Código de la consulta debe ser numérico.
+    code: 4029
+  codigoConsultaObligatorio: 
+    message: Código de la consulta es obligatorio.
+    code: 4030 
+  codigoEspecialidadMedicoNumerico: 
+    message: Código de la especialidad del médico debe ser numérico.
+    code: 4031
+  codigoEspecialidadMedicoObligatorio: 
+    message: Código de la especialidad del médico es obligatorio.
+    code: 4032 
+  codigoLugarAtencionMedicoNumerico: 
+    message: Código del lugar de la atención debe ser numérico.
+    code: 4033
+  codigoLugarAtencionObligatorio: 
+    message: Código del lugar de la atención es obligatorio.
+    code: 4034 
+  correoFacturaIsEmail: 
+    message: Correo de la factura debe tener el formato de correo electrónico.
+    code: 4035
+  correoFacturaObligatorio: 
+    message: Correo de la factura es obligatorio.
+    code: 4036 
+  identificacionObligatorio: 
+    message: Identificación es obligatoria.
+    code: 4037   
+  tipoIdentificacionObligatorio: 
+    message: Tipo de identificación es obligatorio.
+    code: 4038
+  primerApellidoObligatorio: 
+    message: Primer apellido es obligatorio.
+    code: 4039
+  primerNombreObligatorio: 
+    message: Primer nombre es obligatorio.
+    code: 4040
+  fechaNacimientoObligatorio: 
+    message: Fecha de nacimiento es obligatorio.
+    code: 4041
+  estadoCivilObligatorio: 
+    message: Estado civil es obligatorio.
+    code: 4042
+  generoObligatorio: 
+    message: Género es obligatorio.
+    code: 4043
+  calleObligatorio: 
+    message: Calle es obligatorio.
+    code: 4044
+  ciudadObligatorio: 
+    message: Ciudad es obligatorio.
+    code: 4045
+  celularObligatorio: 
+    message: Celular es obligatorio.
+    code: 4046
+  emailObligatorio: 
+    message: Correo electrónico es obligatorio.
+    code: 4047
+  paisObligatorio: 
+    message: País es obligatorio.
+    code: 4048
+  provinciaObligatorio: 
+    message: Provincia es obligatorio.
+    code: 4049
+  ciudadObligatorio: 
+    message: Ciudad es obligatorio.
+    code: 4050
+  distritoObligatorio: 
+    message: Distrito es obligatorio.
+    code: 4051  
+  numeroHistoriaClinicaObligatorio: 
+    message: Número de historia clínica es obligatorio.
+    code: 4052
+  numeroHistoriaClinicaNumerico: 
+    message: Número de historia clínica debe ser numérico.
+    code: 4053
+  numeroAdmisionObligatorio: 
+    message: Número de admisión es obligatorio.
+    code: 4054
+  numeroAdmisionNumerico: 
+    message: Número de admisión debe ser numérico.
+    code: 4055
+  codigoOrganigramaObligatorio: 
+    message: Código del organigrama es obligatorio.
+    code: 4056
+  codigoOrganigramaNumerico: 
+    message: Código del organigrama debe ser numérico.
+    code: 4057
+  fechaInicialObligatorio: 
+    message: Fecha inicial es obligatorio.
+    code: 4058
+  fechaInicialIncorrecta: 
+    message: Fecha inicial no puede ser mayor a fecha final.
+    code: 4059
+  fechaFinalObligatorio: 
+    message: Fecha final es obligatorio.
+    code: 4060
+  horaInicialObligatorio: 
+    message: Hora inicial es obligatorio.
+    code: 4061
+  horaInicialIncorrecta: 
+    message: Hora inicial no puede ser mayor a hora final.
+    code: 4062
+  horaFinalObligatorio: 
+    message: Hora final es obligatorio.
+    code: 4063
+  duracionObligatorio: 
+    message: Duración es obligatorio.
+    code: 4064
+  lunesObligatorio: 
+    message: Lunes es obligatorio.
+    code: 4065
+  martesObligatorio: 
+    message: Martes es obligatorio.
+    code: 4066
+  miercolesObligatorio: 
+    message: Miércoles es obligatorio.
+    code: 4067
+  juevesObligatorio: 
+    message: Jueves es obligatorio.
+    code: 4068
+  viernesObligatorio: 
+    message: Viernes es obligatorio.
+    code: 4069
+  sabadoObligatorio: 
+    message: Sábado es obligatorio.
+    code: 4070
+  domingoObligatorio: 
+    message: Domingo es obligatorio.
+    code: 4071
+  tipoHorarioObligatorio: 
+    message: Tipo de horario es obligatorio.
+    code: 4072
+  tipoHorarioIncorrecta: 
+    message: Tipo de horario debe ser numérico.
+    code: 4073
+  codigoPersonaObligatorio: 
+    message: Código de persona es obligatorio.
+    code: 4074
+  codigoPersonaNumerico: 
+    message: Código de persona debe ser numérico.
+    code: 4075
+  historiaClinicaObligatorio:
+    message: Historia clínica obligatoria.
+    code: 4076
+  seccionMotivoConsultaObligatorio:
+    message: Sección motivo de consulta obligatorio.
+    code: 4077
+  motivoConsultaObligatorio:
+    message: Motivo de consulta obligatorio.
+    code: 4078
+  antecedentesPersonalesObligatorio:
+    message: Antecedentes personales obligatorio.
+    code: 4079
+  noExistenResultados: 
+    message: No existen resultados para la consulta.
+    code: 4080 
+  enfermedadActualObligatorio:
+    message: Enfermedad actual obligatorio.
+    code: 4081
+  seccionRevisionOrganosObligatorio:
+    message: Sección revisión órganos obligatorio.
+    code: 4082
+  seccionAntecedentesFamiliaresObligatorio:
+    message: Sección antecedentes familiares obligatorio.
+    code: 4083
+  seccionSignosVitalesObligatorio:
+    message: Sección signos vitales obligatorio.
+    code: 4084
+  seccionExamenFisicoObligatorio:
+    message: Sección examen físico obligatorio.
+    code: 4085
+  seccionDiagnosticosObligatorio:
+    message: Sección diagnósticos obligatorio.
+    code: 4086    
+  seccionEvolucionesObligatorio:
+    message: Sección evoluciones obligatorio.
+    code: 4087
+  seccionPrescripcionesObligatorio:
+    message: Sección prescripciones obligatorio.
+    code: 4088
+  numeroMesObligatorio:
+    message: Número de mes obligatorio.
+    code: 4089
+  codigoHorarioNuevoNumerico: 
+    message: Código del horario nuevo debe ser numérico.
+    code: 4090
+  codigoHorarioNuevoObligatorio: 
+    message: Código del horario nuevo es obligatorio.
+    code: 4091
+  numeroTurnoNuevoNumerico: 
+    message: Número de turno nuevo debe ser numérico.
+    code: 4092
+  numeroTurnoNuevoObligatorio: 
+    message: Número de turno nuevo es obligatorio.
+    code: 4093 
+  sentidosObligatorio: 
+    message: Sentidos es obligatorio.
+    code: 4094
+  cardioVascularObligatorio: 
+    message: Cardio vascular es obligatorio.
+    code: 4095
+  genitalObligatorio: 
+    message: Genital es obligatorio.
+    code: 4096
+  muscEsqueleticoObligatorio: 
+    message: Músculo esquelético es obligatorio.
+    code: 4097  
+  hemoLinfaticoObligatorio: 
+    message: Hemo linfático es obligatorio.
+    code: 4098
+  respiratorioObligatorio: 
+    message: Respiratorio es obligatorio.
+    code: 4099
+  digestivoObligatorio: 
+    message: Digestivo es obligatorio.
+    code: 4100
+  urinarioObligatorio: 
+    message: Urinario es obligatorio.
+    code: 4101
+  endocrinoObligatorio: 
+    message: Endócrino es obligatorio.
+    code: 4102
+  nerviosoObligatorio: 
+    message: Nervioso es obligatorio.
+    code: 4103
+  cardiopatiaObligatorio: 
+    message: Cardiopatía es obligatorio.
+    code: 4104
+  diabetesObligatorio: 
+    message: Diabetes es obligatorio.
+    code: 4105
+  enfermedadVascularObligatorio: 
+    message: Enfermedad vascular es obligatorio.
+    code: 4106
+  hipertensionObligatorio: 
+    message: Hipertensión es obligatorio.
+    code: 4107
+  cancerObligatorio: 
+    message: Cáncer es obligatorio.
+    code: 4108
+  tuberculosisObligatorio: 
+    message: Tuberculosis es obligatorio.
+    code: 4109
+  enfermendadMentalObligatorio: 
+    message: Enfermedad mental es obligatorio.
+    code: 4110
+  enfermedadInfecciosaObligatorio: 
+    message: Enfermedad infecciosa es obligatorio.
+    code: 4111
+  malformacionObligatorio: 
+    message: Malformación es obligatorio.
+    code: 4112
+  otroObligatorio: 
+    message: Otro es obligatorio.
+    code: 4113
+  descripcionEvolucionObligatorio: 
+    message: Descripción de la evolución es obligatorio.
+    code: 4114
+  camposSignosVitalesObligatorio: 
+    message: Al menos un campo (sin tomar en cuenta la fecha) de signos vitales debe ser obligatorio.
+    code: 4115
+  temperaturaBucalNumericoNumerico: 
+    message: Temperatura bucal debe ser numérico.
+    code: 4116
+  temperaturaAxiliarNumerico: 
+    message: Temperatura axilar debe ser numérico.
+    code: 4117
+  temperaturaRectalNumerico: 
+    message: Temperatura rectal debe ser numérico.
+    code: 4118
+  taSistolicaNumerico: 
+    message: Ta Sistólica  debe ser numérico.
+    code: 4119
+  taDiastolicaNumerico: 
+    message: ta Diatólica debe ser numérico.
+    code: 4120
+  pulsoNumerico: 
+    message: Pulso debe ser numérico.
+    code: 4121
+  frecuenciaRespiratoriaNumerico: 
+    message: Frecuencia respiratoria debe ser numérico.
+    code: 4122
+  perimetroCefNumerico: 
+    message: Perímetro CEF debe ser numérico.
+    code: 4123
+  pesoNumerico: 
+    message: Peso debe ser numérico.
+    code: 4124
+  tallaNumerico: 
+    message: Talla debe ser numérico.
+    code: 4125
+  imcNumerico: 
+    message: IMC debe ser numérico.
+    code: 4126
+  camposExamenFisicoObligatorio: 
+    message: Al menos un campo del examen físico debe ser ingresado.
+    code: 4127
+  codigoDiagnosticoObligatorio: 
+    message: Código del diagnóstico es obligatorio.
+    code: 4128
+  clasificacionDiagnosticoObligatorio: 
+    message: Clasificación del diagnóstico es obligatorio.
+    code: 4129
+  principalDiagnosticoObligatorio: 
+    message: Principal diagnóstico es obligatorio.
+    code: 4130
+  grupoDiagnosticoObligatorio: 
+    message: Grupo diagnóstico es obligatorio.
+    code: 4131
+  descripcionPrescripcionObligatorio: 
+    message: Prescripción es obligatorio.
+    code: 4132
+  camposMotivoConsultaObligatorio:
+    message: Al menos un campo del motivo de consulta debe ser ingresado.
+    code: 4132
+  camposRevisionOrganosObligatorio:
+    message: Al menos un campo de la revisión de órganos debe ser ingresado.
+    code: 4133
+  camposAntecedentesFamiliaresObligatorio:
+    message: Al menos un campo de los antecedentes familiares debe ser ingresado.
+    code: 4134
+  fechaSignosVitalesObligatorio:
+    message: Fecha de los signos vitales es obligatorio.
+    code: 4135
+  startDateIncorrectaFechaHoy: 
+    message: Fecha de inicio no puede ser mayor que la fecha de hoy.
+    code: 4136
+  endDateIncorrectaFechaHoy: 
+    message: Fecha fin no puede ser menor que la fecha de hoy.
+    code: 4137
+  startDateIncorrectaFechaAyer: 
+    message: Fecha de inicio no puede ser mayor que la fecha de ayer.
+    code: 4138
+  startDateMenorFechaHoy: 
+    message: Fecha de inicio no puede ser menor que la fecha de hoy.
+    code: 4139
+  numeroTurnoTamanio:
+    message: El tamaño del motivo de la cita médica no debe ser mayor que 150 caracteres.
+    code: 4140
+  motivoCitaObligatorio:
+    message: Motivo de la cita médica es obligatorio.
+    code: 4141   
+  tipoCitaObligatorio:
+    message: Tipo de cita médica es obligatorio.
+    code: 4142   
+  tipoCitaNoPermitido:
+    message: Valor para el Tipo de cita médica no permitido.
+    code: 4143     
+  medicamentoPrescripcionObligatorio:
+    message: Medicamento es obligatorio.
+    code: 4144
+  cantidadComprarPrescripcionObligatorio:
+    message: Cantidad a comprar es obligatorio.
+    code: 4145    
+  unidadComprarPrescripcionObligatorio:
+    message: Unidad a comprar es obligatorio.
+    code: 4146    
+  cantidadTomarPrescripcionObligatorio:
+    message: Cantidad a tomar es obligatorio.
+    code: 4147    
+  unidadTomarPrescripcionObligatorio:
+    message: Unidad a tomar es obligatorio.
+    code: 4148    
+  frecuenciaDosisPrescripcionObligatorio:
+    message: Frecuencia dosis es obligatorio.
+    code: 4149    
+  unidadDosisPrescripcionObligatorio:
+    message: Unidad dosis es obligatorio.
+    code: 4150    
+  viaAdministracionPrescripcionObligatorio:
+    message: Vía administración es obligatorio.
+    code: 4151
+  cantidadComprarPrescripcionNumerico :
+    message: Cantidad a comprar debe ser numérico.
+    code: 4152
+  cantidadTomarPrescripcionNumerico:
+    message: Cantidad a tomar debe ser numérico.
+    code: 4153
+  frecuenciaDosisPrescripcionNumerico:
+    message: Frecuencia dosis debe ser numérico.
+    code: 4154
+  frecuenciaTotalPrescripcionNumerico:
+    message: Frecuencia total debe ser numérico.
+    code: 4155
+  startNumerico:
+    message: Start debe ser numérico.
+    code: 4156
+  lengthNumerico:
+    message: Length debe ser numérico.
+    code: 4157 
+  pedidoObligatorio:
+    message: El pedido es obligatorio
+    code: 4158   
+  pedidosObligatorio:
+    message: Debe insertar al menos un pedido.
+    code: 4159
+  codigoExamenTamanio:
+    message: El tamaño del código de examen, no debe ser mayor que 9 caracteres.
+    code: 4160    
+  descripcionExamenTamanio:
+    message: El tamaño de la descripción de examen, no debe ser mayor que 120 caracteres.
+    code: 4161
+  seccionRecomendacionesNoFarmacologicasObligatorio:
+    message: Sección recomendaciones no farmacológicas obligatorio.
+    code: 4162
+  descripcionRecomendacionNoFarmacologicaObligatorio:
+    message: Descripción de la sección recomendaciones no farmacológicas debe ser obligatorio.
+    code: 4163
+  seccionPedidosLaboratorioObligatorio:
+    message: Sección pedidos de Laboratorio obligatorio.
+    code: 4164
+  seccionPedidosImagenObligatorio:
+    message: Sección pedidos de Imagen obligatorio.
+    code: 4165
+  principalDiagnosticoMasDeUno:
+    message: Debe existir un sólo diagnóstico principal.
+    code: 4166
+  campoCardiopatiaNoExiste: 
+    message: Campo Cardiopatía no existe.
+    code: 4167
+  campoDiabetesNoExiste: 
+    message: Campo Diabetes no existe.
+    code: 4168
+  campoEnfermedadVascularNoExiste: 
+    message: Campo Enfermedad vascular no existe.
+    code: 4169
+  campoHipertensionNoExiste: 
+    message: Campo Hipertensión no existe.
+    code: 4170
+  campoCancerNoExiste: 
+    message: Campo Cáncer no existe.
+    code: 4171
+  campoTuberculosisNoExiste: 
+    message: Campo Tuberculosis no existe.
+    code: 4172
+  campoEnfermendadMentalNoExiste: 
+    message: Campo Enfermedad mental no existe.
+    code: 4173
+  campoEnfermedadInfecciosaNoExiste: 
+    message: Campo Enfermedad infecciosa no existe.
+    code: 4174
+  campoMalformacionNoExiste: 
+    message: Campo Malformación no existe.
+    code: 4175
+  campoOtroNoExiste: 
+    message: Campo Otro no existe.
+    code: 4176   
+  valorConsultaObligatorio:
+    message: Campo valor de la consulta obligatorio.
+    code: 4177 
+  valorCoberturaObligatorio:
+    message: Campo valor de la cobertura obligatorio.
+    code: 4178    
+  anuladoObligatorio:  
+    message: Campo anulado obligatorio.
+    code: 4179  
+  codigoErrorInfraestructura: 
+    message: Consulte con el Administrador del Sistema.
+    code: 9999     

@@ -1,0 +1,33 @@
+<div class="timeline-item mg-b-5">
+    <div class="timeline-time">Fecha: %fechaAdmision%
+        <br/>Admisión N°: %numeroAdmision%</div>
+    <div class="timeline-body">
+        <h6 class="mg-b-0">%nombreMedicoTratante%</h6>
+        <p>
+            <span class="tx-primary">
+                Especialidad:
+            </span>
+            %especialidad%
+            <span class="tx-primary">
+                Origen:
+            </span>
+            %origen%
+        </p>
+        <p class="d-none">
+            Motivo de Consulta:
+            <br/>
+            %motivoCitaMedica%
+        </p>
+        <nav class="nav nav-row mg-t-15 tx-primary">
+            <a class="nav-link mg-b-0 detalle-hc" data-fechahc="%fechaAdmision%" data-numadm="%numeroAdmision%" id="hc-%fechaAdmision%-%numeroAdmision%" style="cursor: pointer">
+                <i class="icon ion-md-document tx-18 tx-primary mg-r-2"></i>
+                Ver Historia Clínica
+            </a>
+            <a class="nav-link mg-b-0 detalle-receta" data-fechahc="%fechaAdmision%" data-numadm="%numeroAdmision%" id="receta-%fechaAdmision%-%numeroAdmision%" style="cursor: pointer">
+                <i class="icon ion-md-document tx-18 tx-primary mg-r-2"></i>
+                Ver Receta Médica
+            </a>
+        </nav>
+    </div>
+    <!-- timeline-body -->
+</div>

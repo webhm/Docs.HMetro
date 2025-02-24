@@ -1,0 +1,107 @@
+<div class="clearfix mg-b-25">
+    <div id="contactAvatar" class="pos-relative float-left">
+        <div class="avatar avatar-xl">
+            <span class="avatar-initial rounded-circle bg-gray-700 tx-normal"></span>
+        </div>
+    </div>
+</div>
+<h5 id="contactName" class="tx-18 tx-xl-20 mg-b-5"></h5>
+<p class="tx-13 tx-lg-12 tx-xl-13 tx-color-03 mg-b-20">
+    <div class="d-flex">
+        <span class="tx-11 badge pd-0 pd-t-2 wd-60 bg-gray mg-r-70 mg-l-0">
+            <div class="tx-normal" id="diaCita"></div>
+            <div class="tx-normal" id="fechaCita"></div>
+        </span>
+        <span class="tx-11 badge badge-primary wd-40 pd-0 pd-t-2 pd-b-2 mg-l-20">
+            <div class="tx-white" id="horaCita"></div>
+        </span>
+    </div>
+</p>
+<nav class="contact-call-nav flex-column contact-content-nav mg-b-20" id="statusCita">
+    <button class="iniAtencionTC btn btn-primary btn-icon btn-block tx-semibold" data-toggle="tooltip" title="Iniciar Teleconsulta" type="button">
+        <t class="mg-l-6">
+            Iniciar Teleconsulta
+        </t>
+    </button>
+    <button class="iniAtencionPS btn btn-info btn-icon btn-block tx-semibold" data-toggle="tooltip" title="Iniciar atención presencial" type="button">
+        <t class="mg-l-6">
+            Atención Presencial
+        </t>
+    </button>
+</nav>
+<nav class="nav flex-column contact-content-nav mg-b-25 d-none" id="blockCloseAtencion">
+    <button class="finAtencion btn btn-sm btn-outline-danger btn-icon btn-block tx-semibold" data-toggle="tooltip" title="Procesa los datos ingresados y finaliza la atención" type="button">
+        <t class="mg-l-6">
+            Finalizar Atención
+        </t>
+    </button>
+    <button class="cancelarAtencion btn btn-sm btn-outline-light btn-icon btn-block tx-semibold" data-toggle="tooltip" title="Elimina los datos ingresados y cancela la atención" type="button">
+        <t class="mg-l-6">
+            Cancelar Atención
+        </t>
+    </button>
+</nav>
+<nav class="nav flex-column contact-content-nav mg-b-25 d-none" id="tipoAtencion">
+    <div class="form-group">
+        <label>Seleccione el tipo de atencion para el Paciente:</label>
+        <select class="custom-select tx-18" id="tipoAtencionPaciente">
+            <option selected value="T" class="tx-18">
+                Teleconsulta
+            </option>
+            <option value="P" class="tx-18">
+                Presencial
+            </option>
+        </select>
+    </div>
+    <div class="form-group">
+        <button type="button" class="btn btn-primary btn-block" id="confirmarAtencion">
+            Confirmar
+        </button>
+        <button type="button" class="btn btn-outline-danger btn-block" id="cancelarAtencion">
+            Cancelar
+        </button>
+    </div>
+</nav>
+<nav class="nav flex-column contact-content-nav mg-b-25 d-none" id="loaderAtencion">
+    <div class="placeholder-paragraph">
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+</nav>
+<!-- contact-call-nav -->
+<div class="" id="opcionesCita">
+    <label class="tx-10 tx-medium tx-spacing-1 tx-color-03 tx-uppercase tx-sans mg-b-15">
+        Opciones
+    </label>
+    <nav class="nav flex-column contact-content-nav mg-b-25">
+        <a href="" class="cancelarCita nav-link">
+            <i data-feather="trash-2"></i>
+            Eliminar Cita
+        </a>
+        <a href="" class="nav-link d-none">
+            <i data-feather="calendar"></i>
+            Reagendar Cita
+        </a>
+        <a href="" class="nav-link d-none">
+            <i data-feather="plus-square"></i>
+            Nueva Cita
+        </a>
+        <a href="" class="nav-link d-none">
+            <i data-feather="mail"></i>
+            Agregar correo electrónico
+        </a>
+    </nav>
+</div>
+<nav class="nav flex-column contact-content-nav mg-b-25 d-none" id="blockCancelarCita">
+    <div class="form-group mg-b-0">
+        <label>¿Eliminar Cita?</label>
+    </div>
+    <div class="form-group">
+        <button type="button" class="btn btn-danger btn-block" id="cancelarCita">
+            Si
+        </button>
+        <button type="button" class="btn btn-white btn-block" id="returnOpciones">
+            No
+        </button>
+    </div>
+</nav>

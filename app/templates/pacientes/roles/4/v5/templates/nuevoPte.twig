@@ -1,0 +1,132 @@
+<div class="df-example demo-forms mg-t-20 mg-l-10 mg-r-10">
+    <div class="d-flex align-items-center justify-content-between">
+        <div>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-style1 mg-b-10">
+                    <li class="breadcrumb-item">
+                        <a href="#" class="resetNuevoPte">Pacientes</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        Nuevo Paciente
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <div class="d-flex align-items-start justify-content-between">
+        <div class="d-flex justify-content-start">
+            <h4 class="tx-20 mg-b-0">
+                Nuevo Paciente<p class="tx-10 tx-semibold">
+                    Hospital Metropolitano
+                </p>
+            </h4>
+        </div>
+        <div class="d-flex justify-content-end">
+            <button class="resetNuevoPte btn btn-sm btn-white d-flex align-items-center" title="Cancelar Nuevo Paciente">
+                <i class="fas fa-times-circle mg-r-5 tx-16 lh--9"></i>
+            </button>
+        </div>
+    </div>
+    <div id="wizardNuevaPte">
+        <h3 class="d-none">
+            Datos Personales
+        </h3>
+        <section>
+            <div class="row row-sm">
+                <div class="col-md-12">
+                    <div id="f-nuevoPaciente">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label>Documento de Identificación:</label>
+                                <input type="text" class="form-control" id="cedulaPte" placeholder="Cédula o Pasaporte" required="required"/>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Tipo de Identificación:</label>
+                                <select class="custom-select" id="tipoIdentificacionPte" required="required">
+                                    <option value="">
+                                        Seleccione...
+                                    </option>
+                                    <option value="C">
+                                        Cédula
+                                    </option>
+                                    <option value="P">
+                                        Pasaporte
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label>Primer Nombre:</label>
+                                <input type="text" class="form-control" id="primerNombre" placeholder="Primer Nombre" required="required"/>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Segundo Nombre:</label>
+                                <input type="text" class="form-control" id="segundoNombre" placeholder="Segundo Nombre" required="required"/>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label>Primer Apellido:</label>
+                                <input type="text" class="form-control" id="primerApellido" placeholder="Primer Apellido" required="required"/>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Segundo Apellido:</label>
+                                <input type="text" class="form-control" id="segundoApellido" placeholder="Segundo Apellido" required="required"/>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label>Fecha de Nacimiento:</label>
+                                <input id="fechaNacimientoPaciente" class="form-control" placeholder="Fecha desde" type="date" required="required"/>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Género:</label>
+                                <select class="custom-select" id="generoPaciente" required="required">
+                                    <option value="">
+                                        Seleccione...
+                                    </option>
+                                    <option value="M">
+                                        Masculino
+                                    </option>
+                                    <option value="F">
+                                        Femenino
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <h3 class="d-none">
+            Datos de Contacto
+        </h3>
+        <section>
+            <div class="row row-sm">
+                <div class="col-md-12">
+                    <div class="form-row">
+                        <div class="form-group col-md-9">
+                            <label>Dirección:</label>
+                            <input type="text" class="form-control" id="dirPaciente" placeholder="Dirección" required="required"/>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>Celular:</label>
+                            <input type="text" class="form-control" id="celPaciente" placeholder="Celular" required="required"/>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Correo electrónico:</label>
+                            <input type="email" class="form-control" id="emailPaciente" placeholder="Correo electrónico" required="required"/>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Confirma Correo electrónico:</label>
+                            <input type="email" class="form-control" id="emailPaciente2" placeholder="Correo electrónico" required="required"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

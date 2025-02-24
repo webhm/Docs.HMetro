@@ -1,0 +1,708 @@
+<template id="v-loader">
+  <div class="placeholder-paragraph pd-y-25 pd-x-20">
+    <div class="line"></div>
+    <div class="line"></div>
+  </div>
+</template>
+<template id="v-not-app">
+  <div class="pd-y-25 pd-x-20">
+    <h6 class="tx-12 tx-semibold tx-danger tx-spacing-1 tx-uppercase">
+      <i class="fas fa-times-circle"></i>
+      %title%
+    </h6>
+    <p class="tx-13 tx-color-03 mg-b-20">%message%</p>
+  </div>
+</template>
+<template id="v-not-sys">
+  <div class="pd-y-25 pd-x-20">
+    <h6 class="tx-12 tx-semibold tx-danger tx-spacing-1 tx-uppercase">
+      <i class="fas fa-times-circle"></i>
+      %title%
+    </h6>
+    <p class="tx-13 tx-color-03 mg-b-20">%message%</p>
+    <p class="tx-13 tx-color-03 mg-b-20">¿Que puedes hacer?</p>
+    <a class="tx-13 tx-color-03 d-block" href="{{ config.build.url }}">
+      <i class="fas fa-angle-double-left"></i>
+      Regresar al Inicio
+    </a>
+    <a class="off-canvas-menu tx-13 tx-color-03 d-block" href="{{ config.build.url }}">
+      <i class="fas fa-info-circle"></i>
+      Ver Logs
+    </a>
+    <p class="tx-13 tx-color-03 mg-t-20 mg-b-20">¿El problema persiste?</p>
+    <a class="tx-13 tx-color-03 d-block" href="mailto:concas@hmetro.med.ec">
+      <i class="fas fa-ticket-alt"></i>
+      Generar un ticket de soporte
+    </a>
+  </div>
+</template>
+<template id="v-label-pte">
+  <div class="pd-y-5 pd-x-10">
+    <label class="contact-list-divider">%title%</label>
+  </div>
+</template>
+<template id="v-card-pte-anterior">
+  <div class="media" id="cita-%codigoHorario%-%numeroTurno%">
+    <div class="avatar avatar-sm">
+      <span class="avatar-initial rounded-circle %bgAvatar%">
+        %inicialPte%
+      </span>
+    </div>
+    <div class="media-body mg-l-10">
+      <h6 class="tx-13 mg-b-3">
+        %primerNombrePaciente% %primerApellidoPaciente%
+      </h6>
+      <div class="d-flex">
+        <span class="tx-11 badge pd-0 pd-t-2 wd-60 bg-gray">
+          <div class="tx-normal"><b>NHC:</b> %numeroHistoriaClinica%</div>
+        </span>
+      </div>
+    </div>
+    <!-- media-body -->
+    <nav style="display:none;" data-toggle="tooltip" title="Teleconsulta">
+      <a href="" class="control">
+       <i class="fas fa-video"></i>
+      </a>
+    </nav>
+  </div>
+  <!-- media -->
+</template>
+<template id="v-card-pte">
+  <div class="media" id="cita-%codigoHorario%-%numeroTurno%">
+    <div class="avatar avatar-sm %online%">
+      <span class="avatar-initial rounded-circle %bgAvatar%">
+        %inicialPte%
+      </span>
+    </div>
+    <div class="media-body mg-l-10">
+      <h6 class="tx-13 mg-b-3">
+        %primerNombrePaciente% %primerApellidoPaciente%
+      </h6>
+      <div class="d-flex">
+        <span class="tx-11 badge pd-0 pd-t-2 wd-60 bg-gray mg-r-5 mg-l-0">
+          <div class="tx-normal">%fecha%</div>
+        </span>
+        <span class="tx-11 badge badge-primary wd-40 pd-0 pd-t-2 pd-b-2 mg-l-5">
+          <div class="tx-white">%horaInicio%</div>
+        </span>
+      </div>
+    </div>
+    <!-- media-body -->
+    <nav style="display:flex;" data-toggle="tooltip" title="Teleconsulta">
+      <a href="" class="control">
+       <i class="fas fa-video"></i>
+      </a>
+    </nav>
+  </div>
+  <!-- media -->
+</template>
+<template id="v-datosPersonales">
+  <div class="d-flex align-items-center justify-content-between mg-b-25">
+    <h6 class="mg-b-0">Datos Personales</h6>
+  </div>
+  <div class="row">
+    <div class="col-6 col-sm">
+      <label class="tx-10 tx-medium tx-spacing-1 tx-color-03 tx-uppercase tx-sans mg-b-10">
+        Primer Nombre
+      </label>
+      <p class="mg-b-0">%primerNombre%</p>
+    </div>
+    <!-- col -->
+    <div class="col-6 col-sm">
+      <label class="tx-10 tx-medium tx-spacing-1 tx-color-03 tx-uppercase tx-sans mg-b-10">
+        Segundo Nombre
+      </label>
+      <p class="mg-b-0">%segundoNombre%</p>
+    </div>
+    <!-- col -->
+    <div class="col-sm mg-t-20 mg-sm-t-0">
+      <label class="tx-10 tx-medium tx-spacing-1 tx-color-03 tx-uppercase tx-sans mg-b-10">
+        Apellidos
+      </label>
+      <p class="mg-b-0">%primerApellido% %segundoApellido%</p>
+    </div>
+    <!-- col -->
+  </div>
+  <!-- row -->
+  <h6 class="mg-t-40 mg-b-20">Datos de Contacto</h6>
+  <div class="row row-sm">
+    <div class="col-6 col-sm-4">
+      <label class="tx-10 tx-medium tx-spacing-1 tx-color-03 tx-uppercase tx-sans mg-b-10">
+        Celular
+      </label>
+      <p class=" tx-12 tx-rubik mg-b-0">%textMediosContactoCels%</p>
+    </div>
+    <div class="col-6 col-sm-4">
+      <label class="tx-10 tx-medium tx-spacing-1 tx-color-03 tx-uppercase tx-sans mg-b-10">
+        Teléfono Domicilio
+      </label>
+      <p class="tx-12 tx-rubik mg-b-0">%textMediosContactoTlfs%</p>
+    </div>
+    <div class="col-6 col-sm-4 mg-t-20 mg-sm-t-0">
+      <label class="tx-10 tx-medium tx-spacing-1 tx-color-03 tx-uppercase tx-sans mg-b-10">
+        Teléfono Trabajo
+      </label>
+      <p class="tx-12 tx-rubik mg-b-0">
+        %textMediosContactoTrabajo%
+      </p>
+    </div>
+    <div class="col-sm-4 mg-t-20 mg-sm-t-30">
+      <label class="tx-10 tx-medium tx-spacing-1 tx-color-03 tx-uppercase tx-sans mg-b-10">
+        Correo Electrónico
+      </label>
+      <p class="tx-12 mg-b-0">%textMediosContactoEmails%</p>
+    </div>
+    <div class="col-sm-4 mg-t-20 mg-sm-t-30">
+      <label class="tx-10 tx-medium tx-spacing-1 tx-color-03 tx-uppercase tx-sans mg-b-10">
+        Trabajo
+      </label>
+      <p class="tx-12 mg-b-0">%trabajo%</p>
+    </div>
+    <div class="col-sm-4 mg-t-20 mg-sm-t-30">
+      <label class="tx-10 tx-medium tx-spacing-1 tx-color-03 tx-uppercase tx-sans mg-b-10">
+        Cargo
+      </label>
+      <p class="tx-12 mg-b-0">%cargo%</p>
+    </div>
+    <div class="col-sm-6 mg-t-20 mg-sm-t-30">
+      <label class="tx-10 tx-medium tx-spacing-1 tx-color-03 tx-uppercase tx-sans mg-b-10">
+        Dir. Domicilio
+      </label>
+      <p class="tx-12 mg-b-0">%textDireccionesCasa%</p>
+    </div>
+    <div class="col-sm-6 mg-t-20 mg-sm-t-30">
+      <label class="tx-10 tx-medium tx-spacing-1 tx-color-03 tx-uppercase tx-sans mg-b-10">
+        Dir. Trabajo
+      </label>
+      <p class="tx-12 mg-b-0">%textDireccionesTrabajo%</p>
+    </div>
+    <div class="col-sm-6 mg-t-20 mg-sm-t-30">
+      <label class="tx-10 tx-medium tx-spacing-1 tx-color-03 tx-uppercase tx-sans mg-b-10">
+        Website
+      </label>
+      <p class="mg-b-0">%website%</p>
+    </div>
+    <div class="col-sm-6 mg-t-20 mg-sm-t-30">
+      <label class="tx-10 tx-medium tx-spacing-1 tx-color-03 tx-uppercase tx-sans mg-b-10">
+        Redes Sociales
+      </label>
+      <nav class="nav nav-social">
+        <a class="nav-link disabled" href="">
+          <i class="fab fa-facebook-square tx-18"></i>
+        </a>
+        <a class="nav-link disabled" href="">
+          <i class="fab fa-twitter tx-18"></i>
+        </a>
+        <a class="nav-link disabled" href="">
+          <i class="fab fa-instagram tx-18"></i>
+        </a>
+      </nav>
+    </div>
+    <!-- col -->
+    <div class="col-sm mg-t-20 mg-sm-t-30 d-none">
+      <label class="tx-10 tx-medium tx-spacing-1 tx-color-03 tx-uppercase tx-sans mg-b-10">
+        Notas
+      </label>
+      <p class="tx-13 mg-b-0">%notas%</p>
+    </div>
+  </div>
+</template>
+<template id="v-datosClinicos">
+  <div class="row">
+    <div class="d-flex wd-100p align-items-center justify-content-between mg-b-30">
+      <h6 class="tx-15 mg-b-0 mg-l-25">Historial de Atenciones</h6>
+      <a class="reset-datosClinicos btn btn-sm btn-white d-flex align-items-center bd bd-0" href="#"
+        data-toggle="tooltip" title="Volver a consultar Datos Clínicos">
+        <i class="fas fa-sync-alt mg-r-5 tx-13 lh--9"></i>
+      </a>
+    </div>
+  </div>
+  <div class="row wd-100p">
+    <div class="col-4 pos-fixed">
+      <div class="bg-white bd bd-0 pd-20 pd-lg-30 d-flex flex-column justify-content-end">
+        <div class="mg-b-25">
+          <i class="fas fa-clipboard-list tx-100 tx-gray-500"></i>
+        </div>
+        <h5 class="tx-inverse mg-b-0 d-none">N° Historia Clínica:</h5>
+        <p class="tx-10 mg-b-0 d-none">
+          <i class="fas fa-h-square"></i> Hospital Metropolitano
+        </p>
+        <p class="tx-12 d-none" id="nhcDatosClinicos"></p>
+      </div>
+    </div>
+    <div class="col-8 offset-4">
+      <div class="timeline-group tx-13 align-items-center">
+        <div class="timeline-atenciones"></div>
+      </div>
+    </div>
+  </div>
+</template>
+<template id="v-h-clinicas">
+  <div class="timeline-item mg-b-5">
+    <div class="timeline-time">Fecha: %fechaAdmision% <br/>Admisión N°: %numeroAdmision%</div>
+    <!-- timeline-body -->
+    <div class="timeline-body">
+      <h6 class="mg-b-0">%nombreMedicoTratante%</h6>
+      <p>
+        <span class="tx-primary"> Especialidad: </span>
+        %especialidad%
+        <span class="tx-primary"> Origen: </span>
+        %origen%
+      </p>
+      <p class="d-none">
+        Motivo de Consulta:
+        <br />
+        %motivoCitaMedica%
+      </p>
+      <nav class="nav nav-row mg-t-15 d-none">
+        <i class="icon ion-md-close-circle mg-r-5"></i>
+        %message%
+      </nav>
+    </div>
+  </div>
+</template>
+<template id="v-h-tel-clinicas">
+  <div class="timeline-item mg-b-5">
+    <div class="timeline-time">Fecha: %fechaAdmision% <br/>Admisión N°: %numeroAdmision%</div>
+    <div class="timeline-body">
+      <h6 class="mg-b-0">%nombreMedicoTratante%</h6>
+      <p>
+        <span class="tx-primary"> Especialidad: </span>
+        %especialidad%
+        <span class="tx-primary"> Origen: </span>
+        %origen%
+      </p>
+      <p class="d-none">
+        Motivo de Consulta:
+        <br />
+        %motivoCitaMedica%
+      </p>
+      <nav class="nav nav-row mg-t-15 tx-primary">
+        <a class="nav-link mg-b-0 detalle-hc" data-fechahc="%fechaAdmision%" data-numadm="%numeroAdmision%"
+          id="hc-%fechaAdmision%-%numeroAdmision%" style="cursor: pointer">
+          <i class="icon ion-md-document tx-18 tx-primary mg-r-2"></i>
+          Ver Historia Clínica
+        </a>
+        <a class="nav-link mg-b-0 active" target="_blank" href="https://api.teleconsulta.hospitalmetropolitano.org/beta/v1/receta-medica/%numeroHistoriaClinica%-%numeroAdmision%.pdf" style="cursor: pointer">
+          <i class="icon ion-md-document tx-18 tx-primary mg-r-2"></i>
+          Ver Receta Médica
+        </a>
+      </nav>
+    </div>
+    <!-- timeline-body -->
+  </div>
+</template>
+<template id="v-hc-detalle">
+  <div class="row col-12">
+    <div class="d-flex wd-100p align-items-center justify-content-between mg-b-30">
+      <span class="tx-12">
+        Página:
+        <span class="page_num"></span>
+        /
+        <span class="page_count"></span>
+      </span>
+      <div class="d-flex flex-row-reverse">
+        <a class="reset-detalle-hc mg-l-15 pd-1 bd bd-0" href="#" data-toggle="tooltip" title="Cerrar">
+          <i class="fas fa-times-circle tx-16 lh--9 tx-gray-500"></i>
+        </a>
+
+        <a class="next pd-1 bd bd-0" href="#" data-toggle="tooltip" title="Siguiente">
+          <i class="fas fa-chevron-circle-right tx-15 lh--9 tx-primary"></i>
+        </a>
+        <a class="prev pd-1 bd bd-0 mg-r-15" href="#" data-toggle="tooltip" title="Anterior">
+          <i class="fas fa-chevron-circle-left tx-15 lh--9 tx-primary"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="row col-12 pd-0">
+    <div class="d-flex justify-content-center">
+      <canvas id="render-hc" width="100%"></canvas>
+    </div>
+  </div>
+  <div class="row col-12 mg-t-30 mg-b-20">
+    <div class="d-flex wd-100p align-items-center justify-content-between mg-b-30">
+      <span class="tx-12">
+        Página:
+        <span class="page_num"></span>
+        /
+        <span class="page_count"></span>
+      </span>
+      <div class="d-flex flex-row-reverse">
+        <a class="reset-detalle-hc mg-l-15 pd-1 bd bd-0" href="#" data-toggle="tooltip" title="Cerrar">
+          <i class="fas fa-times-circle tx-16 lh--9 tx-gray-500"></i>
+        </a>
+        <a class="next pd-1 bd bd-0" href="#" data-toggle="tooltip" title="Siguiente">
+          <i class="fas fa-chevron-circle-right tx-15 lh--9 tx-primary"></i>
+        </a>
+        <a class="prev pd-1 bd bd-0 mg-r-15" href="#" data-toggle="tooltip" title="Anterior">
+          <i class="fas fa-chevron-circle-left tx-15 lh--9 tx-primary"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</template>
+<template id="v-tele-hc-detalle">
+  <div class="row col-12">
+    <div class="d-flex wd-100p align-items-center justify-content-between mg-b-30">
+      <span class="tx-12">
+        Página:
+        <span class="page_num"></span>
+        /
+        <span class="page_count"></span>
+      </span>
+      <div class="d-flex flex-row-reverse">
+        <a class="reset-detalle-hc mg-l-15 pd-1 bd bd-0" href="#" data-toggle="tooltip" title="Cerrar">
+          <i class="fas fa-times-circle tx-16 lh--9 tx-gray-500"></i>
+        </a>
+
+        <a class="next pd-1 bd bd-0" href="#" data-toggle="tooltip" title="Siguiente">
+          <i class="fas fa-chevron-circle-right tx-15 lh--9 tx-primary"></i>
+        </a>
+        <a class="prev pd-1 bd bd-0 mg-r-15" href="#" data-toggle="tooltip" title="Anterior">
+          <i class="fas fa-chevron-circle-left tx-15 lh--9 tx-primary"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="row col-12 pd-0">
+    <div class="d-flex justify-content-center">
+      <canvas id="tele-render-hc" width="100%"></canvas>
+    </div>
+  </div>
+  <div class="row col-12 mg-t-30 mg-b-20">
+    <div class="d-flex wd-100p align-items-center justify-content-between mg-b-30">
+      <span class="tx-12">
+        Página:
+        <span class="page_num"></span>
+        /
+        <span class="page_count"></span>
+      </span>
+      <div class="d-flex flex-row-reverse">
+        <a class="reset-detalle-hc mg-l-15 pd-1 bd bd-0" href="#" data-toggle="tooltip" title="Cerrar">
+          <i class="fas fa-times-circle tx-16 lh--9 tx-gray-500"></i>
+        </a>
+        <a class="next pd-1 bd bd-0" href="#" data-toggle="tooltip" title="Siguiente">
+          <i class="fas fa-chevron-circle-right tx-15 lh--9 tx-primary"></i>
+        </a>
+        <a class="prev pd-1 bd bd-0 mg-r-15" href="#" data-toggle="tooltip" title="Anterior">
+          <i class="fas fa-chevron-circle-left tx-15 lh--9 tx-primary"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</template>
+<template id="v-resultado-lab">
+  <div class="row col-12">
+    <div class="d-flex wd-100p align-items-center justify-content-between mg-b-30">
+      <span class="tx-12">
+        Página:
+        <span class="page_num"></span>
+        /
+        <span class="page_count"></span>
+      </span>
+      <div class="d-flex flex-row-reverse">
+        <a class="reset-render-lab mg-l-15 pd-1 bd bd-0" href="#" data-toggle="tooltip" title="Cerrar">
+          <i class="fas fa-times-circle tx-16 lh--9 tx-gray-500"></i>
+        </a>
+
+        <a class="next pd-1 bd bd-0" href="#" data-toggle="tooltip" title="Siguiente">
+          <i class="fas fa-chevron-circle-right tx-15 lh--9 tx-primary"></i>
+        </a>
+        <a class="prev pd-1 bd bd-0 mg-r-15" href="#" data-toggle="tooltip" title="Anterior">
+          <i class="fas fa-chevron-circle-left tx-15 lh--9 tx-primary"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="row col-12">
+    <div class="d-flex justify-content-center">
+      <canvas id="render-resultado-lab" width="100%"></canvas>
+    </div>
+  </div>
+  <div class="row col-12 mg-t-30 mg-b-20">
+    <div class="d-flex wd-100p align-items-center justify-content-between mg-b-30">
+      <span class="tx-12">
+        Página:
+        <span class="page_num"></span>
+        /
+        <span class="page_count"></span>
+      </span>
+      <div class="d-flex flex-row-reverse">
+        <a class="reset-render-lab mg-l-15 pd-1 bd bd-0" href="#" data-toggle="tooltip" title="Cerrar">
+          <i class="fas fa-times-circle tx-16 lh--9 tx-gray-500"></i>
+        </a>
+        <a class="next pd-1 bd bd-0" href="#" data-toggle="tooltip" title="Siguiente">
+          <i class="fas fa-chevron-circle-right tx-15 lh--9 tx-primary"></i>
+        </a>
+        <a class="prev pd-1 bd bd-0 mg-r-15" href="#" data-toggle="tooltip" title="Anterior">
+          <i class="fas fa-chevron-circle-left tx-15 lh--9 tx-primary"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</template>
+<template id="v-tele-resultado-lab">
+  <div class="row col-12">
+    <div class="d-flex wd-100p align-items-center justify-content-between mg-b-30">
+      <span class="tx-12">
+        Página:
+        <span class="page_num"></span>
+        /
+        <span class="page_count"></span>
+      </span>
+      <div class="d-flex flex-row-reverse">
+        <a class="reset-render-lab mg-l-15 pd-1 bd bd-0" href="#" data-toggle="tooltip" title="Cerrar">
+          <i class="fas fa-times-circle tx-16 lh--9 tx-gray-500"></i>
+        </a>
+
+        <a class="next pd-1 bd bd-0" href="#" data-toggle="tooltip" title="Siguiente">
+          <i class="fas fa-chevron-circle-right tx-15 lh--9 tx-primary"></i>
+        </a>
+        <a class="prev pd-1 bd bd-0 mg-r-15" href="#" data-toggle="tooltip" title="Anterior">
+          <i class="fas fa-chevron-circle-left tx-15 lh--9 tx-primary"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="row col-12">
+    <div class="d-flex justify-content-center">
+      <canvas id="render-tele-resultado-lab" width="100%"></canvas>
+    </div>
+  </div>
+  <div class="row col-12 mg-t-30 mg-b-20">
+    <div class="d-flex wd-100p align-items-center justify-content-between mg-b-30">
+      <span class="tx-12">
+        Página:
+        <span class="page_num"></span>
+        /
+        <span class="page_count"></span>
+      </span>
+      <div class="d-flex flex-row-reverse">
+        <a class="reset-render-lab mg-l-15 pd-1 bd bd-0" href="#" data-toggle="tooltip" title="Cerrar">
+          <i class="fas fa-times-circle tx-16 lh--9 tx-gray-500"></i>
+        </a>
+        <a class="next pd-1 bd bd-0" href="#" data-toggle="tooltip" title="Siguiente">
+          <i class="fas fa-chevron-circle-right tx-15 lh--9 tx-primary"></i>
+        </a>
+        <a class="prev pd-1 bd bd-0 mg-r-15" href="#" data-toggle="tooltip" title="Anterior">
+          <i class="fas fa-chevron-circle-left tx-15 lh--9 tx-primary"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</template>
+<template id="btn-table-opc-lab">
+  <div class="btn-group" role="group">
+    <button class="btn btn-xs btn-outline-primary ver-resultado" data-fecha="%fecha%" id="%id%" type="button">
+      <i class="icon ion-md-document"></i>
+      Ver
+    </button>
+    <button class="btn btn-xs btn-outline-primary descargar-resultado d-none" data-fecha="%fecha%" id="%id%"
+      type="button">
+      <i class="icon ion-md-download"></i>
+      Descargar
+    </button>
+    <button class="btn btn-xs btn-outline-primary enviar-resultado d-none" id="%id%"
+      title="Enviar por Correo Electrónico" type="button">
+      <i class="icon ion-md-mail"></i>
+      Enviar
+    </button>
+  </div>
+</template>
+<template id="btn-table-opc-img">
+  <div class="btn-group" role="group">
+    <button class="btn btn-xs btn-outline-primary ver-resultado-img" data-fecha="%fecha%" id="%id%" type="button">
+      <i class="icon ion-md-document"></i>
+      Ver
+    </button>
+  </div>
+</template>
+<template id="v-table-lab">
+  <table class="table table-sm table-hover" id="table-resultados-lab" width="100%"></table>
+  <!-- row -->
+</template>
+<template id="v-table-tele-lab">
+  <table class="table table-sm table-hover" id="table-tele-resultados-lab" width="100%"></table>
+  <!-- row -->
+</template>
+<template id="v-tele-antecedentes">
+  <div class="col-sm mg-t-10 mg-sm-t-0 pd-0">
+    <div class="card card-body ht-100p pd-15 mg-b-5 overflow-hidden">
+      <div class="marker marker-ribbon pos-absolute t-10 l-10 mg-r-10">
+        %title% 
+        <i class="fas fa-pencil-alt mg-l-10 tx-primary tx-10  pd-5 edit-ante-field" id="edit-%id%" title="Editar"></i>
+        <i class="fas fa-check-circle mg-l-10 tx-success tx-10 pd-5 save-ante-field d-none" id="save-%id%" title="Guardar"></i> 
+      </div> 
+      <h6 class="mg-b-5 mg-t-35" id="%id%">%content%</h6>
+    </div><!-- card -->
+  </div>
+</template>
+<template id="v-timelines-hc">
+  <div class="timeline-item">
+    <div class="timeline-time" data-toggle="tooltip" title="Fecha de Atención">
+      %fecha%
+    </div>
+    <!-- timeline-body -->
+    <div class="timeline-body">
+      <p class="pd-0 mg-0">
+        <span class="tx-primary">
+          Evolución:
+        </span>
+        %descripcion%
+      </p>
+    </div>
+  </div>
+</template>
+<template id="v-new-pedido-lab">
+  <div class="d-flex mg-b-10">
+    <div class="pd-0 mg-t-5 flex-fill">
+      <h4 class="mg-b-10">
+        Nuevo Pedido de Laboratorio
+      </h4>
+      <p class="tx-12 tx-normal">
+        <i class="fas fa-info-circle"></i>
+       Selecciona los exámenes a prescribir, en caso de que ya no los requieras, por favor elimina la selección.</p>
+    </div>
+  </div>
+  <div class="row mg-b-30">
+    <div class="col-sm-7 pd-0">
+      <div class="d-flex flex-row">
+        <ul class="nav nav-line flex-column wd-40p" id="tab-new-pedido-lab" role="tablist"></ul>
+        <div class="tab-content mg-l-8 flex-column" id="contents-tab-pedido-lab"></div>
+      </div>
+      <!-- df-example -->
+    </div>
+    <div class="col-sm-5 pd-0">
+      <h4 class="pd-1 mg-b-10 d-none">
+        Costo:
+        <span id="val-exa-lab">
+          $ 0.00
+        </span>
+      </h4>
+      <div class="">
+        <p class="mg-b-5">
+          <i class="fas fa-file-alt"></i>
+          Exámenes de Laboratorio:</p>
+        <table class="grid-examenes-lab table tx-12">
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</template>
+<template id="v-tab-new-pedido-lab">
+  <li class="nav-item" style="margin-top: 0px !important;">
+    <a aria-selected="true" class="nav-link tx-14" data-toggle="tab" href="#tab-cod-des-%codigoAgrupacion%"
+      id="cod-des-%codigoAgrupacion%" role="tab">
+      %descripcionAgrupacion%
+    </a>
+  </li>
+</template>
+<template id="v-content-tab-new-pedido-lab">
+  <div class="tab-pane fade" id="tab-cod-des-%codigoAgrupacion%" role="tabpanel">
+    <div id="examenes-lab-%codigoAgrupacion%"></div>
+  </div>
+</template>
+<template id="v-examen-lab">
+  <div class="custom-control custom-checkbox" id="d-customCheck-%codigoAgrupacion%-%codigoExamen%">
+    <input class="custom-control-input i-examen-lab" id="customCheck-%codigoAgrupacion%-%codigoExamen%" type="checkbox">
+    <label class="custom-control-label" for="customCheck-%codigoAgrupacion%-%codigoExamen%">
+      %descripcionExamen%
+    </label>
+    </input>
+  </div>
+</template>
+<template id="v-new-pedido-img">
+  <div class="d-flex mg-b-10">
+    <div class="pd-0 mg-t-5 flex-fill">
+      <h4 class="mg-b-10">
+        Nuevo Pedido de Imagen
+      </h4>
+      <p class="tx-12 tx-normal">
+        <i class="fas fa-info-circle"></i>
+       Selecciona los exámenes a prescribir, en caso de que ya no los requieras, por favor elimina la selección.</p>
+    </div>
+  </div>
+  <div class="row mg-b-30">
+    <div class="col-sm-7 pd-0">
+      <div class="d-flex flex-row">
+        <ul class="nav nav-line flex-column wd-40p" id="tab-new-pedido-img" role="tablist"></ul>
+        <div class="tab-content mg-l-8 flex-column" id="contents-tab-pedido-img"></div>
+      </div>
+      <!-- df-example -->
+    </div>
+    <div class="col-sm-5 pd-0">
+      <h4 class="pd-1 mg-b-10 d-none">
+        Costo:
+        <span id="val-exa-lab">
+          $ 0.00
+        </span>
+      </h4>
+      <div class="">
+        <p class="mg-b-5">
+          <i class="fas fa-file-alt"></i>
+          Exámenes de Imagen:</p>
+        <table class="grid-examenes-img table tx-12">
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</template>
+<template id="v-tab-new-pedido-img">
+  <li class="nav-item" style="margin-top: 0px !important;">
+    <a aria-selected="true" class="nav-link tx-14" data-toggle="tab" href="#tab-cod-des-img-%codigoAgrupacion%"
+      id="cod-des-img-%codigoAgrupacion%" role="tab">
+      %descripcionAgrupacion%
+    </a>
+  </li>
+</template>
+<template id="v-content-tab-new-pedido-img">
+  <div class="tab-pane fade" id="tab-cod-des-img-%codigoAgrupacion%" role="tabpanel">
+    <div id="examenes-img-%codigoAgrupacion%"></div>
+  </div>
+</template>
+<template id="v-examen-img">
+  <div class="custom-control custom-checkbox" id="d-customCheck-img-%codigoAgrupacion%-%codigoExamen%">
+    <input class="custom-control-input i-examen-img" id="customCheck-img-%codigoAgrupacion%-%codigoExamen%"
+      type="checkbox">
+    <label class="custom-control-label" for="customCheck-img-%codigoAgrupacion%-%codigoExamen%">
+      %descripcionExamen%
+    </label>
+    </input>
+  </div>
+</template>
+<template id="v-noticia">
+  <div class="col-md-6 mg-t-20">
+                                    <div class="card card-event">
+                                        <img alt="" class="card-img-top" src="https://via.placeholder.com/500x281">
+                                        <div class="card-body tx-13">
+                                            <h5>
+                                                <a href="">
+                                                        Acoustic Workshop
+                                                    </a>
+                                            </h5>
+                                            <p class="mg-b-0">
+                                                Apr 10 - Apr 12, Cebu IT Park
+                                            </p>
+                                            <span class="tx-12 tx-color-03">
+                                                    Cebu City, Cebu, Philippines
+                                                </span>
+                                        </div>
+                                        <!-- card-body -->
+                                        <div class="card-footer tx-13">
+                                            <span class="tx-color-03">
+                                                    5,001 people interested
+                                                </span>
+                                            <button class="btn btn-xs btn-secondary">
+                                                    Interested
+                                                </button>
+                                        </div>
+                                        <!-- card-footer -->
+                                        </img>
+                                    </div>
+                                    <!-- card -->
+                                </div>
+                                <!-- col -->
+</template>

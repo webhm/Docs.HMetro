@@ -1,0 +1,224 @@
+<div class="col-lg-12 col-xl-12 pd-0">
+	<div class="card pd-30">
+		<div class="d-flex align-items-center justify-content-between">
+			<div>
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb breadcrumb-style1 mg-b-10">
+						<li class="breadcrumb-item">
+							<a href="#" class="closeNuevaReceta">Datos Clínicos</a>
+						</li>
+						<li class="breadcrumb-item">
+							<a href="#" class="returnRecetas">Recetas</a>
+						</li>
+						<li class="breadcrumb-item active" aria-current="page">Nueva Receta</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+		<div class="d-flex align-items-start justify-content-between">
+			<div class="d-flex justify-content-start">
+				<h4 class="tx-20 mg-b-0">
+					Nueva Receta
+					<p class="tx-10 tx-semibold mg-b-0">
+						Hospital Metropolitano
+					</p>
+				</h4>
+			</div>
+			<div class="d-flex justify-content-end">
+				<button class="sendNuevaReceta btn btn-sm btn-primary d-flex align-items-center">
+					<i class="fas fa-paper-plane mg-r-5 tx-16 lh--9"></i>
+					Enviar Receta
+				</button>
+				<button class="resetNuevaReceta btn btn-sm btn-outline-primary d-flex align-items-center" title="Cancelar Receta">
+					<i class="fas fa-times-circle mg-r-5 tx-16 lh--9"></i>
+				</button>
+			</div>
+
+		</div>
+		<div class="d-flex align-items-start justify-content-between mg-t-20">
+
+			<h4 class="tx-20 mg-b-0">
+				<p class="diagnosticoReceta tx-15 tx-semibold mg-b-5"></p>
+			</h4>
+		</div>
+	</div>
+	<div class="card pd-b-20" id="blockReceta">
+		<div class="card-header bd-b-0  pd-l-20 pd-lg-l-25 d-flex flex-column flex-sm-row align-items-sm-start justify-content-sm-between">
+			<div class="contentDiagnosticoReceta col-12">
+				<h6 class="mg-b-5">Diagnóstico:
+					<a href="" class="copyDiagnosticoReceta mg-l-5 d-none">
+						<i class="fas fa-copy mg-r-2"></i>
+						Copiar diagnóstico de Historia Clínica
+					</a>
+				</h6>
+				<div class="df-example demo-forms bd bd-0 pd-0">
+					<div class="input-group">
+						<div class="search-form search-suggestion-fixed wd-100p">
+							<input type="search" class="form-control" id="diagPrincipal" placeholder="Buscar por código o diagnóstico."/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="colReceta card-header bd-b-0 pd-t-0 pd-l-20 pd-lg-l-25 d-none">
+
+			<div class="opcionesReceta row row-xs pd-auto mg-b-20 d-none">
+				<div class="col-6 col-sm-4 col-md-3 col-xl-3">
+					<div class="card card-file" id="tAntecedentesAlergias" style="cursor:pointer;">
+						<div class="card-file-thumb tx-indigo">
+							<i class="fas fa-allergies"></i>
+						</div>
+						<div class="card-body">
+							<h6>
+								<div class="title link-02">Antecendentes de Alergia</div>
+							</h6>
+						</div>
+						<div class="card-footer">
+							<span class="d-none d-sm-inline">Receta Médica
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-6 col-sm-4 col-md-3 col-xl-3">
+					<div class="nuevoPedidoImg card card-file" style="cursor:pointer;">
+						<div class="card-file-thumb tx-success">
+							<i class="fas fa-file-signature"></i>
+						</div>
+						<div class="card-body">
+							<h6>
+								<div class="link-02">Receta</div>
+							</h6>
+						</div>
+						<div class="card-footer">
+							<span class="d-none d-sm-inline">Receta Médica
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-6 col-sm-4 col-md-3 col-xl-3">
+					<div class="historialPedidosImg card card-file" style="cursor:pointer;">
+						<div class="card-file-thumb tx-primary">
+							<i class="fas fa-running"></i>
+						</div>
+						<div class="card-body">
+							<h6>
+								<div class="link-02">Indicaciones</div>
+							</h6>
+						</div>
+						<div class="card-footer">
+							<span class="d-none d-sm-inline">Receta Médica
+							</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-6 col-sm-4 col-md-3 col-xl-3">
+					<div class="nuevoPedidoImg card card-file" style="cursor:pointer;">
+						<div class="card-file-thumb tx-primary">
+							<i class="fas fa-users"></i>
+						</div>
+						<div class="card-body">
+							<h6>
+								<div class="link-02">Signos de Alarma</div>
+							</h6>
+						</div>
+						<div class="card-footer">
+							<span class="d-none d-sm-inline">Receta Médica
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="opcionesReceta row row-xs pd-auto mg-b-5 d-none">
+				<div class="col-6 col-sm-4 col-md-3 col-xl-3">
+					<div class="checkSignosVitales card card-file" style="cursor:pointer;">
+						<div class="card-file-thumb tx-indigo">
+							<i class="fas fa-allergies"></i>
+						</div>
+						<div class="card-body">
+							<h6>
+								<div class="title link-02">Recomendaciones No Farmacológicas</div>
+							</h6>
+						</div>
+						<div class="card-footer">
+							<span class="d-none d-sm-inline">Receta Médica
+							</span>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="card mg-b-5" id="bAntecedentesAlergias" style="display:block;">
+				<div class="card-header control">
+					<h6 class="d-flex mg-b-0">
+						<i class="fas fa-chevron-left tx-15 mg-r-15 mg-l-5 d-none" id="rAntecedentesAlergias" style="cursor:pointer;"></i>
+						Antecedentes de Alergias
+						<div class="tx-12 tx-semibold tx-indigo mg-l-auto  d-none" style="cursor:pointer;">
+							<i class="fas fa-search-plus mg-r-5"></i>
+							Consultar Información HMetro
+						</div>
+
+					</h6>
+				</div>
+				<!-- card-header -->
+				<div class="card-body pd-y-15 pd-x-10">
+					<div class="ht-150 wd-auto pd-0 bd-0 scrolling-container-contentAlergias" id="contentAlergias"></div>
+				</div>
+				<!-- card-body -->
+			</div>
+			<!-- card -->
+
+			<div class="card mg-b-5">
+				<div class="card-header control" id="tReceta" style="cursor:pointer;">
+					<h6 class="mg-b-0">Receta</h6>
+				</div>
+				<!-- card-header -->
+				<div class="card-body pd-y-15 pd-x-10" id="bReceta" style="display:block;">
+					<div class="ht-150 wd-auto pd-0 bd-0 scrolling-container-contentReceta" id="contentReceta"></div>
+				</div>
+				<!-- card-body -->
+			</div>
+			<!-- card -->
+
+			<div class="card mg-b-5">
+				<div class="card-header control" id="tIndicacionesReceta" style="cursor:pointer;">
+					<h6 class="mg-b-0">Indicaciones</h6>
+				</div>
+				<!-- card-header -->
+				<div class="card-body pd-y-15 pd-x-10" id="bIndicacionesReceta" style="display:block;">
+					<div class="ht-150 wd-auto pd-0 bd-0 scrolling-container-contentIndiReceta" id="contentIndiReceta"></div>
+				</div>
+				<!-- card-body -->
+			</div>
+			<!-- card -->
+
+			<div class="card mg-b-5">
+				<div class="card-header control" id="tAlarmas" style="cursor:pointer;">
+					<h6 class="mg-b-0">Signos de Alarma</h6>
+				</div>
+				<!-- card-header -->
+				<div class="card-body pd-y-15 pd-x-10" id="bAlarmas" style="display:block;">
+					<div class="ht-150 wd-auto pd-0 bd-0 scrolling-container-contentAlarmas" id="contentAlarmas"></div>
+				</div>
+				<!-- card-body -->
+			</div>
+			<!-- card -->
+
+			<div class="card mg-b-5">
+				<div class="card-header control" id="tNoFarma" style="cursor:pointer;">
+					<h6 class="mg-b-0">Recomendaciones No Farmacológicas</h6>
+				</div>
+				<!-- card-header -->
+				<div class="card-body pd-y-15 pd-x-10" id="bNoFarma" style="display:block;">
+					<div class="ht-150 wd-auto pd-0 bd-0 scrolling-container-contentNoFarma" id="contentNoFarma"></div>
+				</div>
+				<!-- card-body -->
+			</div>
+			<!-- card -->
+
+
+		</div>
+	</div>
+</div>
