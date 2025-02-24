@@ -11,9 +11,9 @@ database:
   drivers:
     mysql: 
       host: localhost
-      user: admin_hmetro
-      pass: 1501128480
-      name: admin_hmetro
+      user: admin_docs
+      pass: 5jnaW3!85
+      name: admin_docs
       port: default
       socket: default
     oracle_produccion: 
