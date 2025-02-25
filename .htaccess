@@ -18,7 +18,7 @@
     Satisfy All
 </FilesMatch>
 
-<ifModule mod_rewrite.c>
+# <ifModule mod_rewrite.c>
     Options +FollowSymLinks
     RewriteEngine On
 
@@ -35,5 +35,5 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^(.*)$ index.php?routing=$1 [QSA,L]
     # --- HELP PARA ROUTER DEL FRAMEWORK --- #
-</IfModule>
+# </IfModule>
 
