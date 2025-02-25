@@ -19,7 +19,7 @@
 </FilesMatch>
 
 <ifModule mod_rewrite.c>
-    Options +FollowSymLinks
+    #Options +FollowSymLinks
     RewriteEngine On
 
     # --- FORZAR HTTPS EN SU SITIO --- #
